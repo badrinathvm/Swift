@@ -36,24 +36,6 @@ pal.rev(n:525)
 
 //* Progarmme for Merging two lists 
 
-
-/*extension LinkedList: CustomStringConvertible {
- public var description: String {
- var text = ""
- var node = head
- 
- while node != nil {
- text += "\(node!.value)"
- node = node!.next
- if node != nil {
- text += "--->"
- }
- }
- return text + ""
- }
- }*/
-
-
 class Node{
     var value:Int
     var next: Node?
@@ -171,13 +153,163 @@ var revList = LinkedList<Int>().reversList(l: (list3.head))
 print("Reversed List is : " + node.disp(n: revList))
 
 
+/*  >>>>>>> Programm to remove duplicates in an array and find the count of it >>>>>>> */
+
+struct Remove_Duplicates{
+    
+    func remove(ar: [Int]) -> Int{
+        var arr = ar
+        arr = sort(array: &arr)
+        var index:Int = 1
+        
+        if arr.count < 2 {
+            return arr.count
+        }
+        
+        for i in 1..<arr.count{
+            if ( arr[i] != arr[i-1]){
+                //arr[index] = arr[i]
+                index += 1
+            }
+        }
+    
+        return index
+    }
+    
+    func sort(array: inout [Int]) -> [Int]{
+        
+        var temp:Int = 0
+        
+        for _ in stride(from: array.count, to: 0, by: -1) {
+            for i in 0..<array.count-1{
+                if array[i] > array[i+1]{
+                    temp = array[i]
+                    array[i] = array[i+1]
+                    array[i+1] = temp
+                }
+            }
+        }
+        return array
+    }
+    
+    
+    
+   }
+
+var remove = Remove_Duplicates()
+print("Length is \( remove.remove(ar: [2,3,2,3,4,4]))")
 
 
+/* >>>>>  Program to add Zeros in front of the array >>>>>>>>>> */
 
 
+struct AddZeros{
+    
+    func addZerosEnd(zeroArray: inout [Int]) -> [Int]{
+        
+        var counter:Int = 0
+        for i in 0..<zeroArray.count{
+            if( zeroArray[i] != 0){
+                zeroArray[counter] = zeroArray[i]
+                counter += 1
+            }
+        }
+        
+        while (counter < zeroArray.count){
+            zeroArray[counter] = 0
+            counter += 1
+        }
+
+        return zeroArray
+    }
+    
+    func addZerosBeginning(zeroArray: inout [Int]) -> [Int]{
+        
+        var counter:Int = zeroArray.count - 1
+        
+        for i in stride(from: zeroArray.count - 1, to: -1, by: -1){
+            if( zeroArray[i] != 0 ){
+                zeroArray[counter] = zeroArray[i]
+                counter -= 1
+            }
+        }
+        
+        while(counter >= 0){
+            zeroArray[counter] = 0
+            counter -= 1
+        }
+        
+        return zeroArray
+    }
+    
+}
+
+var addZero = AddZeros()
+var zeroArray:[Int] =  [14,0,5,3,0]
+print(">>>> Ending with Zeros >>>>>")
+print(addZero.addZerosEnd(zeroArray: &zeroArray))
+print(">>>> Begginging with Zeros >>>>>>")
+print(addZero.addZerosBeginning(zeroArray: &zeroArray))
 
 
+/**  >>> Program for reversing the string >>> */
 
+struct ReverseString{
+    
+    func reverString(str: String){
+        var s = str.characters.map {$0}
+        
+        print(">>>> Reversal of String >>>>>")
+        for i in stride(from: s.count - 1, to: -1, by: -1){
+            print(s[i], terminator:"")
+        }
+    }
+}
+
+ReverseString().reverString(str:"swift")
+print()
+
+/** Find Duplicates in a String  ***/
+
+struct FindDuplicates{
+    
+    func findDuplicates(str: String) -> [Character:Int]{
+        
+        var resultDict:[Character:Int] = [:]
+        var filteredDict:[Character:Int] = [:]
+        
+        var s = str.characters.map {$0}
+        
+        for i in 0..<str.characters.count{
+            var val = s[i]
+            if (resultDict.keys.contains(val)){
+                resultDict[val] = resultDict[val]! + 1
+            }else{
+                resultDict[val] = 1
+            }
+        }
+        
+        print(resultDict)
+        
+        for (key,value ) in resultDict{
+            if value > 1 {
+                filteredDict[key] = value
+            }
+        }
+        
+        return filteredDict
+    }
+}
+
+print(">>>>>> Count of each character >>>>>>", terminator: "\n")
+print(FindDuplicates().findDuplicates(str: "Swifttt"))
+
+
+/* >>>> Program for grouping Anagrams */
+
+struct GroupAnagrams{
+    
+}
 
 
 
