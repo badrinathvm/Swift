@@ -3,7 +3,6 @@
 import UIKit
 
 
-
 /* Write a Java program to reverse String in Java without using any API?
  
  Read more: http://javarevisited.blogspot.com/2012/10/10-java-string-interview-question-answers-top.html#ixzz4mr1QOg9Q */
@@ -92,7 +91,6 @@ struct RemoveCharacter{
     func printRepeatedCharacteFirtsOccurence(_ inputStr: String, _ removeChar: Character) -> String {
         var result:String? = ""
         var occurenceFlag:Bool = false
-        var dict: [Character : Int] = [:]
         
         let strData = inputStr.characters.map { $0 }
         
@@ -115,6 +113,62 @@ struct RemoveCharacter{
 print(RemoveCharacter().removeCharacterAlt("Java", "a"))
 print(RemoveCharacter().printRepeatedCharacteFirtsOccurence("JavaaaaaP", "a"))
 
+
+/* Program to print all combinations of String */
+
+
+struct Combinations{
+    
+    func combinations(_ input:String ) -> [String]{
+        var list:[String] = []
+        var strData = input.characters.map { $0 }
+        for i in 0..<strData.count {
+            
+            var test:String = ""
+            
+            test += String(strData[i])
+            
+            list.append(test)
+        }
+        
+        return list
+    }
+    
+    
+    func permuteWirth<T>(_ a: [T], _ n: Int) {
+        if n == 0 {
+               // display the current permutation
+            //print(a)
+            printy(a as! [String])
+            
+        } else {
+            var a = a
+            permuteWirth(a, n - 1)  //   (a,1) (a,0) => abc
+            for i in 0..<n {          //2
+                swap(&a[i], &a[n])
+                permuteWirth(a, n - 1)  //
+                swap(&a[i], &a[n])
+            }
+        }
+    }
+    
+    func printy(_ array: [String]){
+        
+        print(array.joined(separator: ""))
+
+    }
+    
+}
+
+//print(Combinations().combinations("ABC"))
+
+let letters = ["a", "b", "c"]
+Combinations().permuteWirth(letters, letters.count - 1)
+
+
+let cafe = "Str"
+
+print(cafe.characters.indices)
 
 
 
