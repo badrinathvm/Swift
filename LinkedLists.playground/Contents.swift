@@ -122,10 +122,60 @@ class LinkedList {
           temp = head
           head = head?.link
         }
-        
         return res
-    
     }
+    
+    func detectLoop (head: Node?) -> Int {
+        
+        var (slow, fast) = (head, head)
+        
+        while ( slow != nil && fast != nil && fast?.link != nil){
+            
+            slow = slow?.link
+            fast = fast?.link?.link
+            
+            if ( slow === fast){
+                print("Found Loop")
+                return 1
+            }
+            
+        }
+        
+        return 0
+    }
+    
+    
+    func detectRemoveLoop (head: Node?) -> Node? {
+        
+        var (slow, fast) = (head, head)
+        
+        while ( slow != nil && fast != nil && fast?.link != nil){
+            
+            slow = slow?.link
+            fast = fast?.link?.link
+            
+            if ( slow === fast){
+                print("Loop")
+                break
+            
+            }
+        }
+        
+            if (slow === fast)
+            {
+                slow = head;
+                while (!(slow?.link === fast?.link))
+                {
+                    slow = slow?.link;
+                    fast = fast?.link;
+                }
+                
+                /* since fast->next is the looping point */
+                fast?.link = nil; /* remove loop */
+            }
+            
+            return head!
+       }
 }
 
 //var node = Node()
@@ -182,6 +232,24 @@ print(list.disp(n: revList))
 //add one 
 var res = list.addOneList(list: revList)
 print(list.disp(n: res))
+
+// Program to detect loop 
+
+//This is the fastest method. Traverse linked list using two pointers.  Move one pointer by one and other pointer by two.  If these pointers meet at some node then there is a loop.  If pointers do not meet then linked list doesn’t have loop.
+
+var detectLoopList = LinkedList.Node(data: 1)
+detectLoopList.link = LinkedList.Node(data: 2)
+detectLoopList.link?.link = LinkedList.Node(data: 3)
+detectLoopList.link?.link?.link = LinkedList.Node(data: 4)
+detectLoopList.link?.link?.link?.link = LinkedList.Node(data: 5)
+
+detectLoopList.link?.link?.link?.link?.link = detectLoopList.link
+
+print(list.detectLoop(head: detectLoopList))
+
+ var y = list.detectRemoveLoop(head: detectLoopList)
+
+print(list.disp(n: y))
 
 
 
