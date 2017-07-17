@@ -271,7 +271,52 @@ extension String {
 
 
 let str1 = "Hello, World"
-print(str1.indexOf("Wor"))
+print(str1.indexOf("Wor")!)
+
+
+/* Search for a Range */
+
+struct SearchForRange{
+    
+    static func searchForRange(nums: [Int] , target: Int) -> [Int]{
+        var result:[Int] = Array<Int>(repeating: -1, count: 2)
+        var (i,j) = (0,nums.count - 1)
+
+        while i < j{
+            let mid: Int = (i+j) / 2
+            if nums[mid] < target {
+                i = mid + 1
+            }else{
+                i = mid
+            }
+        }
+        
+        if nums[i] != target{
+            return result
+        }else{
+            result[0] = i
+        }
+        
+        j = nums.count - 1
+        while i < j{
+            let mid:Int = (i+j) / 2
+            if nums[mid] > target {
+                j = mid - 1
+            }else{
+                i = mid
+            }
+        }
+        result[1] = j
+        
+        print(result)
+        
+        return result
+    }
+}
+
+print(SearchForRange.searchForRange(nums: [5,7,7,8,8,3], target: 8))
+
+
 
 
 

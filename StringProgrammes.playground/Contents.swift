@@ -138,8 +138,8 @@ struct Combinations{
     func permuteWirth<T>(_ a: [T], _ n: Int) {
         if n == 0 {
                // display the current permutation
-            //print(a)
-            printy(a as! [String])
+            print(a)
+            //printy(a as! [String])
             
         } else {
             var a = a
@@ -162,13 +162,47 @@ struct Combinations{
 
 //print(Combinations().combinations("ABC"))
 
-let letters = ["a", "b", "c"]
+let letters = [1, 2, 3]
 Combinations().permuteWirth(letters, letters.count - 1)
 
 
 let cafe = "Str"
 
 print(cafe.characters.indices)
+
+
+/* Program for length of the last word */
+
+private extension String{
+    subscript (index: Int) -> Character {
+        return self[self.characters.index(self.startIndex, offsetBy: index)]
+    }
+}
+
+
+struct LengthLastWord {
+    
+    static func lengthOfLastWord(_ str:String) -> Int {
+    
+        var (len,i) = (0,0)
+      
+        while i < str.characters.count{
+            if str[i] != " "{
+                    len += 1
+            } else if i+1 < str.characters.count && str[i+1] != " "{
+                    len = 0
+            }
+            i += 1
+        }
+        
+        return len
+    }
+}
+
+print(LengthLastWord.lengthOfLastWord("Hello World!"))
+
+
+
 
 
 
