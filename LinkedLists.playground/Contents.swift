@@ -2,10 +2,6 @@
 
 import UIKit
 
-var str = "Hello, playground"
-
-
-
 class LinkedList {
     
     class Node {
@@ -176,12 +172,38 @@ class LinkedList {
             
             return head!
        }
+    
+    
+     // function to detect nth node 
+    
+    func nthNodeList( head: Node? , n: Int){
+        
+        var temp:Node? = head!
+        var len : Int = 0
+        
+        while ( temp != nil ){
+            temp = temp?.link
+            len += 1
+        }
+        
+        if (len < n) {
+            return
+        }
+        
+        temp = head
+        
+        for _ in 1..<(len-n+1){
+            temp = temp?.link
+        }
+        
+       print ("Data is \((temp?.data)!)")
+        
+    }
 }
-
-//var node = Node()
 
 var list = LinkedList()
 
+print("Program to reverse linked list",terminator: "\n")
 
 var reverseList = LinkedList.Node(data: 10)
 reverseList.link = LinkedList.Node(data: 20)
@@ -192,6 +214,7 @@ print("List is : " + list.disp(n: reverseList))
 
 print("Reverse list is " +  list.disp(n: list.reverse(list: reverseList)))
 
+print("Program to Delete Middle linked list",terminator: "\n\n")
 
 var head = LinkedList.Node(data: 10)
 head.link = LinkedList.Node(data: 20)
@@ -200,8 +223,10 @@ head.link?.link?.link = LinkedList.Node(data: 40)
 head.link?.link?.link?.link = LinkedList.Node(data: 50)
 head.link?.link?.link?.link?.link = LinkedList.Node(data: 60)
 
-print("Delete Middle is " +  list.disp(n: list.deleteMid(list: head)))
+print("Delete Middle is " +  list.disp(n: list.deleteMid(list: head)), terminator:"\n")
 
+
+print("Program to remove Duplicates linked list",terminator: "\n")
 
 var removeDuplicates = LinkedList.Node(data: 1)
 removeDuplicates.link = LinkedList.Node(data: 2)
@@ -209,7 +234,6 @@ removeDuplicates.link?.link = LinkedList.Node(data: 3)
 removeDuplicates.link?.link?.link = LinkedList.Node(data: 3)
 removeDuplicates.link?.link?.link?.link = LinkedList.Node(data: 4)
 removeDuplicates.link?.link?.link?.link?.link = LinkedList.Node(data: 4)
-
 
 print("Remove Duplicates " + list.disp(n: (list.removeDuplicatesNode(head: removeDuplicates))))
 
@@ -219,6 +243,8 @@ print("Remove Duplicates " + list.disp(n: (list.removeDuplicatesNode(head: remov
 //Reverse given linked list. For example, 1-> 9-> 9 -> 9 is converted to 9-> 9 -> 9 ->1.
 //Start traversing linked list from leftmost node and add 1 to it. If there is a carry, move to the next node. Keep moving to the next node while there is a carry.
 //Reverse modified linked list and return head
+
+print("Program to Add 1 to a number represented as linked list",terminator: "\n")
 
 var addOneLinkedList = LinkedList.Node(data:1)
 addOneLinkedList.link = LinkedList.Node(data: 9)
@@ -237,6 +263,8 @@ print(list.disp(n: res))
 
 //This is the fastest method. Traverse linked list using two pointers.  Move one pointer by one and other pointer by two.  If these pointers meet at some node then there is a loop.  If pointers do not meet then linked list doesn’t have loop.
 
+print("Program to Detect Loop",terminator: "\n\n")
+
 var detectLoopList = LinkedList.Node(data: 1)
 detectLoopList.link = LinkedList.Node(data: 2)
 detectLoopList.link?.link = LinkedList.Node(data: 3)
@@ -247,15 +275,21 @@ detectLoopList.link?.link?.link?.link?.link = detectLoopList.link
 
 print(list.detectLoop(head: detectLoopList))
 
- var y = list.detectRemoveLoop(head: detectLoopList)
+var detectLoopListResult = list.detectRemoveLoop(head: detectLoopList)
 
-print(list.disp(n: y))
+print(list.disp(n: detectLoopListResult))
 
+//Program to find the nth node from the end of the linked list
 
+print("\nProgram to find the nth node from the end of the linked list",terminator: "\n")
 
-
-
-
+var nthNode = LinkedList.Node(data: 10)
+nthNode.link = LinkedList.Node(data: 35)
+nthNode.link?.link = LinkedList.Node(data: 20)
+nthNode.link?.link?.link = LinkedList.Node(data: 40)
+nthNode.link?.link?.link?.link = LinkedList.Node(data: 50)
+print("Input : " + list.disp(n: nthNode ))
+list.nthNodeList(head: nthNode , n: 4)
 
 
 
