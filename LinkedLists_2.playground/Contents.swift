@@ -131,6 +131,41 @@ class LinkedList {
         return head!
     }
     
+    
+    //function to rotate list
+    
+    static func rotateList(head:  Node , k: Int) {
+        
+      
+        var cur:Node? = head
+        var count:Int = 1
+        var res:Node?  = head
+        
+         //print("Result Node  :" + LinkedList.disp(n: res))
+        
+        while ( count < k && cur != nil ){
+            cur = cur?.link
+            count += 1
+        }
+        
+        var kthNode: Node? =  cur
+        
+        while ( cur != nil ){
+            
+            cur = cur?.link
+        
+            cur?.link = res
+          
+            res = (kthNode?.link)
+          
+            kthNode?.link = nil
+            
+        }
+       
+        print("Resulty Node  :" + LinkedList.disp(n: res))
+
+    }
+    
 }
 
 print("Program to reverse k Nodes ")
@@ -175,6 +210,27 @@ print("Input : " + LinkedList.disp(n: occurenceList))
 var occuList = LinkedList.occurenceLast(head: occurenceList, key: 20)
 
 print( "Output : " + LinkedList.disp(n: occuList))
+
+
+print("Program to Rotate a linked List ")
+
+
+var rotateList = LinkedList.Node(data: 10)
+rotateList.link = LinkedList.Node(data: 20)
+rotateList.link?.link = LinkedList.Node(data: 30)
+rotateList.link?.link?.link = LinkedList.Node(data: 40)
+rotateList.link?.link?.link?.link = LinkedList.Node(data: 50)
+rotateList.link?.link?.link?.link?.link = LinkedList.Node(data: 60)
+
+print("Input : " + LinkedList.disp(n: rotateList))
+
+LinkedList.rotateList(head: rotateList, k: 4)
+
+//print("Output : " + LinkedList.disp(n: rotateResult))
+
+
+
+
 
 
 
