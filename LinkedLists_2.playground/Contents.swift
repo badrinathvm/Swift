@@ -76,6 +76,61 @@ class LinkedList {
         
     }
     
+    
+    static func nthNodeList( head: Node? , n: Int){
+        
+        var temp:Node? = head!
+        var len : Int = 0
+        
+        while ( temp != nil ){
+            temp = temp?.link
+            len += 1
+        }
+        
+        if (len < n) {
+            return
+        }
+        
+        temp = head
+        
+        print(LinkedList.disp(n: temp))
+        
+        for _ in 1..<(len-n+1){
+            temp = temp?.link
+        }
+        
+        print ("Data is \((temp?.data)!)")
+    }
+    
+    static func occurenceLast(head: Node? , key: Int) -> Node?{
+        
+        var temp: Node? = head!
+        var x:Node? = nil
+        
+        
+        while( temp != nil){
+            
+            if( temp?.data ==  key){
+                x = temp
+            }
+
+            temp = temp?.link
+        }
+        
+        print(LinkedList.disp(n: x))
+        
+        if ( x != nil ){
+            //copy data o fnext node to x
+            x?.data = (x?.link?.data)!
+            
+            //unlink next
+            x?.link = nil
+            
+        }
+
+        return head!
+    }
+    
 }
 
 print("Program to reverse k Nodes ")
@@ -92,5 +147,35 @@ reverseKNodes.link?.link?.link?.link?.link?.link = LinkedList.Node(data: 7)
 print("Input : "  +  LinkedList.disp(n: reverseKNodes))
 var result = LinkedList.reverseKNodes(head: reverseKNodes, n: 3)
 print("Output: " + LinkedList.disp(n: result))
+
+
+//Program to find the nth node from the end of the linked list
+
+print("\nProgram to find the nth node from the end of the linked list",terminator: "\n")
+
+var nthNode = LinkedList.Node(data: 10)
+nthNode.link = LinkedList.Node(data: 35)
+nthNode.link?.link = LinkedList.Node(data: 20)
+nthNode.link?.link?.link = LinkedList.Node(data: 40)
+nthNode.link?.link?.link?.link = LinkedList.Node(data: 50)
+print("Input : " + LinkedList.disp(n: nthNode ))
+LinkedList.nthNodeList(head: nthNode , n: 4)
+
+print("Program to delete last occurence of key")
+
+var occurenceList = LinkedList.Node(data: 10)
+occurenceList.link = LinkedList.Node(data: 20)
+occurenceList.link?.link = LinkedList.Node(data: 50)
+occurenceList.link?.link?.link = LinkedList.Node(data: 20)
+occurenceList.link?.link?.link?.link = LinkedList.Node(data: 40)
+
+
+print("Input : " + LinkedList.disp(n: occurenceList))
+
+var occuList = LinkedList.occurenceLast(head: occurenceList, key: 20)
+
+print( "Output : " + LinkedList.disp(n: occuList))
+
+
 
 

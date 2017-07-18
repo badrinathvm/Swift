@@ -221,28 +221,7 @@ class LinkedList {
     
      // function to detect nth node 
     
-    func nthNodeList( head: Node? , n: Int){
-        
-        var temp:Node? = head!
-        var len : Int = 0
-        
-        while ( temp != nil ){
-            temp = temp?.link
-            len += 1
-        }
-        
-        if (len < n) {
-            return
-        }
-        
-        temp = head
-        
-        for _ in 1..<(len-n+1){
-            temp = temp?.link
-        }
-        
-       print ("Data is \((temp?.data)!)")
-    }
+  
     
     
     // function for plaindroms 
@@ -355,17 +334,7 @@ var detectLoopListResult = list.detectRemoveLoop(head: detectLoopList)
 
 print(list.disp(n: detectLoopListResult))
 
-//Program to find the nth node from the end of the linked list
 
-print("\nProgram to find the nth node from the end of the linked list",terminator: "\n")
-
-var nthNode = LinkedList.Node(data: 10)
-nthNode.link = LinkedList.Node(data: 35)
-nthNode.link?.link = LinkedList.Node(data: 20)
-nthNode.link?.link?.link = LinkedList.Node(data: 40)
-nthNode.link?.link?.link?.link = LinkedList.Node(data: 50)
-print("Input : " + list.disp(n: nthNode ))
-list.nthNodeList(head: nthNode , n: 4)
 
 //Programme for Palindrom of Singly Linked list 
 
