@@ -2,6 +2,51 @@
 
 import UIKit
 
+//Stack class 
+
+/*   Implementation of Stack  */
+
+struct Stack<T>{
+    
+    fileprivate var array = [T]()
+    
+    public var isEmpty : Bool{
+        return array.isEmpty
+    }
+    
+    public var count :Int {
+        return array.count
+    }
+    
+    mutating func push(_ item: T ){
+        array.append(item)
+    }
+    
+    mutating func pop() -> T?{
+        return array.popLast()
+    }
+    
+    func disp(){
+        print(array)
+    }
+    
+    func top() -> T?{
+        return array.last
+    }
+    
+}
+
+var stack = Stack<Int>()
+//stack.push(10)
+//stack.push(20)
+//stack.push(30)
+//print(">>>> Popped Element is \(stack.pop())")
+
+//print(">>>> Top Element is \(stack.top()) ")
+//stack.disp()
+
+
+
 class LinkedList {
     
     class Node {
@@ -197,7 +242,38 @@ class LinkedList {
         }
         
        print ("Data is \((temp?.data)!)")
+    }
+    
+    
+    // function for plaindroms 
+    
+    func plaindromeCheck( head: Node? ){
+        var temp:Node? = head!
+        var flag:Int = 0
+        var stack = Stack<Int>()
         
+        while ( temp != nil ){
+            stack.push((temp?.data)!)
+            temp = temp?.link
+        }
+        
+        stack.disp()
+        
+        temp = head
+        
+        while ( temp != nil ){
+            if ( stack.pop() == temp?.data){
+                temp = temp?.link
+                flag = 1
+            }
+        }
+        
+        print (flag )
+        if flag == 1 {
+            print("Palindrome")
+        } else {
+            print("Not Plaindrome")
+        }
     }
 }
 
@@ -290,6 +366,17 @@ nthNode.link?.link?.link = LinkedList.Node(data: 40)
 nthNode.link?.link?.link?.link = LinkedList.Node(data: 50)
 print("Input : " + list.disp(n: nthNode ))
 list.nthNodeList(head: nthNode , n: 4)
+
+//Programme for Palindrom of Singly Linked list 
+
+var palindromeNode = LinkedList.Node(data: 1)
+palindromeNode.link = LinkedList.Node(data: 0)
+palindromeNode.link?.link = LinkedList.Node(data:2)
+
+list.plaindromeCheck(head: palindromeNode)
+
+
+
 
 
 
