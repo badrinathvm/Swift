@@ -148,7 +148,7 @@ class LinkedList {
             count += 1
         }
         
-        var kthNode: Node? =  cur
+        let kthNode: Node? =  cur
         
         while ( cur != nil ){
             
@@ -164,6 +164,32 @@ class LinkedList {
        
         print("Resulty Node  :" + LinkedList.disp(n: res))
 
+    }
+    
+    
+    // 
+    
+    static func skipMNodes(head: Node?, m:Int, n:Int) -> Node?{
+        var cur:Node? = head!
+        var t:Node?
+        
+        while( cur != nil ){
+         
+            for i in 1..<m {
+                cur = cur?.link
+            }
+    
+            t = cur?.link
+            
+            for i in 1..<n{
+                t = t?.link
+            }
+        
+            cur?.link = t?.link
+            
+            cur = t?.link
+        }
+          return head
     }
     
 }
@@ -214,7 +240,6 @@ print( "Output : " + LinkedList.disp(n: occuList))
 
 print("Program to Rotate a linked List ")
 
-
 var rotateList = LinkedList.Node(data: 10)
 rotateList.link = LinkedList.Node(data: 20)
 rotateList.link?.link = LinkedList.Node(data: 30)
@@ -227,6 +252,31 @@ print("Input : " + LinkedList.disp(n: rotateList))
 LinkedList.rotateList(head: rotateList, k: 4)
 
 //print("Output : " + LinkedList.disp(n: rotateResult))
+
+print("Programm to skip n nodes after m nodes")
+
+var skipList = LinkedList.Node(data: 1)
+skipList.link = LinkedList.Node(data: 2)
+skipList.link?.link = LinkedList.Node(data: 3)
+skipList.link?.link?.link = LinkedList.Node(data: 4)
+skipList.link?.link?.link?.link = LinkedList.Node(data: 5)
+skipList.link?.link?.link?.link?.link = LinkedList.Node(data: 6)
+skipList.link?.link?.link?.link?.link?.link = LinkedList.Node(data: 7)
+skipList.link?.link?.link?.link?.link?.link?.link = LinkedList.Node(data: 8)
+skipList.link?.link?.link?.link?.link?.link?.link?.link = LinkedList.Node(data: 9)
+
+skipList.link?.link?.link?.link?.link?.link?.link?.link?.link = LinkedList.Node(data: 10)
+
+print("Input : " + LinkedList.disp(n: skipList))
+
+var skipResuktList = LinkedList.skipMNodes(head: skipList, m: 3, n: 2)
+
+print("Output :" + LinkedList.disp(n: skipResuktList))
+
+
+
+
+
 
 
 
