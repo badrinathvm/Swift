@@ -140,6 +140,48 @@ class Tree {
         Tree.printRight(node: node?.left, level: level + 1, max_level: &max_level )
         
     }
+    
+    static func height(node:Node?) -> Int{
+        
+        if node == nil {
+            return 0
+        }else{
+            //Compute height of each sub tree
+            
+            let lheight: Int = height(node: node?.left)
+            let rheight:Int = height(node: node?.right)
+            
+            if ( lheight > rheight){
+                return lheight + 1
+            }else{
+                return rheight + 1
+            }
+        }
+    }
+    
+    static func levelOrder(node: Node?) {
+        let h:Int = Tree.height(node: node!)
+        var i:Int = 1
+        while (i <= h ){
+            printLevel(node: node, level: i )
+            i += 1
+        }
+    }
+    
+    static func printLevel(node: Node?, level:Int){
+        if (node == nil){
+            return
+        }
+        
+        if (level == 1){
+            print((node?.value)!, terminator: " ")
+        }else if( level > 1){
+            printLevel(node: node?.left, level: level - 1)
+            printLevel(node: node?.right, level: level - 1)
+        }
+    }
+    
+    
 }
 
 var root = Tree.Node(value: 1)
@@ -168,6 +210,11 @@ Tree.max_level = 0
 
 print("Right Nodes are ", terminator: "\n")
 Tree.printRight(node: root, level: 1, max_level: &Tree.max_level)
+print()
+
+print("Level Order Traversal " , terminator:"\n")
+Tree.levelOrder(node: root)
+
 
 
 
