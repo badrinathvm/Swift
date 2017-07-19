@@ -121,28 +121,10 @@ Tree.postOrder(node: root)
 print()
 
 print("In Order Traversalof node is ")
-Tree.postOrder(node: root)
+Tree.inOrder(node: root)
 
 
 
-
-
-/* var n1 = Tree.Node(value: 1)
-var n2 = Tree.Node(value: 2)
-var n3 = Tree.Node(value: 3)
-var n4 = Tree.Node(value: 4)
-var n5 = Tree.Node(value: 5)
-var n6 = Tree.Node(value: 6)
-var n7 = Tree.Node(value: 7)
-
-n1.left = n2
-n1.right = n3
-
-n2.left = n4
-n2.right = n5
-
-n3.left = n6
-n3.right = n7 */
 
 
 
