@@ -32,7 +32,11 @@ import UIKit
 
 import Foundation
 
+
+
 class Tree {
+    
+    static var max_level:Int = 0
     
     class Node{
         var left:Node?
@@ -104,6 +108,38 @@ class Tree {
         Tree.inOrder(node: node?.right)
         
     }
+    
+    static func printLeft(node: Node?,level:Int, max_level: inout Int){
+        
+        if (node == nil){
+            return
+        }
+        
+        if( max_level < level){
+            print((node?.value)! , terminator: " ")
+            max_level = level
+        }
+        
+        Tree.printLeft(node: node?.left, level: level + 1, max_level: &max_level)
+        Tree.printLeft(node: node?.right, level: level + 1, max_level: &max_level)
+        
+    }
+    
+    static func printRight(node: Node?,level:Int, max_level: inout Int){
+        
+        if (node == nil){
+            return
+        }
+        
+        if( max_level < level){
+            print((node?.value)! , terminator: " ")
+            max_level = level
+        }
+        
+        Tree.printRight(node: node?.right, level: level + 1, max_level: &max_level )
+        Tree.printRight(node: node?.left, level: level + 1, max_level: &max_level )
+        
+    }
 }
 
 var root = Tree.Node(value: 1)
@@ -122,7 +158,16 @@ print()
 
 print("In Order Traversalof node is ")
 Tree.inOrder(node: root)
+print()
 
+print("Left Nodes are ", terminator:"\n")
+Tree.printLeft(node: root, level: 1, max_level: &Tree.max_level)
+print()
+
+Tree.max_level = 0
+
+print("Right Nodes are ", terminator: "\n")
+Tree.printRight(node: root, level: 1, max_level: &Tree.max_level)
 
 
 
