@@ -3,7 +3,8 @@
 import UIKit
 
 var str = "helloplaygroundhello"
-var subStr = "hello"
+var subStr = "hello2"
+
 
 private extension String{
     subscript (index: Int) -> Character {
@@ -23,6 +24,8 @@ for outer in 0..<(str.characters.count - subStr.characters.count){
     }
 }
 
-print( "No of matches " + matches)
+print( "No of matches \(matches)")
+
+
 
 
