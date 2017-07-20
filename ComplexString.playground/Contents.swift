@@ -11,7 +11,7 @@ private extension String{
 }
 
 var x:String = "AGGTAB"
-var y:String = "GXTXAYB"
+var y:String = "GXTXAY"
 
 var m:Int = x.characters.count
 var n:Int = y.characters.count
@@ -23,22 +23,23 @@ var dp = Array(repeating: Array(repeatElement(0, count: n + 1)), count: m + 1)
 
 var (i,j,k) = (1,1,1)
 
-for i in 1..<(m+1) {
-    for j in 1..<(n+1){
-        if( x[i - 1]  == y[j - 1] ){
-            dp[i][j] = dp[i-1][j-1] + 1
-        }else{
-            dp[i][j] = dp[i][j-1]
+func countIndex()->Int?{
+    for i in 1...m {
+        for j in 1...(n){
+            if i == 0 || j == 0 {
+                return 0
+            }else if( x[i - 1]  == y[j - 1] ){
+                    dp[i][j] = dp[i-1][j-1] + 1
+            }else{
+                dp[i][j] = max(dp[i-1][j], dp[i][j-1])
+            }
         }
     }
+    return dp[m][n]
+
 }
 
-var ans:Int = 0
 
-for k in 1..<(m+1){
-    ans = max(ans,dp[k][n])
-}
-
-print(ans)
+print(countIndex()!)
 
 

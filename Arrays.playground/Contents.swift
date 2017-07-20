@@ -76,3 +76,14 @@ print(SearchRotatedArrays.search(arr: arr, low: 0, high: arr.count - 1, key: 1)!
 print(SearchRotatedArrays.findMin(arr: arr, low: 0, high: arr.count - 1)!)
 
 
+var number = arr.filter{ $0 > 0 }
+
+var number1 = arr.filter { (value:Int) -> Bool in
+  
+    return value > 0
+}
+
+print(number1)
+
+
+
