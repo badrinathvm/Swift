@@ -3,7 +3,7 @@
 import UIKit
 
 var str = "helloplaygroundhello"
-var subStr = "hello2"
+var subStr = "hello"
 
 
 private extension String{
