@@ -24,9 +24,6 @@ var n:Int = y.characters.count
 func lcs(m:Int, n:Int) -> Int{
     
 var dp = Array(repeating: Array(repeatElement(0, count: n + 1)), count: m + 1)
-
-
-func countIndex()->Int?{
     for i in 1...m {
         for j in 1...(n){
             if i == 0 || j == 0 {
@@ -38,13 +35,53 @@ func countIndex()->Int?{
             }
         }
      }
-    }
     return dp[m][n]
 }
 
 print(lcs(m: m, n: n))
 
-print(countIndex()!)
+
+print("Length of the longest sub string is the forming the string wihtout repeatation")
+
+struct LengthOfLongestSubString{
+    
+    static func uniqueAll(str:String,start:Int,end:Int) -> Bool{
+        let ns = NSMutableSet()
+        
+        for i in start..<end{
+         if(ns.contains(String(str[i]))){
+                return false
+            }else{
+                ns.add(String(str[i]))
+            }
+         }
+         return true
+    }
+    
+    static func lengthofLongestSubString(str:String) -> Int{
+        var ans:Int = 0
+        for i in 0..<str.characters.count{
+            for j in i+1...str.characters.count{
+                if(LengthOfLongestSubString.uniqueAll(str: str, start: i, end: j)){
+                    ans = max(ans,j-i)
+                }
+            }
+        }
+        
+        return ans
+    }
+    
+}
+
+//var s = "ABDEFGABEF"
+var s = "GEEKSFORGEEKS"
+
+print(LengthOfLongestSubString.lengthofLongestSubString(str:s))
+
+
+
+
+
 
 
 
