@@ -181,6 +181,29 @@ class Tree {
         }
     }
     
+    static func isBST(_ root: Node?, _ l:Node? = nil, _ r:Node? = nil) -> Bool{
+        
+        if root == nil{
+            return true
+        }
+        
+        // if left node exist that check it has
+        // correct data or not
+        if (l != nil && (root?.value)! < (l?.value)!){
+            return false
+        }
+
+        // if right node exist that check it has
+        // correct data or not
+        if (r != nil && (root?.value)! > (r?.value)!){
+            return false
+        }
+
+        // check recursively for every node.
+        return isBST(root?.left, l, root) && isBST(root?.right, root, r)
+        
+    }
+    
     
 }
 
@@ -214,6 +237,20 @@ print()
 
 print("Level Order Traversal " , terminator:"\n")
 Tree.levelOrder(node: root)
+print()
+
+var bstRoot = Tree.Node(value: 4)
+bstRoot.left = Tree.Node(value: 2)
+bstRoot.right = Tree.Node(value: 5)
+bstRoot.left?.left = Tree.Node(value: 1)
+bstRoot.left?.right = Tree.Node(value: 3)
+
+print("Binary search tree",terminator:"\n")
+print(Tree.isBST(bstRoot))
+
+
+
+
 
 
 
