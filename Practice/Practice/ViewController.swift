@@ -20,7 +20,6 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         // Do any additional setup after loading the view, typically from a nib.
         
         //self.tableView.register(ReuseCell.self, forCellReuseIdentifier: "cell")
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -45,7 +44,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        print("Clicked on \(indexPath.row)")
     }
     
     func downloadImage() -> Data{
@@ -54,6 +53,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         let data = NSData(contentsOf: url as! URL)
         return data as! Data
     }
+    
 }
 
 extension UIImageView{

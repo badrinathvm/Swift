@@ -202,6 +202,27 @@ class Tree {
         
     }
     
+    static func isSymmetric(node1: Node? , node2:Node?) -> Bool?{
+        
+        if ( node1 == nil && node2 == nil){
+            return true
+        }
+        
+        // For two trees to be mirror images, the following three
+        // conditions must be true
+        // 1 - Their root node's key must be same
+        // 2 - left subtree of left tree and right subtree
+        //      of right tree have to be mirror images
+        // 3 - right subtree of left tree and left subtree
+        //      of right tree have to be mirror images
+        
+        if( node1 != nil && node2 != nil && node1?.value == node2?.value){
+            return isSymmetric(node1: node1?.left, node2: node2?.right)! &&
+            isSymmetric(node1: node1?.right, node2: node2?.left)!
+        }
+        
+        return false
+    }
     
 }
 
@@ -245,10 +266,18 @@ bstRoot.left?.right = Tree.Node(value: 3)
 
 print("Binary search tree",terminator:"\n")
 print(Tree.isBST(bstRoot))
+print()
 
 
-
-
+print("Symmetric Tree", terminator:"\n")
+var symTree = Tree.Node(value: 1)
+symTree.left = Tree.Node(value: 2)
+symTree.right = Tree.Node(value: 2)
+symTree.left?.left = Tree.Node(value: 3)
+symTree.left?.right = Tree.Node(value: 4)
+symTree.right?.left = Tree.Node(value: 4)
+symTree.right?.right = Tree.Node(value: 3)
+print(Tree.isSymmetric(node1: symTree, node2: symTree)!)
 
 
 

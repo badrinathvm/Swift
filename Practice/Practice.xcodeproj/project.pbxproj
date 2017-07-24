@@ -16,6 +16,8 @@
 		E57EDD601F214E6E004C52B5 /* PracticeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57EDD5F1F214E6E004C52B5 /* PracticeTests.swift */; };
 		E57EDD6B1F214E6E004C52B5 /* PracticeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57EDD6A1F214E6E004C52B5 /* PracticeUITests.swift */; };
 		E57EDD791F2153DD004C52B5 /* ReuseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57EDD781F2153DD004C52B5 /* ReuseCell.swift */; };
+		E57EDD7B1F217D3F004C52B5 /* ImageCollectionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57EDD7A1F217D3F004C52B5 /* ImageCollectionsView.swift */; };
+		E57EDD7D1F217D98004C52B5 /* ImagesCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57EDD7C1F217D98004C52B5 /* ImagesCollectionViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,8 @@
 		E57EDD6A1F214E6E004C52B5 /* PracticeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeUITests.swift; sourceTree = "<group>"; };
 		E57EDD6C1F214E6E004C52B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E57EDD781F2153DD004C52B5 /* ReuseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReuseCell.swift; sourceTree = "<group>"; };
+		E57EDD7A1F217D3F004C52B5 /* ImageCollectionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCollectionsView.swift; sourceTree = "<group>"; };
+		E57EDD7C1F217D98004C52B5 /* ImagesCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagesCollectionViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +113,8 @@
 				E57EDD561F214E6E004C52B5 /* Info.plist */,
 				E57EDD4E1F214E6D004C52B5 /* Practice.xcdatamodeld */,
 				E57EDD781F2153DD004C52B5 /* ReuseCell.swift */,
+				E57EDD7A1F217D3F004C52B5 /* ImageCollectionsView.swift */,
+				E57EDD7C1F217D98004C52B5 /* ImagesCollectionViewController.swift */,
 			);
 			path = Practice;
 			sourceTree = "<group>";
@@ -265,9 +271,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E57EDD7B1F217D3F004C52B5 /* ImageCollectionsView.swift in Sources */,
 				E57EDD4A1F214E6D004C52B5 /* ViewController.swift in Sources */,
 				E57EDD481F214E6D004C52B5 /* AppDelegate.swift in Sources */,
 				E57EDD791F2153DD004C52B5 /* ReuseCell.swift in Sources */,
+				E57EDD7D1F217D98004C52B5 /* ImagesCollectionViewController.swift in Sources */,
 				E57EDD501F214E6D004C52B5 /* Practice.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
