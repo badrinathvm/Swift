@@ -56,6 +56,8 @@ struct Anagrams{
             }
         }
         
+        print(map)
+        
         
         for (key , value) in map {
             //if value.count > 1 {

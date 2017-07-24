@@ -161,10 +161,8 @@ class Tree {
     
     static func levelOrder(node: Node?) {
         let h:Int = Tree.height(node: node!)
-        var i:Int = 1
-        while (i <= h ){
+        for i in 1...h{
             printLevel(node: node, level: i )
-            i += 1
         }
     }
     

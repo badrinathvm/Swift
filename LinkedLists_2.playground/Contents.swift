@@ -134,7 +134,7 @@ class LinkedList {
     
     //function to rotate list
     
-    static func rotateList(head:  Node , k: Int) {
+    static func rotateList(head: inout Node , k: Int) {
         
       
         var cur:Node? = head
@@ -153,16 +153,14 @@ class LinkedList {
         while ( cur != nil ){
             
             cur = cur?.link
-        
+        }
             cur?.link = res
           
-            res = (kthNode?.link)
+            head = (kthNode?.link)!
           
             kthNode?.link = nil
-            
-        }
-       
-        print("Resulty Node  :" + LinkedList.disp(n: res))
+        
+        print("Resulty Node  :" + LinkedList.disp(n: head))
 
     }
     
@@ -249,7 +247,7 @@ rotateList.link?.link?.link?.link?.link = LinkedList.Node(data: 60)
 
 print("Input : " + LinkedList.disp(n: rotateList))
 
-LinkedList.rotateList(head: rotateList, k: 4)
+LinkedList.rotateList(head: &rotateList, k: 4)
 
 //print("Output : " + LinkedList.disp(n: rotateResult))
 
