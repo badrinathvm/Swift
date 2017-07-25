@@ -224,6 +224,34 @@ class Tree {
         return false
     }
     
+    
+    static func isIDentical(node1: Node?, node2:Node?) -> Bool?{
+        
+        if ( node1 == nil && node2 == nil){
+            return true
+        }
+        
+        if( node1 != nil && node2 != nil){
+            return ( node1?.value == node2?.value)
+                 && (isIDentical(node1: node1?.left, node2: node2?.left))!
+                 && (isIDentical(node1: node1?.right, node2: node2?.right))!
+        }
+        
+        return false
+    }
+    
+    static func leafNodes(node: Node?) -> Int?{
+        
+        if node == nil {
+            return 0
+        }
+        
+        if(node?.left == nil && node?.right == nil){
+            return 1
+        }else{
+            return leafNodes(node: node?.left)! + leafNodes(node: node?.right)!
+        }
+    }
 }
 
 var root = Tree.Node(value: 1)
@@ -278,6 +306,34 @@ symTree.left?.right = Tree.Node(value: 4)
 symTree.right?.left = Tree.Node(value: 4)
 symTree.right?.right = Tree.Node(value: 3)
 print(Tree.isSymmetric(node1: symTree, node2: symTree)!)
+print()
+
+
+print("Identical Trees", terminator:"\n")
+var root1 = Tree.Node(value: 1)
+root1.left = Tree.Node(value: 2)
+root1.right = Tree.Node(value: 3)
+root1.left?.left = Tree.Node(value: 4)
+root1.left?.right = Tree.Node(value: 5)
+
+var root2 = Tree.Node(value: 1)
+root2.left = Tree.Node(value: 2)
+root2.right = Tree.Node(value: 3)
+root2.left?.left = Tree.Node(value: 4)
+root2.left?.right = Tree.Node(value: 7)
+
+print(Tree.isIDentical(node1: root1,node2: root2)!)
+print()
+
+print("Leaf Nodes")
+print(Tree.leafNodes(node: root)!)
+
+
+
+
+
+
+
 
 
 
