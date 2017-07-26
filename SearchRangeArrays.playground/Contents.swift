@@ -172,3 +172,49 @@ struct RotatedArrays{
 var array = [1,2,3,4,5,6,7]
 print(RotatedArrays.rotateArrays(nums:&array,d:4,n:7))
 
+
+
+struct FindThirdSmallest{
+    
+    static func findThirdSmallest(arr:[Int]){
+        
+        
+        var (first,second) = (Int.max,Int.max)
+        
+        for i in 0..<arr.count-1{
+            if(arr[i] < first){
+                second = first
+                first = arr[i]
+            }else if ( arr[i] < second && arr[i] != first ){
+                second = arr[i]
+            }
+        }
+        
+        print("First Smallest is \(first)")
+        print("Second Smallest is \(second)")
+        
+    }
+    
+    static func sort(nums: inout [Int],k:Int) -> Int?{
+        
+        for _ in stride(from: nums.count, to: 0, by: -1){
+            for i in 0..<nums.count-1{
+                if (nums[i] > nums[i+1]){
+                    var temp = nums[i+1]
+                    nums[i+1] = nums[i]
+                    nums[i] = temp
+                }
+            }
+        }
+        
+        return nums[k-1]
+    }
+}
+
+FindThirdSmallest.findThirdSmallest(arr: [12,10,9,13,14])
+
+var b = [12,10,9,13,14]
+
+print(FindThirdSmallest.sort(nums: &b, k:3)!)
+
+

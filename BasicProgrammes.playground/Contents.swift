@@ -173,9 +173,11 @@ struct Remove_Duplicates{
             }
         }
     
+        print(arr)
         return index
     }
     
+    //bubble sort 
     func sort(array: inout [Int]) -> [Int]{
         
         var temp:Int = 0
@@ -304,64 +306,6 @@ struct FindDuplicates{
 print(">>>>>> Count of each character >>>>>>", terminator: "\n")
 print(FindDuplicates().findDuplicates(str: "Swifttt"))
 
-
-/* >>>> Program for grouping Anagrams */
-
-
-extension String {
-    var asciiArray: [UInt32] {
-        return unicodeScalars.filter{$0.isASCII}.map{$0.value}
-    }
-}
-extension Character {
-    var asciiValue: UInt32? {
-        return String(self).unicodeScalars.filter{$0.isASCII}.first?.value
-    }
-}
-
-
-   class GroupAnagrams{
-   
-
-    
-    func groupAnagrams(strList: [String]){
-        
-        
-        var map:[String:[String]] = [:]
-        for str in strList{
-            //print(str)
-            
-            /*var charArray = [Character?](repeating: nil, count: 26)
-            
-            for i in 0..<s.count{
-                charArray[(s[i].asciiValue)! - (Character("a").asciiValue)!]++
-            }*/
- 
-            var s = str.characters.map { $0 }
-            
-            var frequencies = [Int](repeating: 0, count: 26)
-            for c in str.unicodeScalars {
-                switch c {
-                case "a"..."z":
-                    frequencies[Int(c.value - UnicodeScalar("a").value)] += 1
-                    //print(frequencies[Int(c.value - UnicodeScalar("a").value)] += 1)
-                default:
-                    break // ignore all other characters
-                }
-            }
-        
-            
-            var st = frequencies
-            
-            
-            
-        
-        }
-        
-    }
-}
-
-GroupAnagrams().groupAnagrams(strList : ["str","rts","dad","ads"] )
 
 
 
