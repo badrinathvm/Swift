@@ -135,9 +135,37 @@ var s1 = "geeksforgeek"
 //print(EliminateAdjacentDuplicates.eliminateDuplicates( str:&s, n:s.characters.count ))
 
 
+print("Programme for Pangram")
+
+var dict:[Character:Int] = [:]
+var isPanagram:Bool = false
+
+var str = "We promptly judged antique ivory buckles for the prize"
+
+str = str.replacingOccurrences(of: " ", with: "").lowercased()
+print(str)
+
+for i in 0..<str.characters.count{
+    if !dict.keys.contains(str[i]){
+       dict[str[i]] = 1
+    }
+}
+
+print(dict)
+print(dict.count)
 
 
+if (dict.count == 26){
+    for ( key , value ) in dict{
+        if (value == 1) {
+            isPanagram = true
+        }else{
+            isPanagram = false
+        }
+    }
+}
 
+print(isPanagram)
 
 
 
