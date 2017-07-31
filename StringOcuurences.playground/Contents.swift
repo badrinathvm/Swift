@@ -37,24 +37,24 @@ print( "No of matches \(matches)")
 
 
 // Lonest Palindrome
-
-struct LongestPalindrome{
-    
-    static func longestPAlindrome(str: String){
-        //var result = String()
-        var max:Int = 0
-        for i in 0..<str.characters.count-1{
-            for j in i+2..<str.characters.count-1{
-                //var sub = str.substring(with: i..<j)
-//                if(sb == sb.reverse() && sb.charcaters.count < max){
-//                    result = sb
-//                    max = sb.characaters.count
-//                }
-            }
-        }
-    }
-    
-}
+//
+//struct LongestPalindrome{
+//    
+//    static func longestPAlindrome(str: String){
+//        //var result = String()
+//        var max:Int = 0
+//        for i in 0..<str.characters.count-1{
+//            for j in i+2..<str.characters.count-1{
+//                //var sub = str.substring(with: i..<j)
+////                if(sb == sb.reverse() && sb.charcaters.count < max){
+////                    result = sb
+////                    max = sb.characaters.count
+////                }
+//            }
+//        }
+//    }
+//    
+//}
 
 
 //print(LongestPalindrome.longestPAlindrome(str: "aba"))
@@ -62,6 +62,46 @@ struct LongestPalindrome{
 let myString = "Hello World"
 myString[2..<4]
 
+
+print("Programme for isoMorphic")
+
+struct isoMorphic{
+    
+    static func iso(s:String,t:String) -> Bool?{
+        
+        if ( s.characters.count != t.characters.count ){
+            return false
+        }
+        
+        var dict : [Character:Character] = [:]
+        
+        var str1 = s.characters.map { $0 }
+        var str2 = t.characters.map { $0 }
+        
+        for i in 0..<str2.count{
+            
+            var c1 = str1[i]
+            var c2 = str2[i]
+            
+            if (dict.keys.contains(c1)){
+                if (dict[c1] != c2){
+                    return false
+                }
+                
+            }else{
+                if(dict.keys.contains(c2)){
+                    break
+                }else{
+                    dict[c1] = c2
+                }
+            }
+        }
+        
+        return true
+    }
+}
+
+print(isoMorphic.iso(s: "egg", t: "ard")!)
 
 
 

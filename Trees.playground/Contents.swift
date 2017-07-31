@@ -66,6 +66,8 @@ class Tree {
         
         return text
     }
+
+    
     
     static func preOrder(node:Node?){
         
@@ -252,6 +254,32 @@ class Tree {
             return leafNodes(node: node?.left)! + leafNodes(node: node?.right)!
         }
     }
+    
+    
+    
+    static func lca(root:Node?,n1:Node?,n2:Node?) -> Node?{
+        
+        if(root == nil) {
+            return nil
+        }
+        
+        if( root === n1 || root === n2 ){
+            return root
+        }
+        
+        let left:Node? = lca(root:root?.left,n1:n1,n2:n2)
+        let right:Node? = lca(root:root?.right,n1:n1,n2:n2)
+        
+        if(left != nil && right != nil ){
+            return root
+        }
+        
+        if ( left == nil && right == nil ){
+            return nil
+        }
+        
+        return (left != nil) ? left : right
+    }
 }
 
 var root = Tree.Node(value: 1)
@@ -327,6 +355,38 @@ print()
 
 print("Leaf Nodes")
 print(Tree.leafNodes(node: root)!)
+
+print("Programme for LCA lowest common ancestors")
+
+var lcaRoot = Tree.Node(value:3)
+lcaRoot.left = Tree.Node(value: 6)
+lcaRoot.right = Tree.Node(value: 8)
+lcaRoot.left?.left = Tree.Node(value: 2)
+lcaRoot.left?.right = Tree.Node(value: 6)
+lcaRoot.left?.right?.left = Tree.Node(value: 9)
+lcaRoot.left?.right?.right = Tree.Node(value: 5)
+lcaRoot.right?.right = Tree.Node(value: 13)
+lcaRoot.right?.right?.left = Tree.Node(value: 7)
+
+print(Tree.lca(root: lcaRoot, n1:lcaRoot.left , n2:lcaRoot.right)!.value)
+
+
+
+print(">>>> Binary Search Treee >>>>")
+
+//var bstTree = Tree.Node(value:50)
+//bstTree.left = Tree.Node(value: 30)
+//bstTree.right = Tree.Node(value: 70)
+//bstTree.left?.left = Tree.Node(value: 20)
+//bstTree.left?.right = Tree.Node(value: 40)
+//bstTree.right?.left = Tree.Node(value: 60)
+//bstTree.right?.right = Tree.Node(value: 80)
+
+
+
+
+
+
 
 
 

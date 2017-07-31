@@ -138,8 +138,8 @@ struct Combinations{
     func permuteWirth<T>(_ a: [T], _ n: Int) {
         if n == 0 {
                // display the current permutation
-            print(a)
-            //printy(a as! [String])
+            print( a)
+            //print(a as! [String])
             
         } else {
             var a = a
