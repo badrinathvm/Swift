@@ -203,6 +203,66 @@ print(ShortestDistanceBetweenWords.shortestDistance(str: "hello how are you", s1
 
 
 
+extension Int {
+    var array: [Int] {
+        return description.characters.flatMap{Int(String($0))}
+    }
+}
+
+
+print("Programme for Additive Sequence")
+
+struct AdditiveSequence{
+    
+    static func additiveNumber(number:Int){
+        var result:Int = 0
+        var a = number.array
+        var addtiveFlag:Bool?
+        var tempData:String = ""
+        
+        for i in 3..<a.count-1{
+            print(a[i-1])
+            print(a[i-2])
+            print(a[0])
+            if( a[i-2] >= 9){
+                print("R is \(a[i-1] + a[i-2] + a[0] )")
+                result = a[i-1] + a[i-2] + a[i]
+                            print("Result is \(result)")
+            }else{
+                 result = a[i-1] + a[i-2]
+            }
+            
+
+            
+            let b = result.array
+            
+            if(b.count == 1){
+                 addtiveFlag = (result == a[i]) ? true : false
+            }else{
+                print("Control came here \(b.count)")
+                for j in 0..<b.count{
+                    tempData += "\(a[i+j])"
+                }
+                print("Data is \(tempData)")
+                
+                print(result == Int(tempData))
+                    
+                addtiveFlag = (result == Int(tempData)) ? true: false
+                
+            }
+           
+        }
+        
+        if (addtiveFlag!){
+            print("Additve number")
+        }else{
+            print("Not AdditiveNumber")
+        }
+        
+    }
+}
+
+AdditiveSequence.additiveNumber(number: 199100199)
 
 
 

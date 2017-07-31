@@ -141,6 +141,23 @@ struct DisappearedNumbers{
         }
     }
     
+    static func findGreatestProduct(nums: [Int]) -> Int?{
+        
+        var result: Int = -1
+        
+        for i in 0..<nums.count{
+            for j in 0..<nums.count-1{
+                for k in j+1..<nums.count{
+                    if(nums[j] * nums[k] == nums[i]){
+                        result = max(result,nums[i])
+                    }
+                }
+            }
+        }
+        
+        return result
+    }
+    
 }
 
 var ar = [4,3,2,7,8,2,3,1]
@@ -151,4 +168,14 @@ print(DisappearedNumbers.findConsectivesCount(nums: ar2))
 
 var ar3 = [4,3,2,7,8,2,3,1]
 DisappearedNumbers.nonDuplicates(nums: ar3)
+print()
+
+
+print("Find a pair with gratest product in an array")
+var ar4 = [30,10,9,3,35]
+print(DisappearedNumbers.findGreatestProduct(nums: ar4)!)
+
+
+
+
 
