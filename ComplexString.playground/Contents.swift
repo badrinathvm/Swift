@@ -167,5 +167,46 @@ if (dict.count == 26){
 
 print(isPanagram)
 
+print("Programme to find the shortest distance between two words")
+
+struct ShortestDistanceBetweenWords{
+    
+    static func shortestDistance(str:String, s1:String, s2:String)->Int{
+        
+        var (p1,p2,minDistance,i) = (-1,-1,Int.max,0)
+        
+        let splitString = str.components(separatedBy: " ")
+        
+        for s in splitString{
+            
+            if s == s1{
+                p1 = i
+            }
+            
+            if(s == s2){
+                p2 = i
+            }
+            
+            if (p1 != -1 && p2 != -1){
+                minDistance = min(minDistance,(p2-p1))
+            }
+            
+            i+=1
+        }
+        
+        return minDistance
+        
+    }
+}
+
+print(ShortestDistanceBetweenWords.shortestDistance(str: "hello how are you", s1: "hello", s2: "you"))
+
+
+
+
+
+
+
+
 
 
