@@ -372,17 +372,6 @@ print(Tree.lca(root: lcaRoot, n1:lcaRoot.left , n2:lcaRoot.right)!.value)
 
 
 
-print(">>>> Binary Search Treee >>>>")
-
-//var bstTree = Tree.Node(value:50)
-//bstTree.left = Tree.Node(value: 30)
-//bstTree.right = Tree.Node(value: 70)
-//bstTree.left?.left = Tree.Node(value: 20)
-//bstTree.left?.right = Tree.Node(value: 40)
-//bstTree.right?.left = Tree.Node(value: 60)
-//bstTree.right?.right = Tree.Node(value: 80)
-
-
 
 
 

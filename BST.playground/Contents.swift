@@ -166,16 +166,15 @@ bst.insert(key:80)
 //Do an inorder traversal
 
 bst.inord()
-
 print()
 
-print("Search in BST")
+print()
+print("Search a key  in BST")
 bst.search(key: 20)
 print()
 
-print("Delete BST")
+print("Delete a key in BST")
 bst.delete(key: 50)
-
 bst.inord()
 
 

@@ -265,6 +265,42 @@ struct AdditiveSequence{
 AdditiveSequence.additiveNumber(number: 199100199)
 
 
+print("Program for string to Integer")
+
+struct atoi{
+    
+    static func atoi(str: inout String) -> Int?{
+        
+        if (str.characters.count < 1){
+            return 0
+        }
+        
+        //trim white spaces
+        str = str.trimmingCharacters(in: CharacterSet.whitespaces)
+
+        var flag:String = "+"
+        
+        var i:Int = 0
+        
+        if( str[0] == "-"){
+            flag = "-"
+            i += 1
+        } else if (str[0] == "+"){
+            i += 1
+        }
+        
+        var result:Double = 0
+        
+        while ( str[i] >= "0" && str[i] <= "9"){
+            //result = result * 10 + ( str[i] - '0')
+            
+        }
+        
+        return 0
+    }
+}
+
+
 
 
 
