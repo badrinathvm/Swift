@@ -319,7 +319,7 @@ struct atoi{
             i += 1
         }
         
-        var result:Double = 0
+        let result:Double = 0
         
         while ( str[i] >= "0" && str[i] <= "9"){
             //result = result * 10 + ( str[i] - '0')
@@ -330,6 +330,32 @@ struct atoi{
     }
 }
 
+print()
+
+struct ReverseWords{
+    
+    
+    static func reverseWords(s:String){
+        
+        var result = String()
+        
+        let str = s.components(separatedBy: " ")
+        
+        for t in str{
+            
+            //print( String(t.characters.reversed() ) )
+            
+            result.append(String(t.characters.reversed()))
+            result.append(" ")
+            
+        }
+        
+        print(result)
+            
+    }
+}
+
+ReverseWords.reverseWords(s: "Let's take Leetcode contest")
 
 
 
