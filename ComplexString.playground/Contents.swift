@@ -356,6 +356,36 @@ struct ReverseWords{
 }
 
 ReverseWords.reverseWords(s: "Let's take Leetcode contest")
+print()
+
+
+print("Programme to detect Capital")
+
+struct DetectCapital{
+    
+    static func detectCapital(s:String) -> Bool?{
+        
+        var isFlag:Bool?
+        
+        for currenCharacter in s.unicodeScalars{
+            
+            /*if CharacterSet.lowercaseLetters.contains(currenCharacter){
+                isFlag = false
+            }else{
+                print(currenCharacter)
+                isFlag = true
+            }*/
+            
+            isFlag = (CharacterSet.lowercaseLetters.contains(currenCharacter) ) ? false : true
+        }
+        
+        return isFlag!
+    }
+    
+}
+
+print("Positive Case \(DetectCapital.detectCapital(s: "INDIA")!)")
+print("Negative Case \(DetectCapital.detectCapital(s: "INDIAaaa")!)")
 
 
 
