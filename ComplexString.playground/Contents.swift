@@ -45,6 +45,36 @@ print(lcs(m: x.characters.count, n:y.characters.count, x:x, y:y))
 print()
 
 
+
+
+
+print("Deletion of Strings ")
+
+func deleteOperationTwoStrings(m:Int, n:Int, a:String ,b:String) -> Int{
+    
+    var dp = Array(repeating: Array(repeatElement(0, count: n + 1)), count: m + 1)
+    for i in 1...m {
+        for j in 1...(n){
+            if i == 0 || j == 0 {
+                return 0
+            }else if( a[i - 1]  == b[j - 1] ){
+                dp[i][j] = dp[i-1][j-1] + 1
+            }else{
+                dp[i][j] = max(dp[i-1][j], dp[i][j-1])
+            }
+        }
+    }
+    return m+n - 2 * dp[m][n]
+}
+
+var a = "sea"
+var b = "eat"
+
+print(deleteOperationTwoStrings(m: a.characters.count, n:b.characters.count, a:a, b:b))
+print()
+
+
+
 print("Minimum no of characters to make a palindrome")
 
 var str1 = "abcde"

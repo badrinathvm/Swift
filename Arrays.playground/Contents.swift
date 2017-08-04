@@ -158,6 +158,43 @@ struct DisappearedNumbers{
         return result
     }
     
+    static func mergeTwoArrays(ar1:[Int], ar2:[Int]){
+        
+
+        var (i,j,n1,n2,k) = (0,0,ar1.count,ar2.count,0)
+        
+        var ar3 = Array(repeating: 0, count: (n1+n2))
+        
+        while ( i<n1 && j<n2){
+            
+            if ( ar1[i] < ar2[j]){
+                ar3[k] = ar1[i]
+                k += 1
+                i += 1
+            }else{
+                ar3[k] = ar2[j]
+                k += 1
+                j += 1
+            }
+        }
+        
+        while (i < n1){
+            ar3[k] = ar1[i]
+            k += 1
+            i += 1
+        }
+        
+        while ( j < n2){
+            ar3[k] = ar2[j]
+            k += 1
+            j += 1
+        }
+        
+        
+        print(ar3)
+        
+    }
+    
 }
 
 var ar = [4,3,2,7,8,2,3,1]
@@ -174,6 +211,15 @@ print()
 print("Find a pair with gratest product in an array")
 var ar4 = [30,10,9,3,35]
 print(DisappearedNumbers.findGreatestProduct(nums: ar4)!)
+print()
+
+print("Program to merge two sorted arrays")
+var ar5 = [1,3,5,7]
+var ar6 = [2,4,6,8]
+
+DisappearedNumbers.mergeTwoArrays(ar1: ar5, ar2: ar6)
+
+
 
 
 
