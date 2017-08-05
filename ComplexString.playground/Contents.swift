@@ -387,8 +387,37 @@ struct DetectCapital{
 print("Positive Case \(DetectCapital.detectCapital(s: "INDIA")!)")
 print("Negative Case \(DetectCapital.detectCapital(s: "INDIAaaa")!)")
 
+struct RepeatedSubString{
+    
+    static func repeatedSubString(s:String){
+        
+     let n = s.characters.count
+        
+        for i in stride(from: n/2, to: 1, by: -1){
+            if ( n%i  == 0){
+                
+                let c:Int = n/i
+                var t:String = ""
+                
+                for _ in 0..<c{
+                    
+                    let start = s.index(s.startIndex, offsetBy: 0)
+                    let end = s.index(s.endIndex, offsetBy: -i)
+                    let range = start..<end
+                    t.append( s.substring(with: range) )
 
+                    
+                    if( t == s) {
+                        print ("YEs")
+                    }
+                }
+            }
+        }
+        
+        
+    }
+}
 
-
+print(RepeatedSubString.repeatedSubString(s:"abababab"))
 
 
