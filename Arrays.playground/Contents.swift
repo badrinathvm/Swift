@@ -218,6 +218,174 @@ var ar5 = [1,3,5,7]
 var ar6 = [2,4,6,8]
 
 DisappearedNumbers.mergeTwoArrays(ar1: ar5, ar2: ar6)
+print()
+
+print("Split array in to two sub arrays ")
+
+struct SplitArrays{
+    
+    static func splitArrays(nums:[Int], n:Int) -> Int?{
+    
+        var (leftSum,rightSum) = (0,0)
+    
+        for i in 0..<n{
+            leftSum += nums[i]
+        }
+    
+        for i in stride(from:n-1, to:0, by:-1){
+            
+            // add current element to right_sum
+            
+            rightSum += nums[i]
+            
+                    // exclude current element to the left_sum
+            leftSum -= nums[i]
+            
+            if( rightSum == leftSum){
+                return i
+            }
+        }
+    
+    return -1
+    
+    }
+    
+    static func printTwoParts(nums:[Int],n:Int){
+        
+        let splitPoint = splitArrays(nums:nums,n:n)
+        
+        if (splitPoint == -1 || splitPoint == n){
+             print("Not possible")
+            return
+        }
+        
+        for i in 0..<nums.count {
+            
+            if (splitPoint == i){
+                print()
+            }
+                print(nums[i],terminator:" ")
+            
+        }
+    }
+}
+
+var ar7 = [1,2,3,4,5,5]
+
+
+
+SplitArrays.printTwoParts(nums:ar7,n:ar7.count)
+
+
+print()
+print("Programm for finding thr count of maximum consecutive ones")
+struct MaxConsecutiveOnes{
+    
+    static func maxConsecutiveOnes(nums:[Int]) ->Int{
+        
+        var (maxy,current) = (0,0)
+        
+        for i in nums{
+            
+            current = (i == 0) ? 0 : (current + 1)
+            
+            maxy = max(maxy, current)
+        }
+        
+        return maxy
+    }
+    
+}
+
+print(MaxConsecutiveOnes.maxConsecutiveOnes(nums: [1,1,1,0,1,1,1,1]))
+
+
+print()
+print("Programme for finding the third maximum")
+
+struct ThirdMaximum{
+    
+    static func thirdMaximum(nums:[Int]){
+        let set = NSMutableSet()
+        
+        for n in nums{
+            set.add(n)
+            
+            if(set.count > 3){
+                set.remove(set.dropLast())
+            }
+        }
+
+
+        if( set.count < 3 ){
+            set.dropLast()
+        } else {
+            set.dropFirst()
+        }
+    }
+}
+
+var ar8 = [3,2,4,0]
+ThirdMaximum.thirdMaximum(nums:ar8)
+
+
+print("Prpogramms to end and beginning of zeros")
+
+struct MoveZerosToEnd{
+    
+    static func moveZerosToEnd(nums:inout [Int]){
+        var counter = 0
+        
+        for i in 0..<nums.count{
+            
+            if ( nums [i] != 0){
+                nums[counter] = nums[i]
+                counter += 1
+            }
+        }
+        
+        while (counter < nums.count){
+            nums[counter] = 0
+            counter += 1
+        }
+        
+        print(nums)
+    }
+    
+    static func movZerosToBeginning(nums: inout[Int]){
+        
+        var counter: Int = nums.count - 1
+        
+        for i in stride(from: nums.count-1, to: -1, by: -1){
+            if (nums[i] != 0){
+                nums[counter] = nums[i]
+                counter -= 1
+            }
+        }
+        
+        
+        while(counter >= 0){
+            nums[counter] = 0
+            counter -= 1
+        }
+        
+        print(nums)
+        
+    }
+    
+}
+
+var ar9 = [0,12,1,0,8]
+
+MoveZerosToEnd.moveZerosToEnd(nums: &ar9)
+
+MoveZerosToEnd.movZerosToBeginning(nums: &ar9)
+
+
+
+
+
+
 
 
 

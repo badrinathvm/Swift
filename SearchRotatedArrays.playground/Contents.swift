@@ -68,9 +68,9 @@ struct SearchRotatedArrays{
     
 }
 
-var arr:[Int] = [3,4,5,0,1,2]
+var arr:[Int] = [3,4,5,0,1,2,3]
 
-print(SearchRotatedArrays.search(arr: arr, low: 0, high: arr.count - 1, key: 1)!)
+print(SearchRotatedArrays.search(arr: arr, low: 0, high: arr.count - 1, key: 3)!)
 
 
 print(SearchRotatedArrays.findMin(arr: arr, low: 0, high: arr.count - 1)!)
