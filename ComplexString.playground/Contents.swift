@@ -18,7 +18,7 @@ private extension String{
 
 
 
-//creating a two dimensio array
+//creating a two dimension array
 
 func lcs(m:Int, n:Int, x:String ,y:String) -> Int{
     
@@ -43,8 +43,6 @@ var y = "xyzabcd"
 
 print(lcs(m: x.characters.count, n:y.characters.count, x:x, y:y))
 print()
-
-
 
 
 
@@ -376,7 +374,7 @@ struct DetectCapital{
                 isFlag = true
             }*/
             
-            isFlag = (CharacterSet.lowercaseLetters.contains(currenCharacter) ) ? false : true
+            isFlag = (CharacterSet.uppercaseLetters.contains(currenCharacter) ) ? true : false
         }
         
         return isFlag!
@@ -387,9 +385,14 @@ struct DetectCapital{
 print("Positive Case \(DetectCapital.detectCapital(s: "INDIA")!)")
 print("Negative Case \(DetectCapital.detectCapital(s: "INDIAaaa")!)")
 
+
+
+print()
+print("Programme for Repeated Sub String")
+
 struct RepeatedSubString{
     
-    static func repeatedSubString(s:String){
+    static func repeatedSubString(s:String) -> Bool?{
         
      let n = s.characters.count
         
@@ -409,15 +412,76 @@ struct RepeatedSubString{
                     
                     if( t == s) {
                         print ("YEs")
+                        return true
                     }
                 }
             }
         }
+        return false
+    }
+}
+
+print(RepeatedSubString.repeatedSubString(s:"abababab")!)
+print()
+
+print("Programme for finding the shortest Palindrome")
+
+struct ShortestPalindrome{
+    
+    static func shortestPalindrome(str:String) ->String?{
         
+        if(str.characters.count == 0){
+            return nil
+        }
+        
+        if(str.characters.count == 1){
+           return str
+        }
+        
+        
+        var i:Int = 0
+        var j:Int = str.characters.count - 1
+        
+        while (j>=0){
+            if (str[i] == str[j]){
+                i += 1
+            }
+           j -= 1
+        }
+        
+        if (i == str.characters.count){
+            return str
+        }
+        
+        
+        let start = str.index(str.startIndex, offsetBy: i)
+        let suffix = str.substring(from: start)
+        
+        let prefix = String(suffix.characters.reversed())
+        
+        let st = str.index(str.startIndex, offsetBy: 0)
+        //let ed = str.index(str.endIndex, offsetBy: -i)
+        let range = st..<start
+        
+        let mid = shortestPalindrome(str: str.substring(with:range))
+        
+        print(mid)
+        
+        var result = String()
+        result += prefix
+        result += mid!
+        result += suffix
+        
+        return result
         
     }
 }
 
-print(RepeatedSubString.repeatedSubString(s:"abababab"))
+print(ShortestPalindrome.shortestPalindrome(str: "abcd")!)
+
+
+
+
+
 
 
