@@ -426,7 +426,7 @@ print()
 
 print("Programme for finding the shortest Palindrome")
 
-struct ShortestPalindrome{
+struct Palindromes{
     
     static func shortestPalindrome(str:String) ->String?{
         
@@ -465,8 +465,6 @@ struct ShortestPalindrome{
         
         let mid = shortestPalindrome(str: str.substring(with:range))
         
-        print(mid)
-        
         var result = String()
         result += prefix
         result += mid!
@@ -475,9 +473,46 @@ struct ShortestPalindrome{
         return result
         
     }
+    
+    
+    static func longestPalindrome(str:String) -> String?{
+        
+        if(str.characters.count == 0){
+            return nil
+        }
+        
+        if(str.characters.count == 1){
+            return str
+        }
+        
+        var max:Int = 0
+        var longestPalindrome = String()
+        
+        for i in 0..<str.characters.count{
+            for j in i+2...str.characters.count{
+                
+                let start = str.index(str.startIndex, offsetBy: i)
+                let end = str.index(str.endIndex, offsetBy: -j)
+                let range = start..<end
+                
+                var sub = str.substring(with: range)
+                let rev = String(sub.characters.reversed())
+                
+                if(sub == rev ){
+                    longestPalindrome += sub
+                    //max = sub.characters.count
+                }
+            }
+        }
+        
+        //print(max)
+        return longestPalindrome
+        
+    }
 }
 
-print(ShortestPalindrome.shortestPalindrome(str: "abcd")!)
+print(Palindromes.shortestPalindrome(str: "abcd")!)
+print(Palindromes.longestPalindrome(str: "aba"))
 
 
 
