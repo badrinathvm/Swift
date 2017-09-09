@@ -130,8 +130,10 @@ struct FindDuplicates{
     static func findDuplicateAbs(nums: inout [Int]) -> [Int]{
         var result:[Int] = []
         for i in 0..<nums.count{
-            if (nums[abs(nums[i])] >= 0){
-                nums[abs(nums[i])] = -nums[abs(nums[i])]
+            var val :Int = abs(nums[i]) - 1
+            
+            if (nums[val] >= 0){
+                nums[val] = -nums[val]
             }else{
                 result.append(abs(nums[i]))
             }
@@ -142,7 +144,7 @@ struct FindDuplicates{
 
 print(FindDuplicates.findDuplicates(nums: [4,3,2,7,8,2,3,1]))
 
-var arr1 = [1, 2, 3, 1, 3, 6, 6]
+var arr1 = [4,3,2,7,8,2,3,1] //[1, 2, 3, 1, 3, 6, 6]
 print(FindDuplicates.findDuplicateAbs(nums: &arr1 ))
 
 

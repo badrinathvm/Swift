@@ -52,8 +52,8 @@ print(sum(1,2,2,23))
 
 func swap(_ :inout Int, _: inout Int){
     let temp:Int = a
-    a = b
-    b = temp
+    a = a
+    a = temp
 }
 
 var a = 10
@@ -126,6 +126,7 @@ FirstSecondSmallest().findFirstSecondSmallest(array: [5,3,1,15])
 
 struct Stack<T>{
     
+    //restricts the use of entity in its own defining source file.
     fileprivate var array = [T]()
     
     public var isEmpty : Bool{
