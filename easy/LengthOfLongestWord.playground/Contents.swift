@@ -29,3 +29,11 @@ struct LenghtofLongestWord {
 }
 
 print(LenghtofLongestWord.lengthoflastword(s:"abc defghig"))
+
+
+
+
+
+
+
+
