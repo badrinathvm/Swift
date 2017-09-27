@@ -512,7 +512,8 @@ struct Palindromes{
 }
 
 print(Palindromes.shortestPalindrome(str: "abcd")!)
-print(Palindromes.longestPalindrome(str: "aba"))
+//print(Palindromes.longestPalindrome(str: "aba"))
+
 
 
 
