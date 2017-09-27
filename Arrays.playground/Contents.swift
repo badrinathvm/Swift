@@ -209,7 +209,7 @@ print()
 
 
 print("Find a pair with gratest product in an array")
-var ar4 = [30,10,9,3,35]
+var ar4 = [350,10,9,3,35]
 print(DisappearedNumbers.findGreatestProduct(nums: ar4)!)
 print()
 
@@ -380,6 +380,30 @@ var ar9 = [0,12,1,0,8]
 MoveZerosToEnd.moveZerosToEnd(nums: &ar9)
 
 MoveZerosToEnd.movZerosToBeginning(nums: &ar9)
+
+
+
+var a1:[String:[Int]] = [:]
+
+a1["a"] = [1,2]
+a1["b"] = [3,4]
+a1["a"] = [5,2]
+
+for (key, value) in a1{
+    print("\(key) \(value)")
+}
+
+
+var ss = "abc--->test--->Maths101"
+let splitStr = ss.components(separatedBy: "--->")
+ss = String(ss.characters.dropLast(ss.characters.count))
+print(ss)
+for i in 0..<splitStr.count-1{
+    ss.append(splitStr[i])
+}
+print(ss)
+
+
 
 
 

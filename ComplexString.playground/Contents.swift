@@ -160,7 +160,7 @@ struct EliminateAdjacentDuplicates{
 
 var s1 = "geeksforgeek"
 
-//print(EliminateAdjacentDuplicates.eliminateDuplicates( str:&s, n:s.characters.count ))
+print(EliminateAdjacentDuplicates.eliminateDuplicates( str:&s, n:s.characters.count ))
 
 
 print("Programme for Pangram")

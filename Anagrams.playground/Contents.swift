@@ -75,7 +75,7 @@ struct Anagrams{
     }
 }
 
-Anagrams.anagrams(["bca","cba","ard","dar","rad","123"])
+//Anagrams.anagrams(["bca","cba","ard","dar","rad","123"])
 
 Anagrams.anagramsGrouping(["bca","cba","ard","dar","rad","123","321","456"])
 
