@@ -151,7 +151,7 @@ struct PlusOne{
             var right:Int = min(i+k-1,n-1)
             
             while(left < right){
-                swap(&nums[left],&nums[right])
+                nums.swapAt(left, right)
                 left  += 1
                 right -= 1
             }
@@ -293,6 +293,9 @@ PlusOne.maxSumInArray(arr: &arr8)
 
 var arr9 = [1,2,3,1]
 PlusOne.peakElement(arr: &arr9)
+
+var set = NSSet()
+set.add(10)
 
 
 
