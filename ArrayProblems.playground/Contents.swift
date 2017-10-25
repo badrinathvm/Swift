@@ -1,9 +1,3 @@
-//: Playground - noun: a place where people can play
-
-import UIKit
-
-var str = "Hello, playground"
-
 import Foundation
 
 class ArrayProblems{
@@ -30,7 +24,7 @@ class ArrayProblems{
         print( oneArray + zeroArray )
     }
     
-   // http://www.geeksforgeeks.org/sort-an-array-according-to-absolute-difference-with-given-value/
+    //http://www.geeksforgeeks.org/sort-an-array-according-to-absolute-difference-with-given-value/
     
     func sortArrayAccordingToAbsoluteDifference(){
         
@@ -48,12 +42,87 @@ class ArrayProblems{
         
     }
     
+    func segregateOddEven(){
+        let arr = [1,2,3,4,5,6,7]
+        let evenArray = arr.filter { $0 % 2 == 0 }
+        let oddArray = arr.filter { $0 % 2 == 1}
+        
+        print (evenArray + oddArray )
+    }
+    
+    func largestPairInUnsortedArray(){
+        let arr = [12, 34, 10, 6, 40]
+        
+        //Get the first Maximum
+        let first = arr.reduce(Int.min, { max( $0,$1 )} )
+        
+        //removing the first maximum from array and getting the next max
+        let second = arr.filter { $0 != first }.reduce(Int.min,{ max( $0,$1) } )
+        
+        print ( first + second )
+    }
+    
+    func wip(){
+        var arr1 = [1, 4, 5, 7]
+        var arr2 = [10, 20, 30, 40]
+        var diff = Int.max
+        var x = 38
+        var (res1,res2) = (0,0)
+        
+        
+        
+        arr1.enumerated().map { (l,p) in
+            arr2.reversed().enumerated().map { (r,q) in
+                
+                if( p+q - x < diff){
+                    res1 = l
+                    res2 = r
+                    diff = p+q - diff
+                }
+                
+                //                                                          if( p + q > x){
+                //                                                           //l += 1
+                //                                                          }else{
+                //                                                            //r -= 1
+                //                                                          }
+                
+            }
+        }
+        
+        print(arr1[res1])
+        print(arr2[res2])
+        
+    }
+    
 }
 
 let arrayProblems = ArrayProblems()
 arrayProblems.groupPositiveNegatives()
 arrayProblems.groupOneZeroArray()
 arrayProblems.sortArrayAccordingToAbsoluteDifference()
+arrayProblems.segregateOddEven()
+arrayProblems.largestPairInUnsortedArray()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
