@@ -426,6 +426,23 @@ class Panagrams{
         print()
         
     }
+    
+    
+    func productArray(){
+        var arr = [10,3,5,6,2] //[180,600,360,300,900]
+        
+        
+        // for i in 0..<arr.count{
+        //   print(arr.filter { $0 != arr[i] }.reduce(1, {x,y in x*y}))
+        // }
+        
+        let result = arr.map{ val in
+            arr.filter { $0 != val }.reduce(1, {x,y in x*y})
+        }
+        
+        print(result)
+        
+    }
 }
 
 
@@ -435,6 +452,7 @@ panagrams.maxOccuring()
 panagrams.unique()
 panagrams.eliminateDuplicates()
 panagrams.reverseWords()
+panagrams.productArray()
 
 
 //let str = "abcdefg"
@@ -450,6 +468,27 @@ panagrams.reverseWords()
 // let endOfSentence = greeting.index(of: "!")!
 // let firstSentence = greeting[...endOfSentence]
 // print(firstSentence)
+
+//clock wise & Anti clock wise 
+
+let originalString = "geeks"
+
+//Anti clcokwise
+let stIndex = originalString.index(originalString.endIndex,offsetBy: -(originalString.count-2))
+print(originalString[stIndex..<originalString.endIndex])  // subString(len-2, len)
+
+
+let cutIndex = originalString.index(originalString.startIndex, offsetBy: 2)
+print(originalString[originalString.startIndex..<cutIndex]) //subString(0,len-2)
+
+
+//clock wise
+print(originalString[cutIndex...])
+print(originalString[originalString.startIndex..<cutIndex])
+
+
+
+
 
 
 
