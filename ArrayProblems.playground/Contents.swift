@@ -15,6 +15,7 @@ class ArrayProblems{
         let result = positiveArray + negativeArray
         
         print(result)
+        
     }
     
     func groupOneZeroArray(){
@@ -62,36 +63,53 @@ class ArrayProblems{
         print ( first + second )
     }
     
-    func wip(){
-        var arr1 = [1, 4, 5, 7]
-        var arr2 = [10, 20, 30, 40]
-        var diff = Int.max
-        var x = 38
-        var (res1,res2) = (0,0)
+    //    func wip(){
+    //      var arr1 = [1, 4, 5, 7]
+    //     var arr2 = [10, 20, 30, 40]
+    //     var diff = Int.max
+    //   lwt x = 38
+    //   var (res1,res2) = (0,0)
+    
+    
+    
+    // arr1.enumerated().map { (l,p) in
+    //           arr2.reversed().enumerated().map { (r,q) in
+    
+    //                                                  if( p+q - x < diff){
+    //                                                             res1 = l
+    //                                                             res2 = r
+    //                                                            diff = p+q - diff
+    //                                                          }
+    
+    // //                                                          if( p + q > x){
+    // //                                                           //l += 1
+    // //                                                          }else{
+    // //                                                            //r -= 1
+    // //                                                          }
+    
+    //                                                         }
+    //                       }
+    
+    // print(arr1[res1])
+    // print(arr2[res2])
+    
+    //    }
+    
+    
+    func pairSortedArray(){
+        let arr = [11,15,6,8,8,19]
+        let x = 14
+        var isFound = false
         
-        
-        
-        arr1.enumerated().map { (l,p) in
-            arr2.reversed().enumerated().map { (r,q) in
-                
-                if( p+q - x < diff){
-                    res1 = l
-                    res2 = r
-                    diff = p+q - diff
+        arr.enumerated().map{ (i,element)  in
+            for j in 1..<arr.count-i{
+                if( arr[i] + arr[j] == x){
+                    isFound = true
+                    break
                 }
-                
-                //                                                          if( p + q > x){
-                //                                                           //l += 1
-                //                                                          }else{
-                //                                                            //r -= 1
-                //                                                          }
-                
             }
         }
-        
-        print(arr1[res1])
-        print(arr2[res2])
-        
+        print( isFound ? true: false )
     }
     
 }
@@ -102,41 +120,6 @@ arrayProblems.groupOneZeroArray()
 arrayProblems.sortArrayAccordingToAbsoluteDifference()
 arrayProblems.segregateOddEven()
 arrayProblems.largestPairInUnsortedArray()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+arrayProblems.pairSortedArray()
 
 
