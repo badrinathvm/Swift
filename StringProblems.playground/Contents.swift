@@ -120,6 +120,8 @@ class StringProblems {
                 let start = str.index(str.startIndex, offsetBy: i)
                 let end = str.index(str.endIndex, offsetBy: -(j-1))
                 
+                //print(start)
+                
                 let result = Int(str[start..<end])!
                 //print(result)
                 
@@ -151,6 +153,145 @@ class StringProblems {
         print(anagramDict)
     }
     
+    
+    func printAndRemoveDuplicates(){
+        let s = "geeksforgeeks"
+        
+        let sArray = s.flatMap { $0 }
+        
+        //print duplicates
+        let printDuplicates = String(sArray.filter { val in
+            sArray.filter { $0 == val }.count > 1})
+        print(printDuplicates)
+        
+        //remove duplicates
+        var set = Set<Character>()
+        
+        let removeDuplicates = String(sArray.filter { set.insert($0).inserted })
+        
+        print(removeDuplicates)
+        
+    }
+    
+    func countNumberOfWords(){
+        //.replacingOccurrences(of:"\n|\t",with:" ",options: .regularExpression)
+        let s = "One two         three\n    four\tfive  "
+        let result = s.components(separatedBy: .whitespacesAndNewlines)
+            .filter { !$0.isEmpty }.joined(separator: " ")
+        
+        let resultCount = s.components(separatedBy: .whitespacesAndNewlines)
+            .filter { !$0.isEmpty }.count
+        
+        
+        print(result)
+        print(resultCount)
+    }
+    
+    
+    func subStringWithHighestFrequency(){
+        
+        let s = "abddab"
+        let sArray = s.flatMap { String($0) }
+        var freqDict = [String:Int]()
+        
+        sArray.enumerated().forEach{ (i,element) in
+            for j in 1...sArray.count-i{
+                let start = s.index(s.startIndex, offsetBy: i)
+                let end = s.index(s.endIndex,offsetBy: -(j-1))
+                
+                let data = s[start..<end]
+                
+                //print(data.count)
+                
+                freqDict[String(data),default:0] += data.count *  ((data.count == 1) ? 2 : 1)
+            }
+        }
+        
+        let count = freqDict.max { $0.1 < $1.1 }?.key
+        print(count!)
+        
+    }
+    
+    func countOfVowels(){
+        
+        var s = "abc de"
+        s = s.replacingOccurrences(of:" ", with: "")
+        
+        var vowelDict = [Character:Int]()
+        
+        s.flatMap{$0}.filter{ ["a","e","i","o","u"].contains($0) }.forEach {
+            
+            vowelDict[$0,default:0] += 1
+        }
+        
+        print(vowelDict.flatMap { $0.1 }.reduce(0, {$0+$1} ) )
+    }
+    
+    func checkBothHalvesHasSameString(){
+        
+        let s = "abccab"
+        
+        let midIndex = s.index(s.endIndex,offsetBy: -(s.count/2))
+        
+        
+        let first = s[s.startIndex..<midIndex]
+        let second = s[midIndex...]
+        
+        let sortedLeftValue = first.flatMap { $0 }.sorted().reduce("" , {String($0) + String($1) } )
+        
+        
+        let sortedRightValue = second.flatMap { $0 }.sorted().reduce("" , {String($0) + String($1) } )
+        
+        print( ( sortedLeftValue == sortedRightValue ) ? "YES" : "NO" )
+        
+        
+    }
+    
+    func removeCharactersofSecondStringInFirst(){
+        var main = "geeksforgeeks"
+        var sub = "mask"
+        
+        var resultStr = ""
+        let mainArray = main.flatMap { $0 }
+        let subArray = sub.flatMap { $0 }
+        
+        mainArray.forEach {
+            
+            if(!subArray.contains($0)){
+                resultStr += String($0)
+            }
+            
+        }
+        
+        print(resultStr)
+        
+    }
+    
+    //   func wip(){
+    //     var arr = "bcc"
+    //     var strArray = [[String]]()
+    //     var firstArray = arr.flatMap { $0 }
+    
+    //     strArray.append( String(firstArray) )
+    
+    //     print(strArray)
+    //     var tempArray = [String]()
+    
+    //     for i in 0..<firstArray.count-1{
+    
+    //         if(firstArray[i] == firstArray[i+1]){
+    //            tempArray.append("cc")
+    //         }else{
+    //           tempArray.append(String(firstArray[i]))
+    //         }
+    //     }
+    //
+    
+    // print(tempArray)
+    
+    // strArray.append(tempArray)
+    //   }
+    
 }
 
 
@@ -161,4 +302,82 @@ strProblems.groupWordsWithSameCharacterSet()
 strProblems.permutations()
 strProblems.noOfEvenSubString()
 strProblems.anagrams()
+strProblems.printAndRemoveDuplicates()
+strProblems.countNumberOfWords()
+strProblems.subStringWithHighestFrequency()
+strProblems.countOfVowels()
+strProblems.checkBothHalvesHasSameString()
+
+
+var str = "gfg"
+var subSeq = str.flatMap { $0 }
+var list = Set<String>()
+
+subSeq.forEach{
+    list.insert(String($0))
+}
+
+
+//subSeq.enumerated().map { val in 
+//print(subSeq.filter { $0 != "g" }.reduce ("",{String($0) + String($1) } ))
+//}
+
+for i in 0..<subSeq.count-1{
+    for j in i..<subSeq.count{
+        list.insert(String(subSeq[i]) + String(subSeq[j])) 
+    }
+}
+
+
+print(list)
+
+
+
+
+
+
+//print(list)
+//  subSeq.enumerated().map{ (i,p)  in 
+
+//         for j in 1...subSeq.count-i{
+
+//         let start = str.index(str.startIndex, offsetBy: i)  
+//         let end = str.index(str.endIndex, offsetBy: -(j-1))
+
+//         let result = str[start..<end]
+
+//           //print(result)
+
+//           //list.insert(String(result))
+//           //list.insert(String(result.reversed()))
+
+//         }
+//   }
+
+//print(list)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
