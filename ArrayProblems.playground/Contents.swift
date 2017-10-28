@@ -2,6 +2,8 @@ import Foundation
 
 class ArrayProblems{
     
+    var rotationCount = 0
+    
     func groupPositiveNegatives(){
         
         let arr = [1, -1, 3, 2, -7, -5, 11, 6 ]
@@ -143,7 +145,7 @@ class ArrayProblems{
     }
     
     func rotateByLeft(k: Int){
-        var leftRotate = [1,2,3,4,5,6,7]
+        var leftRotate = [1, 3, 5, 7, 9]
         for _ in 0..<k {
             let first = leftRotate.removeFirst()
             leftRotate.insert(first,at:leftRotate.count)
@@ -190,6 +192,71 @@ class ArrayProblems{
         
     }
     
+    func rotationCountInRotatedSortedArray(){
+        var arr = [7, 9, 11, 12, 5]
+        let firstMainElement = (arr.sorted { $0 < $1 }.first)!
+        arrayProblems.rotateAgain(array: &arr, firstMain: firstMainElement)
+    }
+    
+    
+    func rotateAgain(array: inout [Int], firstMain: Int) {
+        
+        let resultArray = array.enumerated().map{ (index,value) -> [Int] in
+            
+            let firstElement = (array.prefix(1).first)!
+            
+            if(!(firstElement <= value)){
+                //rotate left
+                let first = array.removeFirst()
+                array.insert(first, at:array.count)
+                rotationCount += 1
+            }
+            
+            return array
+        }
+        
+        //rotate left until the element becomes minimum.
+        if ( !(firstMain == (resultArray.last?.first)! )){
+            var newArray = resultArray.last!
+            rotateAgain(array: &newArray, firstMain: firstMain)
+        }
+    }
+    
+    //http://www.geeksforgeeks.org/replace-every-element-with-the-greatest-on-right-side/
+    func replaceEveryElementWithGreatestElementOnRightSide(){
+        
+        let arr = [16, 17, 4, 3, 5, 2]
+        var resultArray = [Int]()
+        var tempArray = [Int]()
+        
+        arr.enumerated().forEach { (index,value)  in
+            
+            //to skip already visited elements
+            tempArray.insert(value, at:index)
+            let maxElement = arr.filter { !tempArray.contains ( $0) }
+                .sorted { $0 > $1 }.first ?? -1
+            //dump results
+            resultArray.insert(maxElement,at:index)
+        }
+        
+        print(resultArray)
+    }
+    
+    func reorderArrayAccordingToGivenIndex(){
+        let arr = [10, 11, 12]
+        let indexarray = [1,0,2]
+        var resultArray = [Int]()
+        var resultIndexArray = [Int]()
+        
+        indexarray.enumerated().forEach{ (index,value) in
+            resultArray.insert(arr[value],at:index)
+            resultIndexArray.insert(index,at:index)
+        }
+        
+        print(resultArray)
+        print(resultIndexArray)
+    }
+    
 }
 
 let arrayProblems = ArrayProblems()
@@ -201,35 +268,11 @@ arrayProblems.largestPairInUnsortedArray()
 arrayProblems.pairSortedArray()
 arrayProblems.productArray()
 arrayProblems.rotateRight(k:3)
-arrayProblems.rotateByLeft(k:2)
+arrayProblems.rotateByLeft(k:14)
 arrayProblems.searchInRotatedArray()
 arrayProblems.findMaximumValueOnRotations()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+arrayProblems.rotationCountInRotatedSortedArray()
+print("Rotation Count \(arrayProblems.rotationCount)")
+arrayProblems.replaceEveryElementWithGreatestElementOnRightSide()
+arrayProblems.reorderArrayAccordingToGivenIndex()
 
