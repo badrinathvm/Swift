@@ -257,6 +257,37 @@ class ArrayProblems{
         print(resultIndexArray)
     }
     
+    func repeatedTwoElements(){
+        
+        let arr = [4, 2, 4, 5, 2, 3, 1]
+        var countDict = [Int:Int]()
+        arr.forEach {
+            countDict[$0,default:0] += 1
+        }
+        
+        print(countDict.filter { $0.1 == 2}.flatMap { $0.0 }.sorted())
+    }
+    
+    func minDistanceBetweenTwoValues(){
+        let arr = [2, 5, 3, 5, 4, 4, 2, 3]
+        let (x,y) = (2,4)
+        var minDistance = Int.max
+        
+        let result = arr.enumerated().map { (i, element) -> Int in
+            for j in stride(from : 1,to: arr.count, by:1){
+                if( arr[i] == x && arr[j] == y){
+                    minDistance = min(minDistance, abs(i-j))
+                }
+                
+                if( arr[j] == x && arr[i] == y){
+                    minDistance = min(minDistance, abs(i-j))
+                }
+            }
+            return minDistance
+        }  
+        print("Minimum Distance is \(result.last!)")
+    }
+    
 }
 
 let arrayProblems = ArrayProblems()
@@ -275,4 +306,5 @@ arrayProblems.rotationCountInRotatedSortedArray()
 print("Rotation Count \(arrayProblems.rotationCount)")
 arrayProblems.replaceEveryElementWithGreatestElementOnRightSide()
 arrayProblems.reorderArrayAccordingToGivenIndex()
-
+arrayProblems.repeatedTwoElements()
+arrayProblems.minDistanceBetweenTwoValues()
