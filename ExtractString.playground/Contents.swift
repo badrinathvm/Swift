@@ -345,4 +345,53 @@ print(str[indexStartOfText..<indexEndOfText])
 
 
 
+class ReverseVowels{
+    
+    func reverseVowels(str: inout String){
+        var vowList = Array<String>()
+        vowList.append("a")
+        vowList.append("e")
+        vowList.append("i")
+        vowList.append("o")
+        vowList.append("u")
+        
+        var strArray = str.characters.flatMap { $0 }
+        var ( i, j) = (0, strArray.count-1)
+        
+        while( i < j ){
+            
+            if( !vowList.contains( String(strArray[i])) ){
+                i += 1
+                continue
+            }
+            
+            if( !vowList.contains( String(strArray[j])) ){
+                j -= 1
+                continue
+            }
+            
+            strArray.swapAt(i,j)
+            i += 1
+            j -= 1
+        }
+        
+        
+        let text = strArray.reduce("", { String($0) + String($1) } )
+        print(text)
+    }
+    
+}
+
+
+var s = "hello"
+
+ReverseVowels().reverseVowels(str: &s)
+
+let str1 = "cat"
+let str2 = "tac1"
+
+let s1 = str1.characters.sorted().reduce("", { String($0) + String($1) })
+let s2 = str2.characters.sorted().reduce("", { String($0) + String($1) })
+
+print ( s1 == s2 ? "Anagram" : "Not Anagram")
 
