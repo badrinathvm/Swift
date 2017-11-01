@@ -201,3 +201,148 @@ func phone(_ s:String) -> [String] {
 print(phone("23"))
 
 
+class Panagrams{
+    
+    /* function to detect panagrams */
+    
+    func detectPanagrams(){
+        var str = "The quick brown fox jumps over a lazy dog."
+        
+        str = str.trimmingCharacters(in: .whitespaces)
+            .replacingOccurrences(of: " ", with: "")
+            .replacingOccurrences(of: ".", with: "")
+        
+        var dict = [Character:Int]()
+        
+        str.forEach {
+            if(!dict.keys.contains($0) ){
+                dict[$0 ,default:0] += 1
+            }
+        }
+        
+        let values = dict.flatMap { $0.1 }.reduce(0, {x,y in x+y})
+        //print(values)
+        let result = (values == 26 ) ? "Panagrams" : "Not Panagrams"
+        print(result)
+    }
+    
+    
+    /* Function for Max Occuring */
+    
+    func maxOccuring(){
+        var str = "Hello! Are you all fine? What are u doing today? Hey Guyz,Listen! I  have a plan for today. Help!"
+        
+        str = str.replacingOccurrences(of:" ", with:"")
+        
+        var countDict = [Character:Int]()
+        
+        str.forEach{
+            countDict[$0, default:0] += 1
+        }
+        
+        //fetching the maximum count from dictionary
+        let maxCount = countDict.max { $0.1 < $1.1 }?.value
+        //print(maxCount)
+        
+        //sorting the dictionary and filtering the max time occuring ones.
+        let resultDict = countDict.sorted { $0.1 > $1.1 }
+            .filter { $0.1 == maxCount! }
+        
+        print( resultDict.flatMap { $0.0 }.sorted() )
+        
+    }
+    
+    
+    //function to find Uniquness or not
+    
+    func unique(){
+        
+        let str = "ABCC"
+        
+        var uniqDict = [Character: Int] ()
+        
+        str.forEach{
+            uniqDict[$0, default:0] += 1
+        }
+        
+        
+        let result = uniqDict.filter { $0.1 > 1 }.count >= 1 ? "Not Unique" : "Unique"
+        
+        print(result)
+        
+    }
+    
+    
+    func eliminateDuplicates(){
+        
+        let str = "aaabbbcc"
+        var removeDuplicatesDict = [Character:Int]()
+        var resultString = ""
+        
+        str.forEach{
+            if(!removeDuplicatesDict.keys.contains( $0 ) ){
+                resultString += String($0)
+                removeDuplicatesDict[$0, default:0] += 1
+            }
+        }
+        
+        print(resultString)
+        
+        //print(removeDuplicatesDict.flatMap { $0.0}.reduce("", { String($0) + String($1) }))
+        
+    }
+    
+    
+    //function to reverse words
+    
+    func reverseWords(){
+        var str = " Hello how are you"
+        
+        str = str.trimmingCharacters(in: .whitespaces)
+        
+        let strArray = str.components(separatedBy: " ")
+        
+        for word in strArray.reversed(){
+            print(word, terminator: "\t")
+        }
+        
+        print()
+        
+    }
+    
+    
+    func productArray(){
+        let arr = [10,3,5,6,2] //[180,600,360,300,900]
+        
+        
+        // for i in 0..<arr.count{
+        //   print(arr.filter { $0 != arr[i] }.reduce(1, {x,y in x*y}))
+        // }
+        
+        let result = arr.map{ val in
+            arr.filter { $0 != val }.reduce(1, {x,y in x*y})
+        }
+        
+        print(result)
+        
+    }
+}
+
+
+let panagrams = Panagrams()
+panagrams.detectPanagrams()
+panagrams.maxOccuring()
+panagrams.unique()
+panagrams.eliminateDuplicates()
+panagrams.reverseWords()
+panagrams.productArray()
+
+
+let str = "abcdefg"
+let indexStartOfText = str.index(str.startIndex, offsetBy: 3)
+let indexEndOfText = str.index(str.endIndex, offsetBy: -1)
+print(str[indexStartOfText..<indexEndOfText])
+
+
+
+
