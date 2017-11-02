@@ -292,6 +292,30 @@ class StringProblems {
     // strArray.append(tempArray)
     //   }
     
+    
+    func stringCompress() {
+        //updated chunks array is passed to next iteration
+        
+        let chunks = str.characters.reduce([(Character, Int)]()) { (chunks, char) -> [(Character, Int)] in
+            
+            
+            //get a mutable copy
+            var _chunks = chunks
+            
+            //get a count if last char is same; 0 otherwise
+            let count = _chunks.last?.0 == char ? _chunks.last!.1 : 0
+            //remove tuple inorder order to update the latest count one.
+            if count > 0 {_chunks.removeLast()}
+            
+            //append tuple with incremented count
+            _chunks.append((char, count + 1))
+            return _chunks
+        }
+        
+        print(chunks.map { chunk in  chunk.1 == 1 ? "\(chunk.0)" : "\(chunk.0)\(chunk.1)" }.reduce("",{ String($0) + String($1) }))
+        
+    }
+    
 }
 
 
@@ -307,29 +331,30 @@ strProblems.countNumberOfWords()
 strProblems.subStringWithHighestFrequency()
 strProblems.countOfVowels()
 strProblems.checkBothHalvesHasSameString()
+strProblems.stringCompress()
 
 
-var str = "gfg"
-var subSeq = str.flatMap { $0 }
-var list = Set<String>()
-
-subSeq.forEach{
-    list.insert(String($0))
-}
-
-
-//subSeq.enumerated().map { val in 
-//print(subSeq.filter { $0 != "g" }.reduce ("",{String($0) + String($1) } ))
+//var str = "gfg"
+//var subSeq = str.flatMap { $0 }
+//var list = Set<String>()
+//
+//subSeq.forEach{
+//    list.insert(String($0))
 //}
-
-for i in 0..<subSeq.count-1{
-    for j in i..<subSeq.count{
-        list.insert(String(subSeq[i]) + String(subSeq[j])) 
-    }
-}
-
-
-print(list)
+//
+//
+////subSeq.enumerated().map { val in 
+////print(subSeq.filter { $0 != "g" }.reduce ("",{String($0) + String($1) } ))
+////}
+//
+//for i in 0..<subSeq.count-1{
+//    for j in i..<subSeq.count{
+//        list.insert(String(subSeq[i]) + String(subSeq[j])) 
+//    }
+//}
+//
+//
+//print(list)
 
 
 
