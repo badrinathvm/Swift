@@ -117,6 +117,31 @@ for i in 1...7{
 print(bingo.bingoOrNot())
 
 
+func searchIn2D(){
+    
+    var arr = [
+        [1,   3,  5,  7],
+        [10, 11, 16, 20],
+        [23, 30, 34, 50]
+    ]
+    
+    var n = 3
+    
+    arr.enumerated().forEach { (i, val) in
+        for j in 0..<arr[i].count{
+            if( arr[i][j] == n){
+                print("Element Found")
+                break
+            }
+        }
+    }
+    
+}
+
+searchIn2D()
+
+
+
 
 
 
