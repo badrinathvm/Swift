@@ -236,6 +236,15 @@ let dictKeyDec = dict.sorted(by: >)
 print(dictKeyInc)
 print(dictKeyDec)
 
+//check whether array is consecutive or not
+
+let list = [2,3,4,5,6]
+let consecutives = list.map { $0 - 1 }.dropFirst() == list.dropLast()
+print(consecutives)
+
+// list.map { $0 - 1 } -> Returns  [ 1,2,3,4,5 ] ( dropping first ) => [2,3,4,5]
+// list.dropLast()  -> Takes out 6 and returns [ 2,3,4,5]
+
 
 
 
