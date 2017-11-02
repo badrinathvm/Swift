@@ -233,6 +233,122 @@ zippedDictionary.sorted{ $0.0 < $1.0}.forEach {
 
 
 
+import Foundation
+
+//Dictionary Operations
+
+var seasons = ["Spring" : 20, "Summer" : 30, "Autumn" : 10]
+
+seasons["Winter", default: 5] = 10
+seasons["Monsoon", default:5] = 40
+
+print(seasons)
+
+let keyArray = Array(seasons.keys)  // When keys are Strings.
+
+let keysAltArray = seasons.flatMap { $0.0 } // When keys are integers.
+
+//Grouping
+let groupDictByFirst = Dictionary(grouping: keyArray ) { $0.characters.first! }
+print(groupDictByFirst)
+
+let groupByCount = Dictionary(grouping: keyArray ) { $0.count }
+print(groupByCount)
+
+// mapValues to get new Dictionary
+let newSeasonDict = seasons.mapValues { $0 * 2 }
+print(newSeasonDict)
+
+//filtering a Dictionary
+newSeasonDict.sorted { $0.0 < $1.0 }.forEach {
+    print("\($0.0) ==> \($0.1)")
+}
+
+//fetch first one from sorted Dict
+let firstOne = newSeasonDict.sorted { $0.0 < $1.0 }.first?.key
+print(firstOne!)
+
+//Maximum Key from a Dictionary
+let maxSeason = newSeasonDict.max { $0.1 < $1.1 }?.key
+print(maxSeason!)
+
+//finding minimum from a Dictionary
+let minAltSeason = newSeasonDict.max { $0.1 > $1.1}?.key
+print("Min Alt Season \(minAltSeason!)")
+
+let minSeason = newSeasonDict.min { $0.1 < $1.1 }?.key
+print("Min Season \(minSeason!)")
+
+//Fetch key and value pair from index
+let summerIndex = newSeasonDict.index(forKey: "Summer")
+print(newSeasonDict[summerIndex!])    //(key: "Summer", value: 60)
+
+let whereResult = newSeasonDict.index(where: { $0.1 == 20 } )
+print(newSeasonDict[whereResult!])  //(key: "Autumn", value: 20)
+
+//Zip
+let season = Array(seasons.keys)
+let temps = Array(seasons.values)
+
+var zippedDict = Dictionary(uniqueKeysWithValues: zip(season,temps))
+print(zippedDict)
+
+let moreSeasons = ["Rainy":  1 ,"Summer" : 10]
+
+//Keeping the existing value for Summer  ( wont replace )
+zippedDict.merge( moreSeasons ){ (current, _) in current }  // Summer : 30
+print(zippedDict)
+
+//other way of maintaning the existing value
+zippedDict.merge( ["Rainy": 2], uniquingKeysWith: min )
+print(zippedDict)
+
+//Taking the new value for Summer
+zippedDict.merge( moreSeasons ){ (_,new ) in new }
+print(zippedDict)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
