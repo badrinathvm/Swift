@@ -484,6 +484,28 @@ class ArrayProblems{
         print(maxArea)
     }
     
+    
+    
+    func plusOne() -> [Int] {
+        
+        var digits = [9,9]
+        var index = digits.count - 1
+        
+        while index >= 0 {
+            if digits[index] < 9 {
+                digits[index] += 1
+                return digits
+            }
+            
+            digits[index] = 0
+            index -= 1
+        }
+        
+        digits.insert(1, at: 0)
+        return digits
+    }
+
+    
 }
 
 let arrayProblems = ArrayProblems()
@@ -513,6 +535,8 @@ arrayProblems.oddCount()
 arrayProblems.findKPairtsWithSmallesSum()
 arrayProblems.findNextGreatesElement()
 arrayProblems.detectRectangleMaxArea()
+arrayProblems.plusOne()
+
 
 
 let list = [2,3,4,5,6]
