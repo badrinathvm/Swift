@@ -210,6 +210,32 @@ zippedDictionary.sorted{ $0.0 < $1.0}.forEach {
     print("\($0.0) ===> \($0.1)")
 }
 
+//Filtering an Dictionary based on value.
+let filteredDict = zippedDict.filter { $0.1 > 10 }
+print(filteredDict)
+
+//sort key values(array) inside dictionary
+var valueArrayDict = ["a" : [1,7,5,3] , "b" :[2,6,8,4] ]
+let sortedKeyValueDict = valueArrayDict.mapValues { $0.sorted { $0 < $1 }}.sorted { $0.0 < $1.0 }
+print(sortedKeyValueDict)
+
+// Note : sorted { $0 < $1 } = sorted(by: < )
+
+//Reduce into
+let str = "practiceswift"
+let countDict = str.reduce(into : [:] ) { count, letters in
+    count[letters, default:0] += 1
+}
+
+print(countDict.sorted { $0.0 < $1.0 })
+
+//Sorting a Dictionary
+let dict = ["A": 123, "B": 789, "C": 567, "D": 432]
+let dictKeyInc = dict.sorted(by: <)
+let dictKeyDec = dict.sorted(by: >)
+print(dictKeyInc)
+print(dictKeyDec)
+
 
 
 
@@ -307,16 +333,14 @@ print(zippedDict)
 zippedDict.merge( moreSeasons ){ (_,new ) in new }
 print(zippedDict)
 
+//Filtering an Dictionary
+let filteredDict = zippedDict.filter { $0.1 > 10 }
+print(filteredDict)
 
-
-
-
-
-
-
-
-
-
+//sort key values(array) inside dictionary
+var valueArrayDict = ["a" : [1,7,5,3] , "b" :[2,6,8,4] ]
+let sortedKeyValueDict = valueArrayDict.mapValues { $0.sorted { $0 < $1 }}.sorted { $0.0 < $1.0 }
+print(sortedKeyValueDict)
 
 
 
