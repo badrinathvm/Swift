@@ -114,9 +114,30 @@ class Logical{
         
         return res
     }
-
-
     
+    func longestPalindromeSubString(){
+        
+        var longestPalindrome = "babad" //aba
+        
+        var palTupple = [(String,Int) ]()
+        
+        longestPalindrome.enumerated().forEach { (index,element) in
+            for j in 1...longestPalindrome.count-index{
+                let start = longestPalindrome.index(longestPalindrome.startIndex,offsetBy: index)
+                let end = longestPalindrome.index(longestPalindrome.endIndex,offsetBy: -(j-1))
+                
+                let res = longestPalindrome[start..<end]
+                if( res  == String(res.reversed()) && res.count > 1 ){
+                    print(res)
+                    palTupple.append((String(res),res.count))
+                }
+            }
+        }
+        
+        palTupple.sorted(by:<).forEach {
+            print($0.0) 
+        }
+    }
 }
 
 var logical = Logical()
@@ -124,4 +145,4 @@ logical.twoSum()
 logical.stringCompress()
 logical.plusOne()
 print(logical.threeSum(nums: [-1,0,1,2,-1,-4]))
-
+logical.longestPalindromeSubString()
