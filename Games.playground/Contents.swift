@@ -141,6 +141,124 @@ func searchIn2D(){
 searchIn2D()
 
 
+let x = "CAT"
+let y = ["CAT", "BAT", "COT", "COG", "COW", "RAT", "BUT", "CUT", "DOG", "WEB" ]
+let z = "DOG"
+
+var list = [String]()
+
+y.forEach{ val in
+    //difference between two words
+    let difference = zip(x.characters, val.characters).filter { $0 != $1 }.count==1
+    if( difference){
+        list.append(val)
+    }
+}
+
+print(list)
+
+var list1 = [String]()
+
+//combine start word with each of the combination
+list.forEach { listElem in
+    y.forEach { ele in
+        
+        let diff = zip(listElem.characters,ele.characters).filter { $0 != $1  }.count==1
+        
+        if(ele.first == listElem.first){
+            list1.append(ele)
+        }
+        
+    }
+}
+
+print(Set(list1.sorted()))
+
+let diffArray = Set(list).symmetricDifference(Set(list1.sorted()))
+
+//print(Set(list).subtracting(Set(list1.sorted())))
+
+let groupDict = Dictionary(grouping: diffArray) { $0.characters.first!}
+
+print(groupDict)
+
+let filtDict = Dictionary(grouping: y) { $0.characters.first!}
+
+let newDict = filtDict.mapValues { $0.map { $0 }.sorted { $0 < $1 } }
+
+print(newDict)
+
+
+func wipLadder(){
+    
+    let x = "CAT"
+    let y = ["CAT", "BAT", "COT", "COG", "COW", "RAT", "BUT", "CUT", "DOG", "WEB" ]
+    let z = "DOG"
+    
+    var list = [String]()
+    
+    
+    //let difference = zip(x.characters, val.characters).filter { $0 != $1 }
+    
+    y.forEach{ val in
+        //difference between two words
+        let difference = zip(x.characters, val.characters).filter { $0 != $1 }.count==1
+        
+        if( difference){
+            list.append(val)
+        }
+    }
+    
+    print(list)
+    
+    var list1 = [String]()
+    
+    //combine start word with each of the combination
+    list.forEach { listElem in
+        y.forEach { ele in
+            
+            let diff = zip(listElem.characters,ele.characters).filter { $0 != $1  }.count==1
+            
+            if(ele.first == listElem.first){
+                list1.append(ele)
+            }
+            
+        }
+    }
+    
+    print(Set(list1.sorted()))
+    
+    let diffArray = Set(list).symmetricDifference(Set(list1.sorted()))
+    
+    //print(Set(list).subtracting(Set(list1.sorted())))
+    
+    let groupDict = Dictionary(grouping: diffArray) { $0.characters.first!}
+    
+    print(groupDict)
+    
+    
+    
+    let filtDict = Dictionary(grouping: y) { $0.characters.first!}
+    
+    let newDict = filtDict.mapValues { $0.map { $0 }.sorted { $0 < $1 } }
+    
+    print(newDict)
+    
+    
+    var s = "aaabbcc"
+    
+    print(s.flatMap{ $0 })
+
+    
+    
+}
+
+
+
+
+
+
+
 
 
 
