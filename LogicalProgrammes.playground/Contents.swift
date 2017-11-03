@@ -138,6 +138,28 @@ class Logical{
             print($0.0) 
         }
     }
+    
+    
+    func bestTimeToBuySellStock() -> Int{
+        
+        var prices = [7, 1, 5, 3, 6, 4]
+        
+        guard prices.count >= 2 else {
+            return 0
+        }
+        
+        var minPrice = prices[0]
+        var maxProfit = 0
+        
+        for price in prices {
+            minPrice = min(minPrice,price)
+            maxProfit = max( maxProfit , price - minPrice)
+        }
+        
+        return maxProfit
+        
+    }
+
 }
 
 var logical = Logical()
@@ -146,3 +168,5 @@ logical.stringCompress()
 logical.plusOne()
 print(logical.threeSum(nums: [-1,0,1,2,-1,-4]))
 logical.longestPalindromeSubString()
+print(logical.bestTimeToBuySellStock())
+
