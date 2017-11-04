@@ -219,7 +219,44 @@ class Logical{
         
         print(dp[m-1][n-1])
     }
-
+    
+    
+    func phone(_ s:String) -> [String] {
+        
+        let phoneKeyMap: [Character: [String]] = [
+            "2": ["a","b","c"],
+            "3": ["d","e","f"],
+            "4": ["g","h","i"],
+            "5": ["j","k","l"],
+            "6": ["m","n","o"],
+            "7": ["p","q","r","s"],
+            "8": ["t","u","v"],
+            "9": ["w","x","y","z"]
+        ]
+        
+        guard let n = s.characters.first else { return [] } // 1
+        
+        guard let px = phoneKeyMap[n] else { return [] } // ['a,b,c]
+        
+        print(px)
+        
+        if s.characters.count == 1 {
+            print("Data is \(px)")
+            return px
+        }
+        
+        let sx = phone(String(s.characters.dropFirst()))
+        
+        print(sx)
+        
+        let res = px.flatMap { p in sx.flatMap { s in p+s } }
+        //print(res)
+        
+        return px.flatMap { p in sx.flatMap { s in p+s } }
+        
+        //return px.flatMap { _ in sx.flatMap { $1 + $0 } }
+        
+    }
 
 }
 
@@ -232,5 +269,7 @@ logical.longestPalindromeSubString()
 print(logical.bestTimeToBuySellStock())
 print(logical.checkIso())
 logical.uniquePath()
+print(logical.phone("23"))
+
 
 
