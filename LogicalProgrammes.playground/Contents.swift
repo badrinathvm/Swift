@@ -192,6 +192,34 @@ class Logical{
         
         fatalError("Just other way of Return")
     }
+    
+    func uniquePath(){
+        
+        var (m,n) = (3,7)
+        
+        //initilaze to Zero
+        var dp = Array(repeating: Array(repeating:0, count:n),count:m)
+        
+        //set first columns to 1
+        zip(0..<m,dp[0..<m]).forEach{ (index,value) in
+            dp[index][0] = 1
+        }
+        
+        //set first rows to 1
+        (0..<n).forEach{
+            dp[0][$0] = 1
+        }
+        
+        //current position can be calculated by  ( x, y) = (x-1,y) + (x,y-1)
+        (1..<m).forEach{ i in
+            (1..<n).forEach{ j in
+                dp[i][j] = dp[i-1][j] + dp[i][j-1]
+            }                 
+        }
+        
+        print(dp[m-1][n-1])
+    }
+
 
 }
 
@@ -203,4 +231,6 @@ print(logical.threeSum(nums: [-1,0,1,2,-1,-4]))
 logical.longestPalindromeSubString()
 print(logical.bestTimeToBuySellStock())
 print(logical.checkIso())
+logical.uniquePath()
+
 
