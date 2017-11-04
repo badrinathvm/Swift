@@ -195,7 +195,7 @@ class Logical{
     
     func uniquePath(){
         
-        var (m,n) = (3,7)
+        let (m,n) = (3,7)
         
         //initilaze to Zero
         var dp = Array(repeating: Array(repeating:0, count:n),count:m)
@@ -257,6 +257,45 @@ class Logical{
         //return px.flatMap { _ in sx.flatMap { $1 + $0 } }
         
     }
+    
+    func lcs() {
+        let str1 = "ABCDAF".flatMap { $0 }
+        let str2 = "ACBCF".flatMap { $0 }
+        
+        let m = str1.count
+        let n = str2.count
+        
+        var dp = Array(repeating: Array(repeating:0, count:n+1) , count: m+1)
+        
+        print(dp)
+        
+        //set first element of each row to 0
+        zip(0...m, dp[0...m]).forEach{ (index,val) in  dp[index][0] = 0}
+        
+        //set first columns to 0
+        (0...n).forEach { dp[0][$0] = 0}
+        
+        //print(dp)
+        
+        zip(1...m, dp[1...m]).forEach { (i,row) in
+            zip(1...n, dp[1...n]).forEach{ (j, col) in
+                // if( i == 0 || j == 0 ){
+                //     dp[i][j] = 0
+                // }else
+                if(str1[i-1] == str2[j-1]){
+                    dp[i][j] = 1 + dp[i-1][j-1]
+                } else{
+                    dp[i][j] = max(dp[i-1][j] , dp[i][j-1])
+                }
+                
+            }                          
+        }
+        
+        print(dp)
+        
+        
+        print(dp[m][n])
+    }
 
 }
 
@@ -270,6 +309,7 @@ print(logical.bestTimeToBuySellStock())
 print(logical.checkIso())
 logical.uniquePath()
 print(logical.phone("23"))
+logical.lcs()
 
 
 
