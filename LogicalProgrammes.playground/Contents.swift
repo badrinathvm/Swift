@@ -159,6 +159,39 @@ class Logical{
         return maxProfit
         
     }
+    
+    func checkIso() -> String {
+        
+        let s1 = "eggaa1".flatMap { $0 }
+        let s2 = "addb1".flatMap { $0 }
+        
+        var status = ""
+        let empty = ""
+        
+        print(s1)
+        print(s2)
+        
+        guard  (s1.count == s2.count) else {
+            return "Not valid Inputs"
+        }
+        
+        var countDict = [String:String]()
+        
+        for (index,element) in s1.enumerated(){
+            
+            if let ind = countDict.index(forKey: String(element)){
+                
+                status = countDict[ind].value == String(s2[index]) ? "Iso" : "Non ISo"
+                return status
+            }
+            
+            
+            countDict[String(element), default:empty] = String(s2[index])
+            
+        }
+        
+        fatalError("Just other way of Return")
+    }
 
 }
 
@@ -169,4 +202,5 @@ logical.plusOne()
 print(logical.threeSum(nums: [-1,0,1,2,-1,-4]))
 logical.longestPalindromeSubString()
 print(logical.bestTimeToBuySellStock())
+print(logical.checkIso())
 
