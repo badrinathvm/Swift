@@ -441,6 +441,55 @@ class Logical{
         
         print(resultString)
     }
+    
+    func dfs(_ islandArray : inout [[Int]] ,_ m :Int, _ n: Int, _ i:Int, _ j:Int ){
+        
+        guard i>=0 && i<m && j >= 0 && j < n && islandArray[i][j] == 1 else{
+            return
+        }
+        
+        islandArray[i][j] = 2
+        
+        dfs(&islandArray,m,n,i+1,j)
+        dfs(&islandArray,m,n,i-1,j)
+        dfs(&islandArray,m,n,i,j+1)
+        dfs(&islandArray,m,n,i,j-1)
+        
+    }
+    
+    
+    func numberOfIslands() -> Int{
+        var islandArray = [
+            [1,1,1,1,0],
+            [1,1,0,1,0],
+            [1,1,0,0,0],
+            [0,0,0,0,0]
+        ]
+        
+        //print(islandArray)
+        
+        let m = islandArray.count
+        let n = islandArray[0].count
+        var clusterCount = 0
+        print(m)
+        print(n)
+        
+        guard m>0 && n > 0 else{
+            return 0
+        }
+        
+        (0..<m).enumerated().forEach { i in
+            zip(0..<n, islandArray[i.offset][0..<n]).forEach{ (j,val) in
+                //on finding one make sure to check each of it's neighbours by using dfs method and increment the count .
+                if( islandArray[i.offset][j] == 1){
+                    clusterCount += 1
+                    dfs(&islandArray,m,n,i.offset,j)
+                }
+            }
+        }
+        
+        return clusterCount
+    }
 }
 
 var logical = Logical()
@@ -457,10 +506,7 @@ logical.longestCommonSubSequence()
 logical.longestIncreasingSubSequence()
 logical.combinations()
 logical.integerToEnglishWords()
-
-
-
-
+print(logical.numberOfIslands())
 
 
 
