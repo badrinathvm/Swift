@@ -117,7 +117,7 @@ class Logical{
     
     func longestPalindromeSubString(){
         
-        var longestPalindrome = "babad" //aba
+        let longestPalindrome = "babad" //aba
         
         var palTupple = [(String,Int) ]()
         
@@ -258,7 +258,7 @@ class Logical{
         
     }
     
-    func lcs() {
+    func longestCommonSubSequence() {
         let str1 = "ABCDAF".flatMap { $0 }
         let str2 = "ACBCF".flatMap { $0 }
         
@@ -296,7 +296,32 @@ class Logical{
         
         print(dp[m][n])
     }
+    
 
+    func longestIncreasingSubSequence(){
+        var lcs = [10, 9, 2, 5, 3, 7, 101, 18]
+        
+        //to test guard condition
+        //var lcs = [Int]()
+        var dp = Array(repeating:1, count: lcs.count )
+        var maxLength = 0
+        
+        guard lcs.count != 0  else{
+            print(0)
+            return
+        }
+        
+        zip(0..<lcs.count, lcs[0..<lcs.count]).forEach{ (i,value) in
+            zip(0..<i, lcs[0..<i]).forEach { (j,val2) in
+                if(lcs[i] > lcs [j]){
+                    dp[i] = max(dp[i], dp[j]+1)
+                }
+            }
+            maxLength = max(maxLength, dp[i])
+        }
+        
+        print(maxLength)
+    }
 }
 
 var logical = Logical()
@@ -309,7 +334,10 @@ print(logical.bestTimeToBuySellStock())
 print(logical.checkIso())
 logical.uniquePath()
 print(logical.phone("23"))
-logical.lcs()
+logical.longestCommonSubSequence()
+logical.longestIncreasingSubSequence()
+
+
 
 
 
