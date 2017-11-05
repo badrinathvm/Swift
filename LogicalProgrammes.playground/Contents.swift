@@ -540,7 +540,7 @@ class Logical{
         
         print(visited)
         
-        
+        //Note cannot use return inside forEach - have to make use of for
         zip(0..<m, wordArray[0..<m]).forEach{ (i,value) in
             zip(0..<n,wordArray[i][0..<n]).forEach{ (j,val2) in
                 if( (Character(wordArray[i][j]) == wordContent[0])
