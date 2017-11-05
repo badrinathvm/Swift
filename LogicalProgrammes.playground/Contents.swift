@@ -490,6 +490,73 @@ class Logical{
         
         return clusterCount
     }
+    
+    func wdfs(_ wordArray: inout [[String]], _ wordContent: [Character], _ m:Int, _ n :Int , _ i :Int, _ j :Int, _ visited: inout [[Bool]], _ index:Int ) -> Bool{
+        
+        if index == wordContent.count {
+            return true
+        }
+        
+        guard i >= 0 && i < m && j >= 0 && j < n else{
+            return false
+        }
+        
+        guard !visited[i][j] && Character(wordArray[i][j]) == wordContent[index] else {
+            return false
+        }
+        
+        visited[i][j] = true
+        
+        if( wdfs(&wordArray,wordContent,m,n,i+1,j, &visited,index+1) ||
+            wdfs(&wordArray,wordContent,m,n,i-1,j, &visited,index+1) ||
+            wdfs(&wordArray,wordContent,m,n,i,j+1, &visited,index+1) ||
+            wdfs(&wordArray,wordContent,m,n,i,j-1, &visited,index+1)){
+            return true
+            
+        }
+        
+        return false
+    }
+    
+    
+    func wordSearch(){
+        
+        var wordArray = [
+            ["A","B","C","E"],
+            ["S","F","C","S"],
+            ["A","D","E","E"]
+        ]
+        
+        var word = "ABCCED"
+        var foundStatus = false
+        
+        //instead of flatMap
+        var wordContent = [Character](word.characters)
+        
+        let m = wordArray.count
+        let n = wordArray[0].count
+        
+        var visited = Array(repeating: Array(repeating:false, count:n), count:m)
+        
+        print(visited)
+        
+        
+        zip(0..<m, wordArray[0..<m]).forEach{ (i,value) in
+            zip(0..<n,wordArray[i][0..<n]).forEach{ (j,val2) in
+                if( (Character(wordArray[i][j]) == wordContent[0])
+                    &&  wdfs(&wordArray,wordContent,m,n,i,j, &visited,0)){
+                    foundStatus = true
+                }
+            }
+        }
+        
+        if( foundStatus){
+            print("Found")
+        }else{
+            print("Not Found")
+        }
+        
+    }
 }
 
 var logical = Logical()
@@ -507,6 +574,8 @@ logical.longestIncreasingSubSequence()
 logical.combinations()
 logical.integerToEnglishWords()
 print(logical.numberOfIslands())
+logical.wordSearch()
+
 
 
 
