@@ -371,6 +371,76 @@ class Logical{
         
         // print(resTupleList)
     }
+    
+    func integerToEnglishWords(){
+        let n = "1323".flatMap{ $0 }
+        var englishTuple = [(Int,String)]()
+        
+        //constructing the tuples
+        englishTuple.append((1,"one"))
+        englishTuple.append((2,"Two"))
+        englishTuple.append((3,"Three"))
+        englishTuple.append((4,"Four"))
+        englishTuple.append((5,"Five"))
+        englishTuple.append((6,"Six"))
+        englishTuple.append((7,"Seven"))
+        englishTuple.append((8,"Eight"))
+        englishTuple.append((9,"Nine"))
+        englishTuple.append((10,"Ten"))
+        englishTuple.append((11,"Elevem"))
+        englishTuple.append((12,"Twelve"))
+        englishTuple.append((13,"Thirteen"))
+        englishTuple.append((14,"Fourteen"))
+        englishTuple.append((15,"Fifteen"))
+        englishTuple.append((16,"Sixteen"))
+        englishTuple.append((17,"Seventeen"))
+        englishTuple.append((18,"Eighteen"))
+        englishTuple.append((19,"Ninteen"))
+        englishTuple.append((20,"Twenty"))
+        englishTuple.append((30,"Thirty"))
+        englishTuple.append((40,"Forty"))
+        englishTuple.append((50,"Fifty"))
+        englishTuple.append((60,"Sixty"))
+        englishTuple.append((70,"Seventy"))
+        englishTuple.append((80,"Eighty"))
+        englishTuple.append((90,"Ninty"))
+        
+        //print(englishTuple)
+        
+        var resultString = ""
+        
+        //to multiply each of the array
+        var tempArray = [(1,""),(10,""),(100,"Hundred"),(1000,"Thousand")]
+        //var expandArray = ["One","Ten","Hundred","thousand"]
+        var count = n.count-1
+        var convertArray = n.flatMap { Int(String($0)) }
+        
+        //Getting the multiplied array
+        zip(0..<convertArray.count,convertArray[0..<convertArray.count]).forEach { (index,val) in
+            convertArray[index] = val * tempArray[count].0
+            count -= 1
+        }
+        
+        print(convertArray)
+        
+        //fetching value from tuples and constructing output.
+        (0..<convertArray.count).forEach{
+            let temp = convertArray[$0]
+            //fetching the index from tuple and acessing it
+            if let index = englishTuple.index(where : {$0.0 == temp }){
+                resultString += englishTuple[index].1 + " "
+            }else{
+                // for scenarios involving 100 & 1000's etc..
+                var t = String(temp).flatMap { String($0)}
+                if let index = englishTuple.index(where : {$0.0 == Int(String(t[0])) }){
+                    resultString += englishTuple[index].1 +  " " + tempArray[t.count-1].1 + " "
+                }
+            }
+            
+        }
+        
+        print(resultString)
+    }
 }
 
 var logical = Logical()
@@ -386,6 +456,8 @@ print(logical.phone("23"))
 logical.longestCommonSubSequence()
 logical.longestIncreasingSubSequence()
 logical.combinations()
+logical.integerToEnglishWords()
+
 
 
 
