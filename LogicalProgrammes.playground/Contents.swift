@@ -322,6 +322,55 @@ class Logical{
         
         print(maxLength)
     }
+    
+    
+    func combinations(){
+        
+        // output :  [1,2] [1,3] ,[1,4] [2,3] [2,4] [3,4]
+        let n = 4
+        let k = 2
+        
+        var resTupleList = [(Int,Int)]()
+        
+        (1..<n).enumerated().forEach{ (i,val) in
+            //print(val)
+            (k...n).enumerated().forEach{ (j,val2) in
+                //print(val2)
+                let tempTuple = (val,val2)
+                //if(val != val2){
+                resTupleList.append(tempTuple)
+                //}
+            }
+        }
+        
+        //print(resTupleList)
+        
+        let dupTuples = resTupleList.filter { $0.0 == $0.1 }
+        
+        //removing duplicates
+        dupTuples.forEach{ val in
+            resTupleList = resTupleList.filter{ !( $0.0 == val.0 && $0.1 ==    val.1) }
+        }
+        
+        var symmetryTuple = resTupleList.filter { val in
+            resTupleList.filter { (val.0 == $0.1 && val.1 == $0.0) }.count > 0
+        }
+        
+        let tupleToBeRemoved = symmetryTuple.removeLast()
+        
+        //removing last symmetry one
+        let finalResultTuple = resTupleList.filter {
+            !($0.0 == tupleToBeRemoved.0 && $0.1 == tupleToBeRemoved.1) }
+        
+        print(finalResultTuple)
+        
+        //Alternate way to remove symmetry
+        // let index = resTupleList.index(where: { $0.0 == tupleToBeRemoved.0 && $0.1 == tupleToBeRemoved.1 } )
+        
+        // resTupleList.remove(at: index!)
+        
+        // print(resTupleList)
+    }
 }
 
 var logical = Logical()
@@ -336,6 +385,9 @@ logical.uniquePath()
 print(logical.phone("23"))
 logical.longestCommonSubSequence()
 logical.longestIncreasingSubSequence()
+logical.combinations()
+
+
 
 
 
