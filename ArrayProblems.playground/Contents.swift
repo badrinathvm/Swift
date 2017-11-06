@@ -140,7 +140,10 @@ class ArrayProblems{
         let leftPart = Array (reversedArray[0..<rotations].reversed())
         let rightPart = Array(reversedArray[rotations..<arr.count].reversed())
         
-        print( leftPart + rightPart )
+        //print( leftPart + rightPart )
+
+ //using reduce 
+         print([leftPart,rightPart].reduce([], +))
         
     }
     
