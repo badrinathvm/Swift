@@ -555,7 +555,57 @@ class Logical{
         }else{
             print("Not Found")
         }
+    }
+    
+    func longestCommonSubString(){
         
+        var (s1,s2) = ("LCLC".flatMap{$0},"CLCL".flatMap{$0})  //LCS = "CLC"
+        let (m,n) = (s1.count, s2.count)
+        var dp = Array(repeating: Array(repeating:0, count:n) , count : m)
+        var max = Int.min
+        print(dp)
+        var resList:[String] = []
+        
+        //Logic is similar to longest common sub sequence diagonal calculation.
+        
+        //on enumeration we will be having offset.
+        (0..<m).enumerated().forEach{ i in
+            (0..<n).enumerated().forEach{ j in
+                if(String(s1[i.offset]) == String(s2[j.offset])){
+                    
+                    if ( i.offset == 0 || j.offset == 0){
+                        dp[i.offset][j.offset] = 1
+                    }else{
+                        dp[i.offset][j.offset] = 1 + dp[i.offset-1][j.offset-1]
+                    }
+                    
+                    if( dp[i.offset][j.offset] > max){
+                        
+                        max = dp[i.offset][j.offset]
+                        let start = s1.index(s1.startIndex,offsetBy: (i.offset-max + 1))
+                        let end = s1.index(s1.endIndex, offsetBy: -(s1.count-(i.offset+1)))
+                        
+                        //print(s1[start..<end])
+                        resList = [String]()
+                        resList.append(String(s1[start..<end]))
+                        
+                    }else if ( dp[i.offset][j.offset] == max){
+                        print(max)
+                        
+                        let st = s1.index(s1.startIndex,offsetBy: (i.offset - max + 1))
+                        let en = s1.index(s1.startIndex, offsetBy: (i.offset+1))
+                        
+                        print(s1[st..<en])
+                        resList.append(String(s1[st..<en]))
+                        
+                    }
+                }else{
+                    dp[i.offset][j.offset] = 0
+                }
+            }
+        }
+        
+        print(resList)
     }
 }
 
@@ -575,6 +625,8 @@ logical.combinations()
 logical.integerToEnglishWords()
 print(logical.numberOfIslands())
 logical.wordSearch()
+logical.longestCommonSubString()
+
 
 
 
