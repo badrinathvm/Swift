@@ -607,6 +607,36 @@ class Logical{
         
         print(resList)
     }
+    
+    func tappingRainWater(){
+        
+        var heights = [0,1,0,2,1,0,1,3,2,1,2,1]
+        
+        var leftTower = Array(repeating: 0, count:heights.count)
+        var rightTower = Array(repeating:0, count:heights.count)
+        
+        var (leftMax,rightMax) = (0,0)
+        
+        zip(0..<heights.count,heights[0..<heights.count]).forEach{ (i,val) in
+            leftTower[i] = max(leftMax,heights[i])
+            leftMax = leftTower[i]
+        }
+        
+        
+        zip(0..<heights.count,heights[0..<heights.count]).reversed().forEach{ (i,val) in
+            rightTower[i] = max(rightMax,heights[i])
+            rightMax = rightTower[i]
+        }
+        
+        
+        var res = 0
+        zip(0..<heights.count,heights[0..<heights.count]).forEach { (i,val) in
+            res += min(rightTower[i],leftTower[i]) - heights[i]
+        }
+        
+        print(res)
+        
+    }
 }
 
 var logical = Logical()
@@ -626,9 +656,4 @@ logical.integerToEnglishWords()
 print(logical.numberOfIslands())
 logical.wordSearch()
 logical.longestCommonSubString()
-
-
-
-
-
-
+logical.tappingRainWater()
