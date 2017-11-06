@@ -635,7 +635,32 @@ class Logical{
         }
         
         print(res)
+    }
+    
+    func longConsecutive(){
+        var con = [100,4,200,1,2,3]
         
+        var setArray = Set(con)
+        
+        print(setArray)
+        var maxResult = 1
+        
+        zip(0..<con.count ,con[0..<con.count]).forEach{ (index,value) in
+            var (left,right,count) = (value - 1,value + 1,1)
+            while(setArray.contains(left)){
+                count += 1
+                setArray.remove(left)
+                left -= 1
+            }
+            while(setArray.contains(right)){
+                count += 1
+                setArray.remove(right)
+                right += 1
+            }
+            maxResult = max(maxResult,count)
+        }
+        
+        print(maxResult)
     }
 }
 
@@ -657,3 +682,5 @@ print(logical.numberOfIslands())
 logical.wordSearch()
 logical.longestCommonSubString()
 logical.tappingRainWater()
+logical.longConsecutive()
+
