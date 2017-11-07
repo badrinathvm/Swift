@@ -662,6 +662,55 @@ class Logical{
         
         print(maxResult)
     }
+    
+    func detectRectangleMaxArea(){
+        var test = [ [0,1,1,0,0,0] ,
+                     [0,0,1,1,1,1] ,
+                     [1,1,1,1,1,1],
+                     [1,0,0,1,0,1]
+        ]
+        
+        var n = test[0].count
+        var left = [Int](repeating:0,count:n)
+        var right = [Int](repeating:n,count:n)
+        var height = [Int](repeating:0, count:n)
+        var maxArea = 0
+        
+        test.enumerated().forEach { (i,val1) in
+            var (curr_left,curr_right) = (0,n)
+            
+            test.enumerated().forEach { (j,val2) in
+                height[j] = ( test[i][j] == 1 ) ? height[j] + 1 : 0
+            }
+            
+            test.enumerated().forEach { (j,val2) in
+                if test[i][j] == 1 {
+                    left[j] = max(left[j], curr_left)
+                } else {
+                    left[j] = 0
+                    curr_left = j + 1
+                }
+            }
+            
+            test.enumerated().reversed().forEach{ (j , val2) in
+                if test[i][j] == 1 {
+                    right[j] = min(right[j], curr_right)
+                } else {
+                    right[j] = n
+                    curr_right = j
+                }
+            }
+            
+            test.enumerated().forEach { (j,val2) in
+                maxArea = max(maxArea, (right[j] - left[j]) * height[j])
+            }
+            
+        }
+        
+        print(maxArea)
+    }
+    
+
 }
 
 var logical = Logical()
@@ -683,4 +732,6 @@ logical.wordSearch()
 logical.longestCommonSubString()
 logical.tappingRainWater()
 logical.longConsecutive()
+logical.detectRectangleMaxArea()
+
 
