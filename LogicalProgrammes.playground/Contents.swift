@@ -736,6 +736,36 @@ class Logical{
       print(result.count)
 }
     
+    func adjacentConsectives(){
+        var arr = [4, 6, 6, 7, 4, 3]
+        var count = 0
+        
+        var resTuple = [(Int,Int)]()
+        
+        let result = arr.reduce(([Int]())) { (arr, val) -> [Int] in
+            var _arr = arr
+            if(_arr.isEmpty){
+                _arr.append(val)
+            }else{
+                var temp = _arr.removeLast()
+                if( (abs(val)-abs(temp)) == 1 || (abs(val)-abs(temp)) == -1){
+                    resTuple.append((temp,val))
+                    count += 1
+                }else{
+                    _arr.append(temp)
+                    _arr.append(val)
+                }
+            }
+            return _arr
+        }
+        
+        print(count)
+        
+        print(resTuple)
+    }
+    
+
+    
 
 }
 
@@ -760,6 +790,10 @@ logical.tappingRainWater()
 logical.longConsecutive()
 logical.detectRectangleMaxArea()
 logical.delteConsecutive()
+logical.adjacentConsectives()
+
+
+
 
 
 
