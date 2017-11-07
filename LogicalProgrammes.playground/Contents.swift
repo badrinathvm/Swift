@@ -709,6 +709,32 @@ class Logical{
         
         print(maxArea)
     }
+
+    func deleteConsecutive(){
+      let seq = "tom jerry jerry tom tom".split(separator: " ")
+
+      let result = seq.reduce(([String])()) { str,val -> [String] in
+
+           //Logic here if stack is empty add it & pop the last one and compare with the 'val' if not same add it both back to stack.
+      //Finally get the count of stack.
+
+                   var _str = str
+                   if( _str.isEmpty){
+                     _str.append(String(val))
+                    }else{
+                     let temp = _str.removeLast()
+                     if( !(temp == val) ){
+                        _str.append(temp)
+                       _str.append(String(val))
+                     }
+                   }
+
+                  return _str
+      }
+
+      print(result)
+      print(result.count)
+}
     
 
 }
@@ -733,5 +759,7 @@ logical.longestCommonSubString()
 logical.tappingRainWater()
 logical.longConsecutive()
 logical.detectRectangleMaxArea()
+logical.delteConsecutive()
+
 
 
