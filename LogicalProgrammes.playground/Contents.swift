@@ -735,8 +735,31 @@ class Logical{
       print(result)
       print(result.count)
 }
-    
 
+func printMaximumOfMinimum(){
+  
+  //Logic here is to filter the proper ranges. If range contains array count filter it.
+  
+  var arr = [10, 20, 30, 50, 10, 70, 30]  //[70, 30, 20, 10, 10, 10, 10]
+  var resultArray = [Int]()
+
+  (0..<arr.count).forEach{ k in
+    var tempArray = [Int]()
+    arr.enumerated().forEach{ (index,val) in
+                             
+        let range = index...(index+k)
+                             
+        if(!range.contains(arr.count)){
+          tempArray.append(arr[range].sorted(by:<).first!)
+        }
+                             
+    }
+    //print(tempArray)
+    resultArray.append(tempArray.sorted(by:>).first!)
+  }
+
+  print(resultArray)
+}
 }
 
 var logical = Logical()
@@ -760,6 +783,11 @@ logical.tappingRainWater()
 logical.longConsecutive()
 logical.detectRectangleMaxArea()
 logical.delteConsecutive()
+logical.printMaximumOfMinimum()
+
+
+
+
 
 
 
