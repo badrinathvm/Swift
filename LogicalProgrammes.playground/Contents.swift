@@ -865,12 +865,3 @@ logical.adjacentConsectives()
 logical.printMaximumOfMinimum()
 logical.climbingStairs()
 logical.maximumConsecutiveProductArray()
-
-
-
-
-
-
-
-
-
