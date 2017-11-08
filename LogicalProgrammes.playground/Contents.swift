@@ -779,16 +779,41 @@ func printMaximumOfMinimum(){
         let range = index...(index+k)
                              
         if(!range.contains(arr.count)){
-          tempArray.append(arr[range].sorted(by:<).first!)
+          //tempArray.append(arr[range].sorted(by:<).first!)
+             tempArray.append(arr[range].min()!)
         }
                              
     }
     //print(tempArray)
-    resultArray.append(tempArray.sorted(by:>).first!)
+    //resultArray.append(tempArray.sorted(by:>).first!)
+    resultArray.append(tempArray.max()!)
   }
 
-  print(resultArray)
-}
+    print(resultArray)
+ }
+    
+    
+    func climbingStairs(){
+        var n = 5
+        var dp  = Array(repeating: 0 , count: n+1)
+        
+        dp[0] = 1
+        dp[1] = 1
+        print(dp)
+        
+        dp.enumerated().reduce(0 , {index, val in
+            
+            if(val.offset >= 2 ){
+                
+                dp[val.offset] = dp[val.offset - 2] + dp[val.offset - 1]
+            }
+            
+            return index
+        } )
+        
+        print(dp.suffix(1).first!)
+    }
+    
 }
 
 var logical = Logical()
@@ -811,9 +836,10 @@ logical.longestCommonSubString()
 logical.tappingRainWater()
 logical.longConsecutive()
 logical.detectRectangleMaxArea()
-logical.delteConsecutive()
+logical.deleteConsecutive()
 logical.adjacentConsectives()
 logical.printMaximumOfMinimum()
+logical.climbingStairs()
 
 
 
