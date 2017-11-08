@@ -801,17 +801,20 @@ func printMaximumOfMinimum(){
         dp[1] = 1
         print(dp)
         
-        dp.enumerated().reduce(0 , {index, val in
+        let res = dp.enumerated().reduce(0 , {index, val in
             
             if(val.offset >= 2 ){
                 
                 dp[val.offset] = dp[val.offset - 2] + dp[val.offset - 1]
+                
+                 _index = dp[val.offset]
             }
             
             return index
         } )
         
         print(dp.suffix(1).first!)
+        print(res)
     }
     
 }
