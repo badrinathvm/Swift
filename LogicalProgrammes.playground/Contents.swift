@@ -803,6 +803,8 @@ func printMaximumOfMinimum(){
         
         let res = dp.enumerated().reduce(0 , {index, val in
             
+            var _index = index
+            
             if(val.offset >= 2 ){
                 
                 dp[val.offset] = dp[val.offset - 2] + dp[val.offset - 1]
@@ -810,13 +812,32 @@ func printMaximumOfMinimum(){
                  _index = dp[val.offset]
             }
             
-            return index
+            return _index
         } )
         
         print(dp.suffix(1).first!)
         print(res)
     }
     
+    func maximumConsecutiveProductArray(){
+        
+        var productArray = [2,3,-2,4]
+        var resArray = [Int]()
+        
+        productArray.enumerated().forEach{ (index, val) in
+            if let range = index...(index+1) as? CountableClosedRange<Int>{
+                if ( !range.contains(productArray.count)){
+                    print(range)
+                    print(productArray[range])
+                    resArray.append(productArray[range].reduce(1,{ $0 * $1}))
+                }
+            }
+        }
+        
+        print(resArray.max()!)
+        
+    }
+
 }
 
 var logical = Logical()
@@ -843,10 +864,4 @@ logical.deleteConsecutive()
 logical.adjacentConsectives()
 logical.printMaximumOfMinimum()
 logical.climbingStairs()
-
-
-
-
-
-
-
+logical.maximumConsecutiveProductArray()
