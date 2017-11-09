@@ -63,6 +63,10 @@ class ArrayProblems{
         let second = arr.filter { $0 != first }.reduce(Int.min,{ max( $0,$1) } )
         
         print ( first + second )
+
+        //alternate solution
+       print(arr.sorted(by: >).prefix(2).reduce(0, {$0 + $1}))
+
     }
     
     //    func wip(){
@@ -142,7 +146,7 @@ class ArrayProblems{
         
         //print( leftPart + rightPart )
 
- //using reduce 
+ //using reduce
          print([leftPart,rightPart].reduce([], +))
         
     }
@@ -243,6 +247,21 @@ class ArrayProblems{
         }
         
         print(resultArray)
+
+
+        //secons solution with range
+
+        var temp = [Int]()
+
+      arr.enumerated().forEach { (index, val ) in
+             if(!(index == arr.count-1)){
+                    temp.append(arr[(index+1)...].max()!)
+              } else{
+                  temp.append(-1)
+              }
+        }
+
+      print(temp)
     }
     
     func reorderArrayAccordingToGivenIndex(){
