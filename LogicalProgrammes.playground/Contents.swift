@@ -837,6 +837,83 @@ func printMaximumOfMinimum(){
         print(resArray.max()!)
         
     }
+    
+    func palindromeRange(){
+        var str = "abaaabaaaba".flatMap { String($0) }
+        
+        var rangeTuples = [(0, 10), (5, 8), (2, 5), (5, 9)]
+        
+        (0..<rangeTuples.count).forEach{
+            
+            let start = rangeTuples[$0].0
+            let end = rangeTuples[$0].1
+            
+            let res = str[start...end].reduce("" , { String($0) + String($1) } )
+            
+            var status = ( res == String(res.reversed()) ) ? "Palindrome" : "Non Palindrome"
+            
+            print(status)
+        }
+
+    }
+    
+    
+    func validParenthesis(){
+        var par = "{()}()"
+        
+        var pArray = [String]()
+        
+        let vRes = par.flatMap { $0 }.reduce([String]()) { index , char in
+            var _index = index
+            if( String(char) == "{" || String(char) == "("  ){
+                pArray.append(String(char))
+            }else{
+                if(String(char) == ")" && pArray.last == "("){
+                    pArray.removeLast()
+                }else if(String(char) == "}" && pArray.last == "{"){
+                    pArray.removeLast()
+                }else{
+                    pArray.append(String(char))
+                }
+            }
+            return pArray
+        }
+        
+        print(vRes.count == 0 ? "valid" : "Not Valid")
+        
+    }
+    
+    
+    func palindromeRotation(){
+        var rp = "aaaad"
+        rp.enumerated().forEach{ (index, val) in
+            //print($0)
+            let result = rotateRight(rp, index)!
+            
+            if(result == String(result.reversed())){
+                print("\(result) --YES")
+            }
+            
+        }
+    }
+    
+    
+    func rotateRight(_ s: String, _ k :Int) -> String?{
+        
+        let temp = String(s.reversed()).flatMap { $0 }
+        
+        //print(temp)
+        let rotations = ( temp.count + k % temp.count )%temp.count
+        
+        //print(rotations)
+        
+        let left = String(temp[..<rotations].reversed())
+        let right = String(temp[rotations..<temp.count].reversed())
+        
+        //print(left + right)
+        
+        return left+right
+    }
 
 }
 
@@ -865,3 +942,8 @@ logical.adjacentConsectives()
 logical.printMaximumOfMinimum()
 logical.climbingStairs()
 logical.maximumConsecutiveProductArray()
+logical.palindromeRange()
+logical.validParenthesis()
+logical.palindromeRotation()
+
+
