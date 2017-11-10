@@ -914,7 +914,30 @@ func printMaximumOfMinimum(){
         
         return left+right
     }
-
+    
+    func firstRecurringCharacter(){
+        
+        //Recurring characters are B & A , B appers first should be 'B'
+        
+        let res = "BCABA"
+        var tuples = [(Character,Int)]()
+        
+        res.enumerated().forEach{ (index,value) in
+            let temp = (value,index)
+            tuples.append(temp)
+        }
+        
+        //filter for duplicates
+        let fil = tuples.filter{ val in
+            tuples.filter { $0.0 == val.0 }.count > 1
+        }
+        
+        //indentify the one which has zero index to detect that is the first occurence
+        let index = fil.index( where : { $0.1 == 0 })
+        
+        //extract it.
+        print(fil[index!].0)
+    }
 }
 
 var logical = Logical()
@@ -945,5 +968,6 @@ logical.maximumConsecutiveProductArray()
 logical.palindromeRange()
 logical.validParenthesis()
 logical.palindromeRotation()
+logical.firstRecurringCharacter()
 
 
