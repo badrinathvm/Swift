@@ -248,21 +248,74 @@ func wipLadder(){
     var s = "aaabbcc"
     
     print(s.flatMap{ $0 })
-
-    
-    
 }
 
 
 
+//with protocols and Extensions 
+
+protocol Game {
+  static func setupBoard() -> [Int]
+}
 
 
+extension SnakeLadder: Game {
+  
+  static func setupBoard() -> [Int] {
+    
+    let finalSquare = 25
+    
+    var board:[Int] = Array(repeating: 0, count: finalSquare + 1)
+    
+      board[03] = +08
+      board[06] = +11
+      board[09] = +09
+      board[10] = +02
+      board[14] = -10
+      board[19] = -11
+      board[22] = -02
+      board[24] = -08
+    
+    return board
+  }
+  
+}
 
 
+class SnakeLadder {
+    
+  func dice(_ n : Int){
+    
+     var diceRol = n
+     let finalSquare = 25
+     var square = 0
+    
+     var board = SnakeLadder.setupBoard()
+    
+     repeat{
+       
+       //move up or down 
+       square += board[square]
+       
+       //roll the dice 
+        diceRol += 1
+       
+       if diceRol == 7{
+          diceRol = 1
+       }
+       
+       square += diceRol
+       
+       print("square is at position \(square)")
+       
+     }while(square < finalSquare)
+      
+    print("Game Over")
+  }
+  
+}
 
 
-
-
-
-
+var game = SnakeLadder()
+game.dice(7)
 
