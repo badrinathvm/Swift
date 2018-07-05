@@ -139,6 +139,8 @@ class Logical{
         }
     }
     
+    //Plot a graph to visualize , after that identify the lowest (min value) that's the time to buy stock and identify the peak element
+    //subtrcat the peak element with min value gives the max profit. In this eg : it's 1 & 6
     
     func bestTimeToBuySellStock() -> Int{
         
