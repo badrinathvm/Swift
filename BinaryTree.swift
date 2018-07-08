@@ -59,7 +59,6 @@ class BinaryTree {
   
   
   func diameter(node:Node?) -> Int {
-    
     if node == nil {
       return 0
     }
@@ -73,7 +72,22 @@ class BinaryTree {
     let fd = max( (lheight + rheight + 1) , max(ldiameter,rdiameter) )
     
     return fd
+  }
+  
+  
+  func identicalTrees(a:Node?, b:Node?) -> Bool {
+    if a == nil && b == nil {
+      return true
+    }
     
+    if a != nil && b != nil {
+      let status = ( a?.value == b?.value
+      && identicalTrees(a: a?.left , b: b?.left)
+      && identicalTrees(a: a?.right , b: b?.right) )
+      return status 
+    }
+    
+    return false
   }
   
   func leafNodes(_ node:Node?) -> Int {
@@ -124,3 +138,18 @@ print(tree.leafNodes(tree.root))
 print("Diameter of the tree is")
 
 print(tree.diameter(node:tree.root))
+
+
+var tree1 = BinaryTree()
+tree1.root = Node(value:4)
+tree1.root?.left = Node(value:5)
+tree1.root?.right = Node(value:2)
+tree1.root?.right?.left = Node(value:3)
+tree1.root?.right?.right = Node(value:1)
+tree1.root?.right?.left?.left = Node(value:6)
+tree1.root?.right?.left?.right = Node(value:7)
+tree1.root?.right?.right?.right = Node(value:8)
+tree1.root?.right?.right?.right?.left = Node(value:9)
+tree1.printLeftTree(node:tree.root, level:1)
+
+print(tree.identicalTrees(a:tree.root, b:tree1.root))
