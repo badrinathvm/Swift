@@ -8,6 +8,54 @@ class BinaryTree {
   
    var root:Node? = nil
   
+  
+  func verticalView(root: Node?) {
+    
+    if root == nil {
+      return
+    }
+    
+    var hd:Int = 0
+    var map:[Int:[Int]] = [:]
+    
+    //this is used for storing nodes in tree order traversal
+    var queue:[Node] = []
+    
+    root?.hd = hd
+    queue.append(root!)
+    
+    //Loop until the queue is empty
+     while !queue.isEmpty {
+       
+       let temp = queue.removeFirst()
+       
+      //Extract the horizontal distance value from the dequeued tree node.
+       hd = temp.hd
+       
+       map[hd, default:[]] += [ temp.value ] as! [Int]
+       
+       if temp.left != nil {
+         temp.left?.hd = hd - 1
+         queue.append(temp.left!)
+       }
+       
+       if temp.right != nil {
+         temp.right?.hd = hd + 1
+         queue.append(temp.right!)
+       } 
+     }
+    
+    map.forEach {
+      print($0.1,terminator: "\n")
+    }
+    
+  }
+  
+  
+  
+  
+  
+  
    func bottomView(root: Node?) {
      
      if root == nil {
@@ -24,8 +72,7 @@ class BinaryTree {
      root?.hd = hd
      queue.append(root!)
      
-     //print(queue.isEmpty)
-     
+     //Loop until the queue is empty
      while !queue.isEmpty {
        
        let temp = queue.removeFirst()
@@ -84,17 +131,36 @@ var tree = BinaryTree()
 // tree.root?.right?.right?.right?.left = Node(value:9)
 
 
-tree.root = Node(value:20)
-tree.root?.left = Node(value:8)
-tree.root?.right = Node(value:22)
-tree.root?.left?.left = Node(value:5)
-tree.root?.left?.right = Node(value:3)
-tree.root?.right?.left = Node(value:4)
-tree.root?.right?.right = Node(value:25)
-tree.root?.left?.right?.left = Node(value:10)
-tree.root?.left?.right?.right = Node(value:14)
+// tree.root = Node(value:20)
+// tree.root?.left = Node(value:8)
+// tree.root?.right = Node(value:22)
+// tree.root?.left?.left = Node(value:5)
+// tree.root?.left?.right = Node(value:3)
+// tree.root?.right?.left = Node(value:4)
+// tree.root?.right?.right = Node(value:25)
+// tree.root?.left?.right?.left = Node(value:10)
+// tree.root?.left?.right?.right = Node(value:14)
+
+
+tree.root = Node(value:1)
+tree.root?.left = Node(value:2)
+tree.root?.right = Node(value:3)
+tree.root?.left?.left = Node(value:4)
+tree.root?.left?.right = Node(value:5)
+tree.root?.right?.left = Node(value:6)
+tree.root?.right?.right = Node(value:7)
+tree.root?.right?.left?.right = Node(value:8)
+tree.root?.right?.right?.right = Node(value:9)
 
 tree.bottomView(root: tree.root)
+tree.verticalView(root: tree.root)
 
 
+//o/p:
 //5 10 4 14 25
+//[4]
+//[2]
+//[7]
+//[1, 5, 6]
+//[3, 8]
+//[9]
