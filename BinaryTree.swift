@@ -118,6 +118,27 @@ class BinaryTree {
     
   }
   
+  func lca(root: Node?, p: Node?, q: Node?) -> Node? {
+    
+    if root == nil {
+      return nil
+    }
+    
+   if root?.value == p?.value || root?.value == q?.value {
+     return root
+   }
+    
+    let left = lca(root: root?.left , p: p, q: q)
+    let right = lca(root: root?.right, p: p, q: q)
+    
+    if left !== nil && right != nil {
+      return root
+    }else{
+      return (left != nil ) ? left : right
+    }
+    
+  }
+  
   
   //Tree structure 
   
@@ -182,3 +203,9 @@ mirror.root?.right?.right = Node(value:3)
 
 print("Mirror is")
 print(tree.isMirror(a:mirror.root, b:mirror.root))
+
+
+
+let lca = tree.lca(root: tree.root , p : tree.root?.right, q: tree.root?.left)
+
+print("LCA is \((lca?.value)!)")
