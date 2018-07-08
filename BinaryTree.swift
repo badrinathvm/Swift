@@ -90,6 +90,21 @@ class BinaryTree {
     return false
   }
   
+  func isMirror(a:Node?,b:Node?) -> Bool {
+    if a == nil && b == nil {
+      return true
+    }
+    
+    if a != nil && b != nil && a?.value == b?.value {
+       let status = isMirror(a: a?.left, b: b?.right)
+      && isMirror(a: a?.right , b: b?.left)
+      
+      return status
+    }
+    
+    return false
+  }
+  
   func leafNodes(_ node:Node?) -> Int {
     if node == nil {
       return 0
@@ -152,4 +167,18 @@ tree1.root?.right?.right?.right = Node(value:8)
 tree1.root?.right?.right?.right?.left = Node(value:9)
 tree1.printLeftTree(node:tree.root, level:1)
 
-print(tree.identicalTrees(a:tree.root, b:tree1.root))
+print(tree.identicalTrees(a:tree.root, b:tree.root))
+
+
+
+var mirror = BinaryTree();
+mirror.root = Node(value:1)
+mirror.root?.left = Node(value:2)
+mirror.root?.right = Node(value:2)
+mirror.root?.left?.left = Node(value:3)
+mirror.root?.left?.right = Node(value:4)
+mirror.root?.right?.left = Node(value:4)
+mirror.root?.right?.right = Node(value:3)
+
+print("Mirror is")
+print(tree.isMirror(a:mirror.root, b:mirror.root))
