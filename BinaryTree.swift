@@ -41,7 +41,42 @@ class BinaryTree {
     
   }
   
- func leafNodes(_ node:Node?) -> Int {
+  func height(node:Node?) -> Int {
+    
+    if node == nil {
+      return 0
+    }
+    
+    let lheight = height(node: node?.left)
+    let rheight = height(node: node?.right)
+ 
+    if lheight > rheight {
+      return lheight + 1
+    }else {
+      return rheight + 1
+    }
+  }
+  
+  
+  func diameter(node:Node?) -> Int {
+    
+    if node == nil {
+      return 0
+    }
+    
+    let lheight = height(node:node?.left)
+    let rheight = height(node:node?.right)
+    
+    let ldiameter = diameter(node: node?.left)
+    let rdiameter = diameter(node: node?.right)
+    
+    let fd = max( (lheight + rheight + 1) , max(ldiameter,rdiameter) )
+    
+    return fd
+    
+  }
+  
+  func leafNodes(_ node:Node?) -> Int {
     if node == nil {
       return 0
     }
@@ -54,19 +89,38 @@ class BinaryTree {
     
   }
   
+  
+  //Tree structure 
+  
+  //  4
+  // /  \
+  // 5   2
+  //     / \
+  //     3  1
+  //    / \  \
+  //    6 7  8
+  //        /
+  //       9
+  
 }
 
 var tree = BinaryTree()
-tree.root = Node(value:12)
-tree.root?.left = Node(value:10)
-tree.root?.right = Node(value:30)
-tree.root?.right?.left = Node(value:25)
-tree.root?.right?.right = Node(value:40)
-
+tree.root = Node(value:4)
+tree.root?.left = Node(value:5)
+tree.root?.right = Node(value:2)
+tree.root?.right?.left = Node(value:3)
+tree.root?.right?.right = Node(value:1)
+tree.root?.right?.left?.left = Node(value:6)
+tree.root?.right?.left?.right = Node(value:7)
+tree.root?.right?.right?.right = Node(value:8)
+tree.root?.right?.right?.right?.left = Node(value:9)
 tree.printLeftTree(node:tree.root, level:1)
 print()
 
+print(tree.height(node:tree.root))
+print()
+
 print(tree.leafNodes(tree.root))
+print("Diameter of the tree is")
 
-
-
+print(tree.diameter(node:tree.root))
