@@ -41,6 +41,19 @@ class BinaryTree {
     
   }
   
+ func leafNodes(_ node:Node?) -> Int {
+    if node == nil {
+      return 0
+    }
+    
+    if node?.left == nil && node?.right == nil {
+      return 1
+    }else{
+      return leafNodes(node?.left) + leafNodes(node?.right) 
+    }
+    
+  }
+  
 }
 
 var tree = BinaryTree()
@@ -51,6 +64,9 @@ tree.root?.right?.left = Node(value:25)
 tree.root?.right?.right = Node(value:40)
 
 tree.printLeftTree(node:tree.root, level:1)
+print()
+
+print(tree.leafNodes(tree.root))
 
 
 
