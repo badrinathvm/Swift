@@ -62,6 +62,37 @@ public class Graph {
         neighbor.neighbors.append(reverseEdge)               
       }
    }
+  
+  
+   func bfs(node: Node, size: Int) {
+     
+    var visited: Array<Bool> = Array(repeating: false, count: size)
+     
+    //this is used for storing nodes in tree order traversal
+    var queue:[Node] = []
+     
+     let index = Int(node.key!)!
+     visited[index] = true
+     queue.append(node)
+     
+     while !queue.isEmpty {
+       
+        let tempNode = queue.removeFirst()
+        print(tempNode.key!)
+       
+        //Get the adjacent nodes
+        let adjacents = tempNode.neighbors
+       
+        adjacents.forEach {
+          let index = Int($0.neighbor.key!)!
+          if !visited[index] {
+             visited[index] = true
+             queue.append($0.neighbor)
+          }
+        }
+        
+     }
+   }
 }
 
 var graph = Graph()
@@ -79,6 +110,12 @@ graph.addEdge(source:second, neighbor: zero, weight:0)
 graph.addEdge(source:second, neighbor: third, weight:0)
 graph.addEdge(source:third, neighbor: third, weight:0)
 
-graph.canvas.forEach {
-  print($0.key!)
-}
+// graph.canvas.forEach {
+//   print($0.key!)
+// }
+
+//print(graph.canvas.count)
+
+graph.bfs(node: second, size: graph.canvas.count)  // 2,0,3,1
+
+
