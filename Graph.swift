@@ -93,6 +93,32 @@ public class Graph {
         
      }
    }
+  
+  
+  func dfsUtil(node:Node, visited: inout [Bool]) {
+    
+        // Mark the current node as visited and print it
+        let key = Int(node.key!)!
+        visited[key] = true
+        print(key)
+    
+        //Get the adjacent nodes
+        let adjacents = node.neighbors
+       
+       adjacents.forEach {
+          let index = Int($0.neighbor.key!)!
+         if !visited[index] {
+           dfsUtil(node: $0.neighbor, visited: &visited)
+         }
+       }
+  }
+  
+  func dfs(node: Node, size: Int) {
+    
+     var visited: Array<Bool> = Array(repeating: false, count: size)
+     
+    dfsUtil(node: node, visited: &visited)
+  }
 }
 
 var graph = Graph()
@@ -110,12 +136,9 @@ graph.addEdge(source:second, neighbor: zero, weight:0)
 graph.addEdge(source:second, neighbor: third, weight:0)
 graph.addEdge(source:third, neighbor: third, weight:0)
 
-// graph.canvas.forEach {
-//   print($0.key!)
-// }
+print("BFS")
+graph.bfs(node: second, size: graph.canvas.count)  //2,0,3,1
 
-//print(graph.canvas.count)
-
-graph.bfs(node: second, size: graph.canvas.count)  // 2,0,3,1
-
+print("DFS")
+graph.dfs(node: second, size: graph.canvas.count) //2,0,1,3
 
