@@ -119,6 +119,50 @@ public class Graph {
      
     dfsUtil(node: node, visited: &visited)
   }
+    
+  func isCyclicUtil(_ node: Node, _ visited: inout [Bool] , _ recStack : inout [Bool])
+  -> Bool {
+    
+    let nodeValue = Int((node.key)!)!
+    
+    //print(nodeValue)
+    
+    if visited[nodeValue] == false {
+      
+      visited[nodeValue] = true
+      recStack[nodeValue] = true
+      
+      //Get the adjacent nodes
+      let adjacents = node.neighbors
+       
+      for node in adjacents {
+         let index = Int(node.neighbor.key!)!
+         
+         if !visited[index] && isCyclicUtil(node.neighbor,&visited,&recStack) {
+            return true
+         }else if recStack[index] {
+            return false
+         }
+      }
+    }
+    
+    return true
+  }
+    
+   func isCyclic(canvas: Array<Node>) -> Bool {
+    
+    var status  = false
+    var visited: [Bool] = Array(repeating: false , count: canvas.count)
+    var recStack: [Bool] = Array(repeating: false, count: canvas.count)
+    
+     canvas.forEach {
+       if isCyclicUtil($0,&visited,&recStack) {
+          status = true
+       }
+     }
+    
+    return status
+   }
 }
 
 var graph = Graph()
@@ -142,3 +186,5 @@ graph.bfs(node: second, size: graph.canvas.count)  //2,0,3,1
 print("DFS")
 graph.dfs(node: second, size: graph.canvas.count) //2,0,1,3
 
+let cycleStatus = graph.isCyclic(canvas: graph.canvas)
+print("Cyclic Detection : \(cycleStatus)")
