@@ -141,12 +141,12 @@ public class Graph {
          if !visited[index] && isCyclicUtil(node.neighbor,&visited,&recStack) {
             return true
          }else if recStack[index] {
-            return false
+            return true
          }
       }
     }
-    
-    return true
+    recStack[index] = false //Remove vertex from recursion array
+    return false
   }
     
    func isCyclic(canvas: Array<Node>) -> Bool {
