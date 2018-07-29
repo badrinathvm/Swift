@@ -1,10 +1,15 @@
+
 //Explantaion : If prefix sum repeates then there is Sum 0
 
-//In the below example 
-//15,13,15,7,8,25
+/*In the below example 
 
-//here there are two 15's, we have sub array of sum 0
-//$0.0ffset will give the count(max length)
+15,13,0,7,8,15,25,48
+
+1. Either a prefix repeats 
+2.prefix sum becomes zero
+
+here there are two 15's, we have sub array of sum 0
+$0.0ffset will give the count(max length) */
 
 
 func subArrayWithZero() {
