@@ -2,10 +2,13 @@
 //Explantaion : If prefix sum repeates then there is Sum 0
 
 /*In the below example 
+Array = [15, -2, 2, -8, 1, 7, 10, 23]
 
-15,13,0,7,8,15,25,48
+Calculation : (15, 15-2 , 15-2+2, 15-2+2-8 , ....... )
 
-1. Either a prefix repeats 
+output: 15,13,0,7,8,15,25,48
+
+1.Either a prefix repeats 
 2.prefix sum becomes zero
 
 here there are two 15's, we have sub array of sum 0
