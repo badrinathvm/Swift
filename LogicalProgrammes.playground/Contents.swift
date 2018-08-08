@@ -821,6 +821,20 @@ func printMaximumOfMinimum(){
         print(res)
     }
     
+    func fib(_ k: Int) -> Int {
+          if k <= 1 {
+             return k
+          }    
+          return fib(k-1) + fib(k-2)
+    }
+
+func climbingstairs(n: Int) -> Int {
+   return fib(n+1)
+}
+
+let res = climbingstairs(n: 5)
+print(res)
+    
     func maximumConsecutiveProductArray(){
         
         var productArray = [2,3,-2,4]
