@@ -954,6 +954,23 @@ print(res)
         //extract it.
         print(fil[index!].0)
     }
+    
+    
+    func longestCommonSubString() -> String {
+         var str1 = "bapples".flatMap { String($0) }
+          var str2 = "cappleses".flatMap { String($0) }
+          var match = ""
+          for (i, _) in str1.enumerated() {  
+            if ( i < str2.count) {
+              if str1[i] == str2[i] {
+                match += String(str1[i])
+              }
+            }
+          }
+
+        return match
+    }
+
 }
 
 var logical = Logical()
@@ -985,5 +1002,6 @@ logical.palindromeRange()
 logical.validParenthesis()
 logical.palindromeRotation()
 logical.firstRecurringCharacter()
+print(logical.longestCommonSubString())
 
 
