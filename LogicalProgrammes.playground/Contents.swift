@@ -970,6 +970,32 @@ print(res)
 
         return match
     }
+    
+    func threeSum() {
+      let arr = Array([6,1,2,3,4,5].sorted())
+      let target = 11
+      var j = 0
+      var k = 0
+
+
+      for i in 0..<arr.count - 2 {
+        let partial_target = target - arr[i]
+        j = i+1
+        k = arr.count - 1
+          while j < k {
+            let partial_sum = arr[j] + arr[k]
+             if partial_sum == partial_target {
+               print("three sum is \(arr[i]) \(arr[j]) \(arr[k])")
+               return
+             }else if partial_sum > partial_target {
+               k -= 1  //make the larger element smaller
+             }else{
+               j += 1 //smaller element bigger
+             }
+          }
+  }
+  
+}
 
 }
 
@@ -1003,5 +1029,6 @@ logical.validParenthesis()
 logical.palindromeRotation()
 logical.firstRecurringCharacter()
 print(logical.longestCommonSubString())
+logical.threeSum()
 
 
