@@ -1,3 +1,7 @@
+func secondsToHoursMinutes (_ seconds : Int) -> (Int, Int) {
+    return (seconds / 3600, (seconds % 3600) / 60)
+}
+
 func sortVisitors() {
 
     let openTime = 25200
@@ -5,25 +9,25 @@ func sortVisitors() {
     
     var timeRecords = [(String, Int, Int)]()
     //First Example
-//    timeRecords.append(("Amy",32400,43200 ))
-//    timeRecords.append(("Jeff",28800,46800 ))
-//    timeRecords.append(("Zack", 54000,57600))
-//    timeRecords.append(("Nathan",61200,62100))
-//    timeRecords.append(("Laura", 50400,57600))
-//    timeRecords.append(("Emma", 46800,52200))
-//    timeRecords.append(("Todd", 28800,30600))
-//    timeRecords.append(("Neil", 50400,59400))
+    timeRecords.append(("Amy",32400,43200 ))
+    timeRecords.append(("Jeff",28800,46800 ))
+    timeRecords.append(("Zack", 54000,57600))
+    timeRecords.append(("Nathan",61200,62100))
+    timeRecords.append(("Laura", 50400,57600))
+    timeRecords.append(("Emma", 46800,52200))
+    timeRecords.append(("Todd", 28800,30600))
+    timeRecords.append(("Neil", 50400,59400))
     
     
      //Second example
-     timeRecords.append(("Todd", 28800, 30600))
-     timeRecords.append(("Amy",32400,43200))
-     timeRecords.append(("Jeff",39600,46800))
-     timeRecords.append(("Emma",46800,52200))
-     timeRecords.append(("Laura", 50400, 57600))
-     timeRecords.append(("Neil", 50400, 59400))
-     timeRecords.append(("Zack",54000,57600))
-     timeRecords.append(("Nathan",61200,63000))
+//     timeRecords.append(("Todd", 28800, 30600))
+//     timeRecords.append(("Amy",32400,43200))
+//     timeRecords.append(("Jeff",39600,46800))
+//     timeRecords.append(("Emma",46800,52200))
+//     timeRecords.append(("Laura", 50400, 57600))
+//     timeRecords.append(("Neil", 50400, 59400))
+//     timeRecords.append(("Zack",54000,57600))
+//     timeRecords.append(("Nathan",61200,63000))
     
     
     //print(timeRecords)
@@ -32,7 +36,6 @@ func sortVisitors() {
     print("After Sorting by Arrival Time ")
     let sortArrivalTime = timeRecords.sorted {  $0.1 < $1.1 }
     print(sortArrivalTime)
-    
     
     print("Open Time \(secondsToHoursMinutes(openTime))")
     print("Close Time \(secondsToHoursMinutes(closeTime))")
@@ -45,16 +48,12 @@ func sortVisitors() {
     var visitorTimeRecords = [(String, Int, Int)]()
     
     //Get the first visitor
-    let firstVisitor = sortArrivalTime.first
+    guard let firstVisitor = sortArrivalTime.first else { return }
     
-    var previousTuple: (String, Int, Int)?
-    
-    if (firstVisitor?.1)! == openTime {
-        visitorTimeRecords.append((firstVisitor!.0, firstVisitor!.1, firstVisitor!.2))
-        previousTuple = (firstVisitor!.0, firstVisitor!.1, firstVisitor!.2)
+    if firstVisitor.1 == openTime {
+        visitorTimeRecords.append((firstVisitor.0, firstVisitor.1, firstVisitor.2))
     }else {
-        visitorTimeRecords.append(("No visitor", openTime, firstVisitor!.1))
-        previousTuple = ("No visitor", openTime, firstVisitor!.1)
+        visitorTimeRecords.append(("No visitor", openTime, firstVisitor.1))
     }
     
     //1. compare the previous tuple leave time with current tuple arrival time.
@@ -64,10 +63,13 @@ func sortVisitors() {
     
     sortArrivalTime.forEach { (tuple) in
         print("Current Tuple \(tuple)")
-        previousTuple = visitorTimeRecords.last!
+        
+        guard let previousTuple = visitorTimeRecords.last else { return }
+        
         print("Previous Tuple \(String(describing: previousTuple))")
-        if previousTuple!.2 < tuple.1 {
-            visitorTimeRecords.append(("No visitor", previousTuple!.2, tuple.1))
+        
+        if previousTuple.2 < tuple.1 {
+            visitorTimeRecords.append(("No visitor", previousTuple.2, tuple.1))
         }
         visitorTimeRecords.append((tuple.0, tuple.1, tuple.2))
     }
