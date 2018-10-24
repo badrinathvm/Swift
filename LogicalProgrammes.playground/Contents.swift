@@ -971,6 +971,28 @@ print(res)
         return match
     }
     
+    
+    func maxSubArray() {
+          let arr = [-2,1,-3,4,-1,2,1,-5,4]
+          print(arr)
+
+          var maxSoFar = 0
+          var maxEndingHere = 0
+
+          arr.forEach {
+            maxEndingHere += $0 
+            if maxEndingHere < 0 {
+              maxEndingHere = 0
+            }
+
+            if maxSoFar < maxEndingHere {
+              maxSoFar = maxEndingHere
+            }
+          }
+
+          print(maxSoFar)
+    }
+    
     func threeSum() {
       let arr = Array([6,1,2,3,4,5].sorted())
       let target = 11
@@ -1029,6 +1051,7 @@ logical.validParenthesis()
 logical.palindromeRotation()
 logical.firstRecurringCharacter()
 print(logical.longestCommonSubString())
+logical.maxSubArray()
 logical.threeSum()
 
 
