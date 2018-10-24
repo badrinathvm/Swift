@@ -3,6 +3,11 @@
 
 import Foundation
 
+//  # 1. Find center, or the highest number closest to it 
+//   # 2. Set carrot_count to 0, increment count accordingly 
+//   # 3. Find the square next to it with the highest number 
+//   # 4. Repeat step 2 until it there are no adjacent squares other than 0's
+//   # 5. Break loop, return carrot_count 
 
 class CarrotSearch {
   
