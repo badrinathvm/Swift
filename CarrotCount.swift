@@ -20,11 +20,7 @@
     
     //returns the closet ones if size is even, middle indices if the size is odd.
     func findPossibleCenters(size: Int) -> [Int] {
-        if size%2 == 0 {
-            return [size/2 - 1 ,size/2 ]
-        }else {
-            return [size/2 ]
-        }
+       return size%2 == 0 ?  [size/2 - 1 ,size/2 ] : [size/2 ]
     }
     
     //Determines possible start positions, dump them in to dictionary to highest key's row and column.
