@@ -957,19 +957,24 @@ print(res)
     
     
     func longestCommonSubString() -> String {
-         var str1 = "bapples".flatMap { String($0) }
-          var str2 = "cappleses".flatMap { String($0) }
-          var match = ""
-          for (i, _) in str1.enumerated() {  
-            if ( i < str2.count) {
-              if str1[i] == str2[i] {
-                match += String(str1[i])
-              }
-            }
-          }
+      let str1 = "apples".compactMap { String($0) }
+      let str2 = "crapples".compactMap { String($0) }
 
+      //identify which has the biggest count , iterate that array , here it is str2 
+
+      var match = ""
+      var k = 0
+      str2.enumerated().forEach { index, value in
+           if value == str1[k] {
+              match += str1[k]
+              k += 1
+        }
+      }
+
+      print(match)
         return match
     }
+
     
     func isPrime(k: Int) -> Bool {
       return k > 1 && !(2..<k).contains { k % $0 == 0 } 
