@@ -971,6 +971,11 @@ print(res)
         return match
     }
     
+    func isPrime(k: Int) -> Bool {
+      return k > 1 && !(2..<k).contains { k % $0 == 0 } 
+      //return k > 1 && (1...k).filter { k % $0 == 0 }.count <= 2
+    }
+    
     
     func maxSubArray() {
           let arr = [-2,1,-3,4,-1,2,1,-5,4]
@@ -1053,5 +1058,6 @@ logical.firstRecurringCharacter()
 print(logical.longestCommonSubString())
 logical.maxSubArray()
 logical.threeSum()
+logical.isPrime(7)
 
 
