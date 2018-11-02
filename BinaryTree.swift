@@ -105,6 +105,24 @@ class BinaryTree {
     return false
   }
   
+   func isBalanced(node: Node?) -> Bool {
+    
+    if node == nil { 
+      return true
+    }
+    
+    let lheight = height(node: node?.left)
+    let rheight = height(node: node?.right)
+    
+    if abs(lheight - rheight) <= 1 &&
+       isBalanced(node: node?.left) &&
+       isBalanced(node: node?.right) {
+         return true
+       }
+    
+    return false
+  }
+  
   func leafNodes(_ node:Node?) -> Int {
     if node == nil {
       return 0
@@ -169,6 +187,8 @@ print()
 
 print(tree.height(node:tree.root))
 print()
+
+print(tree.isBalanced(node: tree.root))
 
 print(tree.leafNodes(tree.root))
 print("Diameter of the tree is")
