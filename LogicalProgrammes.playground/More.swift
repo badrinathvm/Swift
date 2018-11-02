@@ -31,3 +31,19 @@ func findLengthOfLongestContinuousIncreasingSequence(_ arr: [Int]) -> Int {
   
   return result.max()!
 }
+
+
+func divideWithoutUsing() {
+  var a = 10
+   var b = 3
+   var res = 0 
+   while a >= b {
+     a = a - b
+     res += 1
+   }
+   
+  print("Quoitent is \(res)")
+  print("Reminder is \(a)")
+}
+
+
