@@ -59,3 +59,33 @@ queue.enque(3)
 print(queue.dequeue())
 print(queue.dequeue())
 print(queue.dequeue())
+
+
+
+func flatArray(array: [Any]) -> [Int] {
+  var result = [Int]()
+  array.enumerated().forEach {
+    
+    // if it's single element
+    if let element = $0.element as? Int {
+      result.append(element)
+    }
+    
+    // if it's any array or arary of arrays , call flat again recursively, iterate elements and add to result array
+    if let elements = $0.element as? [Any] {
+      let temp = flatArray(array: elements)
+      temp.forEach { 
+        result.append($0)
+      }
+    }
+  }
+  
+  return result
+}
+
+
+var arr = [3, 4, [4, [[55]]]] as [Any]
+let result = flatArray(array: arr)
+print(result)
+
+
