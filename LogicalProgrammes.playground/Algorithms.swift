@@ -89,3 +89,39 @@ let result = flatArray(array: arr)
 print(result)
 
 
+//-----------------------------------------------------------//
+
+/* 
+Logic: 
+ 1. Take the help of set, i = 0, j =0 , maxLength = 0
+ 2. if the elements doesnt exists in the set , add and then increment j, calculate maxLength ,(j-i)
+ 3. if present in the set , remove the 'i' th character, increment i
+*/
+
+
+func longestSubstringWithoutRepeatingCharacters()  -> Int {
+  var str = "bbbbb".compactMap { $0 }
+  var i = 0
+  var j = 0
+  var maxLength = 0
+  var setType = Set<Character>()
+  str.enumerated().forEach {
+    if !setType.contains($0.element) {
+      setType.insert($0.element)
+      j += 1
+      maxLength = max(maxLength, j - i)
+    }else{
+      let chracterToRemove = str[i]
+      setType.remove(chracterToRemove)
+      i += 1
+    }
+
+  }
+
+  return maxLength
+}
+
+
+print(longestSubstringWithoutRepeatingCharacters())
+
+
