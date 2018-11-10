@@ -125,3 +125,34 @@ func longestSubstringWithoutRepeatingCharacters()  -> Int {
 print(longestSubstringWithoutRepeatingCharacters())
 
 
+//---------------------------------------------------------------------//
+
+func longestPalindrome() {
+  let str = "cbbd"
+  var palTupple = [(String,Int)]()
+  
+  str.enumerated().forEach { i, value in
+      for j in i+1..<str.count {
+        
+        let start = str.index(str.startIndex , offsetBy: i)
+        let end = str.index(str.startIndex, offsetBy: j)
+        
+        let range = (start...end)
+        
+        //print(str[range])
+        
+        if str[range] == String(str[range].reversed()) {
+          let res = String(str[range])
+          palTupple.append((res,res.count))
+        }
+      }
+  }
+  
+  let res = palTupple.sorted(by: { $0.1 > $1.1 })
+  print((res.first?.0)!)
+  
+}
+
+longestPalindrome()   
+
+
