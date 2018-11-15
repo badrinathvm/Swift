@@ -163,6 +163,31 @@ public class Graph {
     
     return status
    }
+    
+    
+     func bfs() {
+
+      //Logic: 
+
+      // enqueue starting vertex & print, add it to the queue & make it visited.
+      // while ( queue is not empty ) {
+      //   let p = dequeue ( take the first element from the queue)
+      //   Get all their neignbhors  let adjacents = p.neighbors
+      //   iterate over the neighbors if unvisited , make it visisted and add it to the queue
+      // }
+
+    }
+
+
+    func dfs() {
+      //Logic:
+
+      //Mark the current node as visited and print it 
+      // Get the neigbhors i.e., let adjacents = p.neighbors
+      // iterate over the neighbhors 
+      // if unvisited, perform dfs again on their neighbors
+
+    }
 }
 
 var graph = Graph()
