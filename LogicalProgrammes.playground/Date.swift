@@ -38,20 +38,17 @@ class Item {
 
 var item1 = Item(product: .Bacteria, useIn: 10 , qualityValue: 20)
 //print(item1)
-
 func updateQuality(item: Item) -> Int {
    switch item.product {
      case .Thermometer: 
             //No chnage in the quality
             return  item.qualityValue
      case .Bacteria:
+            var quality = item.qualityValue
             let expirationDate = addDate(days: item.useIn)
             let diff = diffBetweenTwoDates(current: Date() , expiration: expirationDate!)
-            if diff > 0 {
-              return item.qualityValue + 1
-            }else {
-              return item.qualityValue
-            }
+            quality = diff > 0 ? quality + 1 : quality
+            return quality
      case .Flu: 
             print("Flu")
            return 0
