@@ -15,6 +15,21 @@ func addDate(days: Int) -> Date? {
   return Calendar.current.date(byAdding: .day, value: 1, to: Date())
 }
 
+func getMonthName() -> String {
+         let dateFormatter = DateFormatter()
+         dateFormatter.dateFormat = "MMM"
+         let month = dateFormatter.string(from: Date())
+         return month
+    }
+
+func detectFluMonth() -> Bool {
+  let fluMonthArray = ["Nov" , "Dec", "Jan" , "Feb"]
+  let currentMonth = getMonthName()
+  return fluMonthArray.contains(currentMonth)
+}
+
+print(detectFluMonth())
+
 
 let currentDate = Date()
 
@@ -27,6 +42,7 @@ let futureDate = dateFormatter.date(from: stringDate)
 
 let noOfDays = diffBetweenTwoDates(current: currentDate , expiration: futureDate!)
 print(noOfDays)
+
 
 
 enum Type {
@@ -45,7 +61,7 @@ class Item {
    }
 }
 
-var item1 = Item(product: .Bacteria, useIn: 10 , qualityValue: 20)
+var item1 = Item(product: .Flu, useIn: 10 , qualityValue: 20)
 //print(item1)
 func updateQuality(item: Item) -> Int {
    switch item.product {
@@ -61,20 +77,24 @@ func updateQuality(item: Item) -> Int {
      case .Flu: 
            var quality = item.qualityValue
            let expirationDate = addDate(days: item.useIn)
-              let diff = diffBetweenTwoDates(current: Date() , expiration: expirationDate!)
+           let diff = diffBetweenTwoDates(current: Date() , expiration: expirationDate!)
      
-           if diff > 5 && diff <= 10{
-             quality = quality + 2
-             return quality
-           }
-     
-           if diff <= 5 {
-             quality = quality + 3
-             return quality
-           }else{ 
-             quality = quality + 1
-             return quality
-           }
+          if detectFluMonth() {
+            quality = item.qualityValue
+            return quality
+          }else {
+              if diff > 5 && diff <= 10{
+               quality = quality + 2
+               return quality
+             }
+             if diff <= 5 {
+               quality = quality + 3
+               return quality
+             }else{ 
+               quality = quality + 1
+               return quality
+             }
+        }
    }
 }
 
