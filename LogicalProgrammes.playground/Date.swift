@@ -50,8 +50,22 @@ func updateQuality(item: Item) -> Int {
             quality = diff > 0 ? quality + 1 : quality
             return quality
      case .Flu: 
-            print("Flu")
-           return 0
+           var quality = item.qualityValue
+           let expirationDate = addDate(days: item.useIn)
+              let diff = diffBetweenTwoDates(current: Date() , expiration: expirationDate!)
+     
+           if diff > 5 && diff <= 10{
+             quality = quality + 2
+             return quality
+           }
+     
+           if diff <= 5 {
+             quality = quality + 3
+             return quality
+           }else{ 
+             quality = quality + 1
+             return quality
+           }
    }
 }
 
