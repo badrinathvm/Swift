@@ -1,9 +1,18 @@
+// This is a sandbox to experiment with CoderPad's execution capabilities.
+// It's a temporary, throw-away session only visible to you.
+
+import Foundation
+
 
 import Foundation
 
 func diffBetweenTwoDates(current: Date, expiration: Date) -> Int {
   let diffInDays = Calendar.current.dateComponents([.day], from: current, to: expiration).day
   return diffInDays!
+}
+
+func addDate(days: Int) -> Date? {
+  return Calendar.current.date(byAdding: .day, value: 1, to: Date())
 }
 
 
@@ -16,7 +25,7 @@ dateFormatter.dateFormat = "yyyy-MM-dd"
 let futureDate = dateFormatter.date(from: stringDate)
 
 
-let noOfDays = diffBetweenTwoDates(current: dateA , expiration: futureDate!)
+let noOfDays = diffBetweenTwoDates(current: currentDate , expiration: futureDate!)
 print(noOfDays)
 
 
@@ -70,4 +79,4 @@ func updateQuality(item: Item) -> Int {
 }
 
 let quality = updateQuality(item : item1)
-print("Qualit is \(quality)")
+print("Quality is \(quality)")
