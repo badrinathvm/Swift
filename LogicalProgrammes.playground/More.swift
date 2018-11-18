@@ -76,5 +76,23 @@ func convertStringToInt() -> Int? {
 let result = convertStringToInt()
 print(result!)
 
+//-------------------- Find Pairs
 
+func findPairs() {
+  var arr = [1,2,3,4,5,6,7]
+  var target = 8   // (1,7) , (2,6) , (3,5)
 
+  var pairTuple = [(Int,Int)]()
+
+  arr.forEach {
+    let element = target - $0
+    if arr.contains(element) && element != $0 {
+       //check if tuple exists 
+       let exists = pairTuple.filter { $0.0 == element }.count == 1
+       if !exists {
+          pairTuple.append(($0, element))
+       }   
+    }
+  }
+  print(pairTuple)
+}
