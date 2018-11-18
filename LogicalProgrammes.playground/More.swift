@@ -46,4 +46,35 @@ func divideWithoutUsing() {
   print("Reminder is \(a)")
 }
 
+///------------------------------------------------------------- //
+func convertStringToInt() -> Int? {
+  let string = "13372"  
+  
+// 1 *1000 + 3 * 100 + 3 * 10 + 7 * 1
+// 1 * pow (10,3) + 3 * pow(10,2) + 3 * pow(10,1) + 7 * pow(10, 1)
+  var total = 0
+  var map = [ "0" as Character: 0,
+             "1": 1,
+             "2" : 2,
+             "3" : 3,
+             "4": 4, 
+             "5": 5, "6": 6,"7": 7,"8":8,"9":9]
+  
+  
+  for (index, val) in string.enumerated() {
+      let exponential = string.count - index - 1 //Gets the exponential Value
+      if let value = map[val] {
+        let temp = Decimal(value) * Decimal(pow(10.0,Double(exponential)))
+        total += NSDecimalNumber(decimal: temp).intValue
+      }else {
+        return -1
+      }
+  }
+  return total
+}
+
+let result = convertStringToInt()
+print(result!)
+
+
 
