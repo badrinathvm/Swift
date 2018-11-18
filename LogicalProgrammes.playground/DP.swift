@@ -31,3 +31,30 @@ func longestCommonSubSequence() -> Int {
 
 let result = longestCommonSubSequence()
 print(result)
+
+
+/* Logic */
+
+// 1. Assign LIS array to 1
+// 2. Start i from 1 and j till less than i from 0 
+// 3. if a[i] > a[j] max (lis[i] , lis[j]) then lis[i] = lis[j] + 1
+// 4. Returnt the max from the LIS array.
+
+
+func longestIncreasingSubSequence() {
+  let arr = [10,22,9,33,21,50,41,60]
+  
+  var lis = Array(repeating: 1 , count:arr.count)
+  
+  for i in 1..<arr.count {
+    for j in 0..<i {
+      if arr[i] > arr[j] && lis[i] < lis[j] + 1 {
+        lis[i] = lis[j] + 1
+      }
+    }
+  }
+  
+  print(lis.max()!)
+}
+
+longestIncreasingSubSequence()
