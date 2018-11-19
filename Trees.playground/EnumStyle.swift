@@ -1,6 +1,9 @@
 // This is a sandbox to experiment with CoderPad's execution capabilities.
 // It's a temporary, throw-away session only visible to you.
 
+
+////// BINARY SEARCH TREE 
+
 import Foundation
 
 //Logic : 
