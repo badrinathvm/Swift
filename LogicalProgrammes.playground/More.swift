@@ -96,3 +96,32 @@ func findPairs() {
   }
   print(pairTuple)
 }
+
+
+// --------------------------  Enum style 
+
+enum Reverse<Element: Comparable> {
+  case empty
+  case rev(Element)
+}
+
+extension Reverse {
+   func reverse() -> Int {
+     switch self {
+       case .empty:
+            return 0
+       case let .rev(element):
+            guard var number = element as? Int else { return 0}
+            var rev = 0
+            while number != 0 {
+              rev = rev*10 + number%10
+              number = number/10
+            }
+          return rev
+     }
+   }
+}
+
+var enumReverse = Reverse<Int>.rev(123)
+let result = enumReverse.reverse()
+print(result)
