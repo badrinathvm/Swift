@@ -196,6 +196,6 @@ func maxSubArraySum() -> Int {
 }
 
 print("MAx Sub Array ")
-print(maxSubArray())
+print(maxSubArraySum())
 
 
