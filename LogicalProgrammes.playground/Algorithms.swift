@@ -198,4 +198,51 @@ func maxSubArraySum() -> Int {
 print("MAx Sub Array ")
 print(maxSubArraySum())
 
+//--------------------------------------------
+
+//Logic 
+// 1. Travserse the array till u find either x or y and store index and then break
+// 2. traveser the remaining, if u encounter either x or y 
+        //check if it's not same as x or y  // assume you found X in Step1 and shouldn't find same here
+        //then calcuate the minDistance between current index and prev index.
+
+
+func distanceBetweenTwoNumbers() -> Int {
+  let dist = [3, 5, 4, 2, 6, 3, 0, 0, 5, 4, 8, 3]
+  let (x,y ) = (3,6) 
+  var prev = 0
+  var minDist = Int.max
+  var temp = 0
+  
+  for i in 0..<dist.count {
+    if dist[i] == x || dist[i] == y {
+      prev = i
+      temp = i
+      break
+    }
+  }
+  
+  
+  while  temp < dist.count   {
+    if dist[temp] == x || dist[temp] == y {
+      if dist[prev] != dist[temp] {
+        minDist = min(minDist , temp - prev)
+        prev = temp
+      }else{
+        prev = temp
+      }
+    }
+    
+    temp += 1    
+  }
+  
+  return minDist
+}
+
+
+let minDistance = distanceBetweenTwoNumbers()
+print(minDistance)
+
+
+
 
