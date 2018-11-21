@@ -155,4 +155,47 @@ func longestPalindrome() {
 
 longestPalindrome()   
 
+//-------------------------------------------------------
+//Kadane's Algorithm 
+
+//Logic: 
+
+// Initialize:
+//     max_so_far = 0
+//     max_ending_here = 0
+
+// Loop for each element of the array
+//   (a) max_ending_here = max_ending_here + a[i]
+//   (b) if(max_ending_here < 0)
+//             max_ending_here = 0
+//   (c) if(max_so_far < max_ending_here)
+//             max_so_far = max_ending_here
+// return max_so_far
+
+func maxSubArraySum() -> Int {
+  
+  var arr = [-2, -3, 4, -1, -2, 1, 5, -3]
+  
+  var max_so_far = 0
+  var max_ending = 0
+  
+ for (index, value) in arr.enumerated() {
+    
+    max_ending += value
+                            
+    if max_ending < 0 {
+      max_ending = 0
+    }
+                            
+    if max_so_far < max_ending {
+      max_so_far = max_ending
+    }
+  }
+  
+  return max_so_far
+}
+
+print("MAx Sub Array ")
+print(maxSubArray())
+
 
