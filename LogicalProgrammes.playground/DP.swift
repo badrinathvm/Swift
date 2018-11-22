@@ -32,6 +32,37 @@ func longestCommonSubSequence() -> Int {
 let result = longestCommonSubSequence()
 print(result)
 
+//SAME AS LONGEST COMMON SUBSEQUENCE
+ // will be doing one extra step of calculating max result max(result, dp[i][j])
+
+func longestCommonSubString() {
+  
+  let str1 = "OldSite:GeeksforGeeks.org".compactMap { String($0) }
+  let str2 = "NewSite:GeeksQuiz.com".compactMap { String($0) }
+  
+  let(m,n) = (str1.count + 1, str2.count + 1)
+  var dp = Array(repeating: Array(repeating:0 , count: n+1), count: m+1)
+  
+  var result = 0
+  
+  (1...str1.count).forEach { i in 
+    (1...str2.count).forEach { j in 
+       if str1[i-1] == str2[j-1] {
+         dp[i][j] = dp[i-1][j-1] + 1
+         result = max(result, dp[i][j])
+       }else {
+         dp[i][j] = 0
+       }
+    }                
+  }
+  
+  print(result)
+  
+}
+
+
+longestCommonSubString()
+
 
 /* Logic */
 
