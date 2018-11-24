@@ -208,7 +208,7 @@ print(maxSubArraySum())
 
 
 func distanceBetweenTwoNumbers() -> Int {
-  let dist = [3, 5, 4, 2, 6, 3, 0, 0, 5, 4, 8, 3]
+  let dist = [3, 5, 4, 2, 6, 3, 0, 0, 5, 4, 8, 3] // o/p: 1 
   let (x,y ) = (3,6) 
   var prev = 0
   var minDist = Int.max
