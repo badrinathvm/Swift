@@ -125,3 +125,41 @@ extension Reverse {
 var enumReverse = Reverse<Int>.rev(123)
 let result = enumReverse.reverse()
 print(result)
+
+
+//----------------------- Find number of sub sets 
+
+var arr = [2,4,6,10]  //o/p : 2  i.e. { 6,10} {2,4,10}
+
+func countSets(arr:  inout [Int] , total:Int ) -> Int {
+   return rec(&arr, total,arr.count - 1)
+}
+
+func rec(_ arr: inout [Int] , _ total: Int ,_ i: Int) -> Int {
+  
+  //return {} subset
+  if total == 0 {
+     return  1
+  }
+  
+  // if i goes out of bounds return 0
+  if total < 0 {
+    return 0
+  }else if i < 0 {
+    return 0
+  }
+
+  //this case is if total is less than current element, just navigate back to previous element
+  if total < arr[i] {
+    return rec(&arr, total , i-1)
+  }else {
+    //Include the current number along with it's previous numbers
+     //for eg : i = 2 , one recursive case is for  6 , 
+     // and the other one is for { 2, 4 } not including 6 i.e., total - arr[i]
+    return rec(&arr, total - arr[i] , i-1) + 
+           rec(&arr, total, i-1)
+  }
+}
+
+let res = countSets(arr: &arr, total :16)
+print(res)
