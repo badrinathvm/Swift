@@ -1,9 +1,24 @@
 import Foundation 
 
+
+// A number is said to be prime if it is divisble by 1 and itself
+func isPrime(_ n: Int) -> Bool {
+  return (1...n).filter { n % $0 == 0}.count <= 2
+}
+
+print(isPrime(29))
+print(isPrime(4))
+
+//It first makes sure the number is greater than one and then creates a range from 2 until the number (not including the number) and checks the number is not divisible by each number in the range
+func prime(_ n: Int) -> Bool {
+  return n > 1 && !(2..<n).contains { n%$0 == 0 }
+}
+
+  ///-----------------------------------------------------------------
+
 func findLengthOfLongestContinuousIncreasingSequence(_ arr: [Int]) -> Int {
   var count = 1
   var result = [Int]()
-
   //Logic : 
   //1. comparing first ansecond element  if it is less , increment the count
   //2. Else add teh count to an array and reset to 1
