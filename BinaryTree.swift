@@ -136,24 +136,32 @@ class BinaryTree {
     
   }
   
-  func lca(root: Node?, p: Node?, q: Node?) -> Node? {
-    
-    if root == nil {
+  static func lca(node: Node?, p: Node? , q: Node?) -> Node? {
+   
+    if node == nil {
       return nil
     }
     
-   if root?.value == p?.value || root?.value == q?.value {
-     return root
-   }
+    guard let nodeValue = node?.value,
+          let pValue = p?.value,
+          let qValue = q?.value else { return nil }
     
-    let left = lca(root: root?.left , p: p, q: q)
-    let right = lca(root: root?.right, p: p, q: q)
-    
-    if left !== nil && right != nil {
-      return root
-    }else{
-      return (left != nil ) ? left : right
+    //search code once found return the node
+    if nodeValue == pValue || nodeValue == qValue {
+      return node
     }
+    
+    //perform in order traversal 
+    let left = lca(node: node?.left , p: p , q: q)
+    let right = lca(node: node?.right , p: p , q: q)
+    
+    // if both values are present return the node else return what ever it is.
+    if left != nil && right != nil {
+      return node
+    }else {
+      return left != nil ? left : right
+    }
+    
     
   }
   
