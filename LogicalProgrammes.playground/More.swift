@@ -163,3 +163,36 @@ func rec(_ arr: inout [Int] , _ total: Int ,_ i: Int) -> Int {
 
 let res = countSets(arr: &arr, total :16)
 print(res)
+
+//--------------------------- Find Closets Points ----->
+
+//Find K smallest elements 
+
+//Logic: 
+  //1. Put k elements on to the heap (create operation O(k))
+  //2. Compare each element after kth element if it is smaller than the ones present in the heap , replace it.
+
+//Find Kth Closet points
+ //1. Calculate the difference between the points using pythagoras theoremand add them in dictionary 
+// 2. Thene extract the first two points.
+
+
+func findClosetPoints() {
+  let points = [(-2,4), (0,-2),(-1,0),(3,5),(-2,-3),(3,2)]
+  
+  var tupleArray  = [((Int,Int) , Int)]()
+
+  points.forEach {
+    //Applying pythagoras Theorom 
+    let result = Double(($0.0 * $0.0) + ($0.1 * $0.1))
+    let value = Int(result.squareRoot())
+    tupleArray.append(($0, value))
+  }
+
+  //sorting and then filtering the top two ones.
+  let filteredOnes = tupleArray.sorted { $0.1 < $1.1 } 
+  print(filteredOnes.prefix(2))
+}
+
+
+findClosetPoints()
