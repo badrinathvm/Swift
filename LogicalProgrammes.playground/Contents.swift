@@ -1003,6 +1003,22 @@ print(res)
           print(maxSoFar)
     }
     
+    
+     func permutate(_ s: inout [Character], _ l:Int, _ r:Int){
+        if(l == r){
+            print(String(s))
+        }else{
+            for i in l...r {
+                s.swapAt(l,i)
+                permutate(&s, l+1, r)
+                s.swapAt(l,i)
+            }
+        }
+    }
+
+
+permutate(&str, 0,str.count - 1)
+    
     func threeSum() {
       let arr = Array([6,1,2,3,4,5].sorted())
       let target = 11
@@ -1062,6 +1078,8 @@ logical.palindromeRotation()
 logical.firstRecurringCharacter()
 print(logical.longestCommonSubString())
 logical.maxSubArray()
+var p = ["A","B","C"]
+logical.permutate(&p,0,p.count-1)
 logical.threeSum()
 logical.isPrime(7)
 
