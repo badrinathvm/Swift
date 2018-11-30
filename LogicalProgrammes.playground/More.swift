@@ -211,3 +211,30 @@ func findClosetPoints() {
 
 
 findClosetPoints()
+
+
+//Logic: 
+  //1. construct the sample string at the places where we want to replace the string
+ //2. In the below string see for "first", "second" & "third" string.
+ //3. Iterate over each element in the array and replace the string.
+
+func findCombinations() {
+  
+  //{Valery","Jason","Peter} was in {good,bad} mood and he went to the {beach,party,library}.
+  
+  let arr1 = ["Valery","Jason","Peter"]
+  let arr2 = ["good","bad"]
+  let arr3 = ["beach", "party", "library"]
+  var sampleString = "first was in second mood and he went to the third"
+
+  arr1.forEach {
+    let res1 = sampleString.replacingOccurrences(of: "first", with: $0)
+     arr2.forEach {
+       let res2 = res1.replacingOccurrences(of: "second", with: $0)
+         arr3.forEach {
+           let res3 = res2.replacingOccurrences(of:"third", with: $0)
+           print(res3)
+         }
+     }
+  }
+} 
