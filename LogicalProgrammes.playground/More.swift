@@ -238,3 +238,26 @@ func findCombinations() {
      }
   }
 } 
+
+func findPairs() {
+  let arr = [2, 3, 4, 6, 9]
+  let k = 20
+  var finalResult = [(Int,Int)]()
+  arr.enumerated().forEach { index, first in 
+      let elements = arr.filter { $0 != first }
+      elements.forEach {
+         let second = $0
+         if second * first < k {
+           //this eliminates symmetery
+           let exists = finalResult.filter { $0.0 == second && $0.1 == first }.count > 0
+           if !exists {
+             finalResult.append((first,second))
+           }
+         }
+      }
+  }
+  
+  print(finalResult.count)
+}
+
+findPairs()  //6 .  Pairs having product less than 20: (2, 3), (2, 4), (2, 6), (2, 9), (3, 4), (3, 6)
