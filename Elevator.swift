@@ -12,6 +12,14 @@ class Queue<T> {
     arr.append(item)
   }
   
+  func isEmpty() -> Bool {
+    return arr.isEmpty ? true : false
+  }
+  
+  func poll() -> T? {
+    return arr.first
+  }
+  
 }
 
 enum Direction {
@@ -68,6 +76,50 @@ class Elevator {
          }else{
            downQueue.add(request)
          }
+    }
+  }
+  
+  func navigate(to floor: Int) {
+    
+    //set the location 
+    self.location = floor
+    
+    //open the door 
+    self.door = Door.opened
+    
+    //stop the state
+    self.state = State.stopped
+    
+    //execute thread
+    executeThread()
+
+    self.door = Door.closed    
+    
+  }
+  
+  func executeThread() {
+    // do {
+    //   try Thread.sleep(2000);
+    // } catch let error  {
+    //   // TODO Auto-generated catch block
+    //   print(error)
+    // }
+    
+    //execute thread for some time to make person gets in
+  }
+  
+  func process() {
+    while true {
+      if !upQueue.isEmpty() && !downQueue.isEmpty() {
+        
+        //poll the current request
+        guard let request = currentQueue.poll() else {  
+          //pick up eithert upQueue or DownQueue. 
+          return
+        }
+    
+        navigate(to: request.floor)
+      }
     }
   }
   
