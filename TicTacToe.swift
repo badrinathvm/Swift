@@ -56,6 +56,7 @@ struct Board {
     ||  position[1] == position[4] && position[1] == position[7] && position[1] != .E
     ||  position[2] == position[5] && position[2] == position[8] && position[2] != .E
     ||  position[2] == position[4] && position[2] == position[6] && position[2] != .E
+    ||  position[0] == position[4] && position[0] == position[8] && position[0] != .E
   }
   
 }
