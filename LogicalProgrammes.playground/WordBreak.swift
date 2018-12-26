@@ -28,14 +28,23 @@ func wordBreak(_ s: String, _ wordDict: [String]) -> Bool {
   }
 
   //check if each of the element in array matches with Dictionary
-  arr.forEach {
-    let element = $0
-     wordDict.forEach {
-       if element == $0 {
-         //remove those elements from the main string 
-         backUpString = backUpString.replacingOccurrences(of: element , with: "" )           
-       }
-     }
+//   arr.forEach {
+//     let element = $0
+//      wordDict.forEach {
+//        if element == $0 {
+//          //remove those elements from the main string 
+//          backUpString = backUpString.replacingOccurrences(of: element , with: "" )           
+//        }
+//      }
+//   }
+  
+   wordDict.forEach {
+    let temp = $0 
+    var present = elements.filter { $0 == temp }.count == 1
+    if present {
+       backupString = backupString.replacingOccurrences(of: $0 , with : "")
+       print(backupString)
+    }
   }
   
     
@@ -51,6 +60,6 @@ let wordDict = ["leet", "code"]
 let result = wordBreak(str, wordDict)
 print(result)  //true 
 
-let str1  = "catsanddog"
+let str1  = "catsandog"
 let wordDict1 = ["cats", "dog", "sand", "and", "cat"]
 let result1 = wordBreak(str1, wordDict1)  // false 
