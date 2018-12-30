@@ -243,6 +243,32 @@ func distanceBetweenTwoNumbers() -> Int {
 let minDistance = distanceBetweenTwoNumbers()
 print(minDistance)
 
+//------------------------ Palindrome Pairs ----------------
 
+func palindromePairs(_ words: [String]) -> [[Int]] {
+  var multi:[[Int]] = []
+
+  for i in 1..<arr.count {
+    for j in 0..<i   {    
+      let element = "\(arr[j])\(arr[i])"
+      if element == String(element.reversed()) {
+        let temp = [j, i]
+        multi.append(temp)
+      }
+
+      let altElement = "\(arr[i])\(arr[j])"
+      if altElement == String(altElement.reversed()) {
+        let temp = [i , j]
+        multi.append(temp)
+      }
+    }
+  }
+
+  return multi
+}
+
+var arr = ["abcd","dcba","lls","s","sssll"]
+let result = palindromePairs(arr)
+print(result)
 
 
