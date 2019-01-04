@@ -59,3 +59,44 @@ groupString()
 
 
 //o/p:  [["lambs", "balms"], ["looped", "poodle"], ["cat", "act"], ["may", "amy", "yam"], ["flow", "wolf"], ["tab", "bat"], ["student", "students", "studentssess"], ["dog", "god"]]
+
+
+//---- find common Elements 
+
+//Create a hashArray for 26 Alphabets
+//iterate through each word , get the ascii value , and update the array with right index
+//Extract the offset with > wordsArray.count 
+//iterate that array convert each of the index in to char
+
+func findCommonElements() {
+  
+  let words = ["geeksforgeeks","gemkstones","acknowledges","aguelikes"]
+  var hashArray = Array(repeating: 0 , count: 26)
+  
+  words.forEach {
+    let elements = $0.compactMap { $0 }
+    elements.forEach {
+      guard let asciiValue = $0.unicodeScalars.first?.value else { return }
+      let index = Int(asciiValue - 97)
+      hashArray[index] += 1
+    }
+  }
+  
+  let result = hashArray.enumerated().reduce([],{
+    return $1.element > words.count ? $0 + [$1.offset] : $0
+  })
+  
+  result.forEach {
+    guard let unicode = UnicodeScalar( $0 + 97) else { return }
+    let char = Character(unicode)
+    print(char)
+  }
+  
+}
+
+
+findCommonElements()  // e, g, k, s
+
+
+
+
