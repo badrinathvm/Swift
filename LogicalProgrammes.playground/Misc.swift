@@ -97,6 +97,47 @@ func findCommonElements() {
 
 findCommonElements()  // e, g, k, s
 
+//--------- substring-with-concatenation-of-all-words
 
+func findSubstring(_ s: String, _ words: [String]) -> [Int] {
+  let variation1 = words.reduce("" , {String($0) + String($1)})
+  let variation2 = words.reduce("" , {String($1) + String($0)})
+  var tuplesArray = [(Int,Int)]()
+
+  for index in 0..<str.count - 1 { 
+    let startIndex = str.index(str.startIndex , offsetBy: index)
+    //calculate the end Index , if it goes negative then it's out of end Index. 
+    let value = str.count - ( variation1.count - 1 + index)
+    if value > 0 {
+      let endIndex = str.index(str.endIndex, offsetBy:  -value)   
+      let range = startIndex...endIndex
+      let tempString = String(str[range])
+      if tempString == variation1 ||  tempString == variation2 {
+        tuplesArray.append((startIndex.encodedOffset, endIndex.encodedOffset))
+      }
+    }
+  }
+
+  print(tuplesArray)
+
+  var output = [Int]()
+  tuplesArray.forEach {
+    output.append($0.0)
+  }
+
+  return output
+}
+                            
+var str = "barfoothefoobarman"
+var words = ["foo", "bar"]
+let result = findSubstring(str,words)
+print(result)  
+
+/*Input:
+  s = "barfoothefoobarman",
+  words = ["foo","bar"]
+Output: [0,9]
+Explanation: Substrings starting at index 0 and 9 are "barfoor" and "foobar" respectively.
+The output order does not matter, returning [9,0] is fine too. */
 
 
