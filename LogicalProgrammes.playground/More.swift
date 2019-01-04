@@ -261,3 +261,21 @@ func findPairs() {
 }
 
 findPairs()  //6 .  Pairs having product less than 20: (2, 3), (2, 4), (2, 6), (2, 9), (3, 4), (3, 6)
+
+
+//Repeated Sub String 
+
+
+func repeatedString(s: String ) {
+  var s1 = s + s
+  let s2 = s1.dropFirst().dropLast()
+  print(s2)
+  if s2.contains(s) {
+    print("true")
+  }else {
+    print("false")
+  }
+}
+
+
+repeatedString(s: "abab")  //ab apperead two times 
