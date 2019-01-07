@@ -280,3 +280,28 @@ func repeatedString(s: String ) {
 
 
 repeatedString(s: "abab")  //ab apperead two times 
+
+
+//--- first Non Repeating Character 
+
+
+func firstNonRepeatingCharacter()  {
+  let str = "ABCDBAGHC"  // "D"  // c: 2, a: 2, B: 2,
+  var dict: [Character : (Int,Int)] = [:]
+
+  str.enumerated().forEach { index, value in 
+
+    if let tuple = dict[value] {
+      dict[value] = (tuple.0 + 1 , tuple.1)
+    }else{
+      dict[value] = (1, index)
+    }                     
+  }
+
+  let filterByOne = dict.filter { ($0.1).0 == 1 }
+  let sortedResult = filterByOne.sorted { ($0.1).1 < ($1.1).1}
+  print((sortedResult.first?.key)!)
+}
+
+firstNonRepeatingCharacter()  // D
+
