@@ -144,6 +144,7 @@ print(result)
 
 //----------------------- Find number of sub sets 
 
+//Reference : https://www.techiedelight.com/subset-sum-problem/
 var arr = [2,4,6,10]  //o/p : 2  i.e. { 6,10} {2,4,10}
 
 func countSets(arr:  inout [Int] , total:Int ) -> Int {
