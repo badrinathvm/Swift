@@ -271,7 +271,7 @@ var arr = ["abcd","dcba","lls","s","sssll"]
 let result = palindromePairs(arr)
 print(result)
 
-// Making Chnage problem
+// Making Change problem
 
 func count(_ arr: [Int] , _ m: Int, _ n: Int) -> Int {
    if n == 0 {
