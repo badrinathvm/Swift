@@ -271,4 +271,33 @@ var arr = ["abcd","dcba","lls","s","sssll"]
 let result = palindromePairs(arr)
 print(result)
 
+// Making Chnage problem
+
+func count(_ arr: [Int] , _ m: Int, _ n: Int) -> Int {
+   if n == 0 {
+     return 1
+   }
+  
+  if n < 0 {
+    return 0
+  }
+  
+  if m <= 0 && n >= 1 {
+    return 0
+  }
+  
+  return count(arr,m - 1, n) + count(arr, m, n-arr[m - 1])
+}
+
+
+func makeChange() {
+  var arr = [2,5,3,6]
+  let result = count(arr, arr.count, 10)
+  print(result) // 5 ways
+}
+
+
+print("make Chnage")
+makeChange()
+
 
