@@ -271,7 +271,7 @@ var arr = ["abcd","dcba","lls","s","sssll"]
 let result = palindromePairs(arr)
 print(result)
 
-// Making Change problem
+// ----------------- Making Change problem
 
 func count(_ arr: [Int] , _ m: Int, _ n: Int) -> Int {
    if n == 0 {
@@ -299,5 +299,33 @@ func makeChange() {
 
 print("make Chnage")
 makeChange()
+
+//------------------  Stair Case probelem
+
+func countWays(_ n: Int, _ m: Int) -> Int {
+  if n <= 1 {
+    return n
+  }
+  var res = 0 
+  
+  //this condition is either 1 step , 2 step or 3 step ( bsacially till m times )
+  for i in 1...m {
+    if i <= n {
+      res += countWays(n-i, m)
+    }
+  }
+  
+  return res
+}
+
+func stairCase() {
+  let n = 4
+  let m = 3
+  let result = countWays(n + 1, m )
+  print(result)
+}
+
+stairCase()
+
 
 
