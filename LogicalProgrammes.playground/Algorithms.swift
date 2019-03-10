@@ -327,9 +327,7 @@ func stairCase() {
 
 stairCase()
 
-// Sub set problem 
-
-//--- subSet problem 
+// Sub set problem , Also see note to more explanation.
 
 func isSubSet(arr: [Int], n: Int,sum: Int) -> Bool {
   if sum == 0 {
