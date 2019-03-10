@@ -338,10 +338,17 @@ func isSubSet(arr: [Int], n: Int,sum: Int) -> Bool {
     return false 
   }
   
+  // If last element is greater than  
+        // sum, then ignore it 
   if sum < arr[n-1] {
     return isSubSet(arr: arr, n: n-1 , sum :sum)
   }
   
+  
+   /* else, check if sum can be obtained  
+        by any of the following 
+            (a) including the last element 
+            (b) excluding the last element */
   return isSubSet(arr: arr, n: n-1 , sum :sum) || isSubSet(arr: arr, n: n-1 , sum : sum - arr[n-1])
 }
 
