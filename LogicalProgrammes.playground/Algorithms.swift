@@ -327,5 +327,30 @@ func stairCase() {
 
 stairCase()
 
+// Sub set problem 
+
+//--- subSet problem 
+
+func isSubSet(arr: [Int], n: Int,sum: Int) -> Bool {
+  if sum == 0 {
+    return true
+  }
+  
+  if n == 0  {
+    return false 
+  }
+  
+  if sum < arr[n-1] {
+    return isSubSet(arr: arr, n: n-1 , sum :sum)
+  }
+  
+  return isSubSet(arr: arr, n: n-1 , sum :sum) || isSubSet(arr: arr, n: n-1 , sum : sum - arr[n-1])
+}
+
+
+var arr = [3, 34, 4, 12, 5, 2]
+let result = isSubSet(arr: arr, n: arr.count, sum: 9)
+print(result) //true
+
 
 
