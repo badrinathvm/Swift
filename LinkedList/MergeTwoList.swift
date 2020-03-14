@@ -1,3 +1,8 @@
+
+//Complexity : O(m+n)
+// Space : O(1) - as no new nodes are created - just manipulating the links etc..
+
+
 import Foundation
 
 class LinkedList {
